@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rigbod;
 
+    public float movementSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,11 @@ public class PlayerController : MonoBehaviour
         CheckInput();
     }
 
+    private void FixedUpdate()
+    {
+        ApplyMovement();
+    }
+
     private void CheckInput()
     {   
         // Using GetAxisRaw allows us to get the quick input for 'A' and 'D' along the horizontal axis
@@ -34,6 +41,9 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    
+    private void ApplyMovement()
+    {
+        rigbod.velocity = new Vector2(movementSpeed * movementInputDirection, rigbod.velocity.y);
+    }
 
 }
