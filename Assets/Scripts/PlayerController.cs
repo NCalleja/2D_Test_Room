@@ -9,11 +9,12 @@ public class PlayerController : MonoBehaviour
     private float movementInputDirection;
 
     private bool isFacingRight = true;
+    private bool isRunning;
 
     private Rigidbody2D rigbod;
+    private Animator anim;
 
     public float movementSpeed;
-
     public float jumpForce;
 
     // Start is called before the first frame update
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     {
         // Getting the Rigidbody
         rigbod = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
 
     }
 
@@ -32,6 +34,9 @@ public class PlayerController : MonoBehaviour
 
         // Calling Check Direction Function
         CheckMovementDirection();
+
+        // Updating Animations
+        UpdateAnimations();
     }
 
     private void FixedUpdate()
@@ -50,6 +55,23 @@ public class PlayerController : MonoBehaviour
         {
             Flip();
         }
+
+        if(rigbod.velocity.x != 0)
+        {
+            isRunning = true;
+
+        }
+        else
+        {
+            isRunning = false;
+        }
+    }
+
+
+    private void UpdateAnimations()
+    {
+        anim.SetBool("isRunning", isRunning);
+
     }
 
     // Grabbing the Input
