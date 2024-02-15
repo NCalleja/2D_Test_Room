@@ -973,6 +973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
+  jumpForce: 5.5
 --- !u!1 &1059880902
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
 
     public float movementSpeed;
 
+    public float jumpForce;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
         ApplyMovement();
     }
 
+    // Function for checking Direction and Flipping
     private void CheckMovementDirection()
     {
         if(isFacingRight && movementInputDirection < 0)
@@ -52,12 +55,24 @@ public class PlayerController : MonoBehaviour
     // Grabbing the Input
     private void CheckInput()
     {   
-        // Using GetAxisRaw allows us to get the quick input for 'A' and 'D' along the horizontal axis
-        // If we used "GetAxis" it would track between 0 and -1 and however far you go. 
-        // With GetAxis Raw it keeps track of 1 or 2 based on direction. It's faster, snappier movement.
+        // Movement
+            // Using GetAxisRaw allows us to get the quick input for 'A' and 'D' along the horizontal axis
+            // If we used "GetAxis" it would track between 0 and -1 and however far you go. 
+            // With GetAxis Raw it keeps track of 1 or 2 based on direction. It's faster, snappier movement.
         movementInputDirection = Input.GetAxisRaw("Horizontal");
 
+        // Jumping
+        if(Input.GetButtonDown("Jump"))
+        {
+            Jump();
+        }
 
+    }
+
+    // Jump Function
+    private void Jump()
+    {
+        rigbod.velocity = new Vector2(rigbod.velocity.x, jumpForce);
     }
 
     // Applying the Movment of the Input Direction to the Rigidbody via the Y axis
@@ -66,6 +81,7 @@ public class PlayerController : MonoBehaviour
         rigbod.velocity = new Vector2(movementSpeed * movementInputDirection, rigbod.velocity.y);
     }
 
+    // Flipping Sprite
     private void Flip()
     {
         isFacingRight = !isFacingRight;
