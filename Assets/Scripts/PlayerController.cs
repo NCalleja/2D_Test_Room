@@ -10,12 +10,18 @@ public class PlayerController : MonoBehaviour
 
     private bool isFacingRight = true;
     private bool isRunning;
+    private bool isGrounded;
 
     private Rigidbody2D rigbod;
     private Animator anim;
 
     public float movementSpeed;
     public float jumpForce;
+    public float groundCheckRadius;
+
+    public LayerMask whatIsGround;
+
+    public Transform groundCheck;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +48,11 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         ApplyMovement();
+    }
+
+    private void CheckSurroundings()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
     }
 
     // Function for checking Direction and Flipping
@@ -108,6 +119,11 @@ public class PlayerController : MonoBehaviour
     {
         isFacingRight = !isFacingRight;
         transform.Rotate(0.0f, 180.0f, 0.0f);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
 
 }
