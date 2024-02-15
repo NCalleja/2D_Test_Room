@@ -268,7 +268,7 @@ Transform:
   m_GameObject: {fileID: 367578763}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.008, y: -0.488, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1113,6 +1113,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 7
   jumpForce: 12.5
+  groundCheckRadius: 0.2
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 256
   groundCheck: {fileID: 367578764}
 --- !u!1 &1059880902
 GameObject:
@@ -2571,7 +2575,7 @@ GameObject:
   - component: {fileID: 1716339605}
   - component: {fileID: 1716339604}
   - component: {fileID: 1716339603}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}

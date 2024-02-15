@@ -8,9 +8,9 @@ public class PlayerController : MonoBehaviour
 
     private float movementInputDirection;
 
-    private bool isFacingRight = true;
-    private bool isRunning;
-    private bool isGrounded;
+    public bool isFacingRight = true;
+    public bool isRunning;
+    public bool isGrounded;
 
     private Rigidbody2D rigbod;
     private Animator anim;
@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         ApplyMovement();
+        CheckSurroundings();
     }
 
     private void CheckSurroundings()
@@ -82,6 +83,7 @@ public class PlayerController : MonoBehaviour
     private void UpdateAnimations()
     {
         anim.SetBool("isRunning", isRunning);
+        anim.SetBool("isGrounded", isGrounded);
 
     }
 
