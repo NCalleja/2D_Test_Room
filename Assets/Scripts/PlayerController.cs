@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
 
     private float movementInputDirection;
+
+    private bool isFacingRight = true;
 
     private Rigidbody2D rigbod;
 
@@ -24,6 +27,9 @@ public class PlayerController : MonoBehaviour
     {
         // Calling Check Input Function
         CheckInput();
+
+        // Calling Check Direction Function
+        CheckMovementDirection();
     }
 
     private void FixedUpdate()
@@ -31,6 +37,19 @@ public class PlayerController : MonoBehaviour
         ApplyMovement();
     }
 
+    private void CheckMovementDirection()
+    {
+        if(isFacingRight && movementInputDirection < 0)
+        {
+            Flip();
+        }
+        else if(!isFacingRight && movementInputDirection >0)
+        {
+            Flip();
+        }
+    }
+
+    // Grabbing the Input
     private void CheckInput()
     {   
         // Using GetAxisRaw allows us to get the quick input for 'A' and 'D' along the horizontal axis
@@ -41,9 +60,16 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    // Applying the Movment of the Input Direction to the Rigidbody via the Y axis
     private void ApplyMovement()
     {
         rigbod.velocity = new Vector2(movementSpeed * movementInputDirection, rigbod.velocity.y);
+    }
+
+    private void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        transform.Rotate(0.0f, 180.0f, 0.0f);
     }
 
 }
