@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1034694835}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 8.4375
+    OrthographicSize: 4.36
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -305,7 +305,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8.4375
+  orthographic size: 4.36
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -352,7 +352,7 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 0
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
@@ -917,7 +917,7 @@ Animator:
   m_GameObject: {fileID: 1034694832}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 520edc04940166e4ea232abc198d7067, type: 2}
+  m_Controller: {fileID: 9100000, guid: 188ab8cb5b1ef8e48b5f8cf1d5919832, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -969,7 +969,7 @@ SpriteRenderer:
   m_SortingLayerID: 330014407
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7e31ac95e7ea3284db9cbb4fd509a79c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 407909e9288639b43af05b5a6545cdf9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -20587,7 +20587,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
   m_LookaheadTime: 0
-  m_LookaheadSmoothing: 0
+  m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 0
   m_XDamping: 1
   m_YDamping: 1
