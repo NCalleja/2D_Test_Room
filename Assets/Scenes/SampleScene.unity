@@ -1133,7 +1133,7 @@ GameObject:
   - component: {fileID: 1059880905}
   - component: {fileID: 1059880904}
   m_Layer: 0
-  m_Name: Background
+  m_Name: Background Decorations
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20790,7 +20790,7 @@ GameObject:
   - component: {fileID: 2000354822}
   - component: {fileID: 2000354821}
   m_Layer: 0
-  m_Name: Backdrop
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
