@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cde2545623486ac40a5c5e8520979b1c
+guid: c24c27e3244d590468d06ee4244c8a3d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -136,12 +136,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Test Dummy Running Sheet_0
+      name: Test Dummy Running Sheet 1_0
       rect:
         serializedVersion: 2
-        x: 9
+        x: 10
         y: 52
-        width: 16
+        width: 15
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcd7e22c54d30b44f90e4d49bd18f278
-      internalID: 1768191110
+      spriteID: bef22ff4c561b6c4fb4fb4d58e2e9a03
+      internalID: -1348549024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Test Dummy Running Sheet_1
+      name: Test Dummy Running Sheet 1_1
       rect:
         serializedVersion: 2
         x: 32
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fc1312dcad9a424c8370646542455ab
-      internalID: 46634840
+      spriteID: 6425c315eab086c4ba0c407496ad8b35
+      internalID: 1546824038
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Test Dummy Running Sheet_3
+      name: Test Dummy Running Sheet 1_2
       rect:
         serializedVersion: 2
         x: 57
@@ -192,14 +192,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: caaf58702dcbcf6468c345308d51ff21
-      internalID: 622502664
+      spriteID: 11936e53619bbb149b7d55bf84d41040
+      internalID: -1924463818
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Test Dummy Running Sheet_4
+      name: Test Dummy Running Sheet 1_3
       rect:
         serializedVersion: 2
         x: 85
@@ -213,19 +213,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0927b4ead4a83f8439054fbabc4b1417
-      internalID: 1612341161
+      spriteID: 15fe374e5dcd6cd4eb88b4dbfdcdeba8
+      internalID: -605854271
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Test Dummy Running Sheet_6
+      name: Test Dummy Running Sheet 1_4
       rect:
         serializedVersion: 2
-        x: 117
+        x: 119
         y: 52
-        width: 23
+        width: 21
         height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -234,14 +234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 699df0431138f784eb66cdad56aa90da
-      internalID: -1040549700
+      spriteID: f453dd4f61375b54ca83507ba67e3e5b
+      internalID: 1383368563
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Test Dummy Running Sheet_7
+      name: Test Dummy Running Sheet 1_5
       rect:
         serializedVersion: 2
         x: 152
@@ -255,14 +255,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8bc810acad0c10c4f8c3aa577dc69fde
-      internalID: 510568006
+      spriteID: 830474ca921b00f42ab7b0f4b884ba1e
+      internalID: 1442117528
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Test Dummy Running Sheet_8
+      name: Test Dummy Running Sheet 1_6
       rect:
         serializedVersion: 2
         x: 180
@@ -276,14 +276,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8f72a320919fc542b571b72a7319d85
-      internalID: -968238164
+      spriteID: f0d98eadf0a93c94180e971bad0c76c9
+      internalID: -309462045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Test Dummy Running Sheet_12
+      name: Test Dummy Running Sheet 1_7
       rect:
         serializedVersion: 2
         x: 12
@@ -297,14 +297,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d5c080d409bb3848b73af8bf0dd8437
-      internalID: 730606928
+      spriteID: b1c4c7373cd358a4ab85329d873a757d
+      internalID: 863816102
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Test Dummy Running Sheet_13
+      name: Test Dummy Running Sheet 1_8
       rect:
         serializedVersion: 2
         x: 30
@@ -318,14 +318,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f0b68567ea536f40977308ff5728a4c
-      internalID: 1780548927
+      spriteID: b5db70800993c3a4f8f575b1f93b1a0d
+      internalID: -986911933
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Test Dummy Running Sheet_14
+      name: Test Dummy Running Sheet 1_9
       rect:
         serializedVersion: 2
         x: 53
@@ -339,14 +339,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fcf889d1b5145b43af8601bbe6741f3
-      internalID: -1186981113
+      spriteID: 8d2379f81dc7d1f419ddc611e19275ed
+      internalID: 1082774826
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Test Dummy Running Sheet_15
+      name: Test Dummy Running Sheet 1_10
       rect:
         serializedVersion: 2
         x: 86
@@ -360,14 +360,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75a398feefc881f4399cc98f02bed963
-      internalID: 880903994
+      spriteID: c9d0a628dbd145c498f55be1caeace7b
+      internalID: 1537823912
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Test Dummy Running Sheet_17
+      name: Test Dummy Running Sheet 1_11
       rect:
         serializedVersion: 2
         x: 122
@@ -381,8 +381,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd32abefe383240459e064b284f581ce
-      internalID: 1418305316
+      spriteID: f2c255ad2ea232d4ba18eb6d3b5d957d
+      internalID: -1045476003
       vertices: []
       indices: 
       edges: []
@@ -398,25 +398,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Test Dummy Running Sheet_0: 1768191110
-      Test Dummy Running Sheet_1: 46634840
-      Test Dummy Running Sheet_10: -195894067
-      Test Dummy Running Sheet_11: -580944974
-      Test Dummy Running Sheet_12: 730606928
-      Test Dummy Running Sheet_13: 1780548927
-      Test Dummy Running Sheet_14: -1186981113
-      Test Dummy Running Sheet_15: 880903994
-      Test Dummy Running Sheet_16: -2127933473
-      Test Dummy Running Sheet_17: 1418305316
-      Test Dummy Running Sheet_18: -999252323
-      Test Dummy Running Sheet_2: 795533242
-      Test Dummy Running Sheet_3: 622502664
-      Test Dummy Running Sheet_4: 1612341161
-      Test Dummy Running Sheet_5: 1835789374
-      Test Dummy Running Sheet_6: -1040549700
-      Test Dummy Running Sheet_7: 510568006
-      Test Dummy Running Sheet_8: -968238164
-      Test Dummy Running Sheet_9: 433913628
+      Test Dummy Running Sheet 1_0: -1348549024
+      Test Dummy Running Sheet 1_1: 1546824038
+      Test Dummy Running Sheet 1_10: 1537823912
+      Test Dummy Running Sheet 1_11: -1045476003
+      Test Dummy Running Sheet 1_12: 301123173
+      Test Dummy Running Sheet 1_2: -1924463818
+      Test Dummy Running Sheet 1_3: -605854271
+      Test Dummy Running Sheet 1_4: 1383368563
+      Test Dummy Running Sheet 1_5: 1442117528
+      Test Dummy Running Sheet 1_6: -309462045
+      Test Dummy Running Sheet 1_7: 863816102
+      Test Dummy Running Sheet 1_8: -986911933
+      Test Dummy Running Sheet 1_9: 1082774826
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
