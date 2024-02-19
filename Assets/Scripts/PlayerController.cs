@@ -63,8 +63,8 @@ public class PlayerController : MonoBehaviour
     // Function to See if We Can Jump
     private void CheckIfCanJump()
     {
-        // If IsGrounded is True and the Player's Vertical Velocity is 0
-        if (isGrounded && rigbod.velocity.y <= 0)
+        // If IsGrounded is True
+        if (isGrounded && rigbod.velocity.y <= .1)
         {
             // Then Can Jump
             canJump = true;
@@ -77,16 +77,18 @@ public class PlayerController : MonoBehaviour
     }
 
     // Function for checking Direction and Flipping
-    private void CheckMovementDirection()
+ private void CheckMovementDirection()
     {
+        
         if(isFacingRight && movementInputDirection < 0)
         {
             Flip();
         }
-        else if(!isFacingRight && movementInputDirection >0)
+        else if(!isFacingRight && movementInputDirection > 0)
         {
             Flip();
         }
+        
 
         if(rigbod.velocity.x != 0)
         {
@@ -98,7 +100,7 @@ public class PlayerController : MonoBehaviour
             isRunning = false;
         }
     }
-
+ 
 
     private void UpdateAnimations()
     {
@@ -147,6 +149,7 @@ public class PlayerController : MonoBehaviour
         isFacingRight = !isFacingRight;
         transform.Rotate(0.0f, 180.0f, 0.0f);
     }
+    
 
     private void OnDrawGizmos()
     {
