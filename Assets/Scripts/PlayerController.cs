@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public bool isFacingRight = true;
     public bool isRunning;
     public bool isGrounded;
+    public bool canJump;
 
     private Rigidbody2D rigbod;
     private Animator anim;
@@ -43,6 +44,9 @@ public class PlayerController : MonoBehaviour
 
         // Updating Animations
         UpdateAnimations();
+
+        // Checking if Player Can Jump
+        CheckIfCanJump();
     }
 
     private void FixedUpdate()
@@ -54,6 +58,22 @@ public class PlayerController : MonoBehaviour
     private void CheckSurroundings()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+    }
+
+    // Function to See if We Can Jump
+    private void CheckIfCanJump()
+    {
+        // If IsGrounded is True and the Player's Vertical Velocity is 0
+        if (isGrounded && rigbod.velocity.y <= 0)
+        {
+            // Then Can Jump
+            canJump = true;
+        }
+        else
+        {
+            // Then Cannot Jump
+            canJump = false;
+        }
     }
 
     // Function for checking Direction and Flipping
@@ -107,7 +127,12 @@ public class PlayerController : MonoBehaviour
     // Jump Function
     private void Jump()
     {
-        rigbod.velocity = new Vector2(rigbod.velocity.x, jumpForce);
+        if (canJump)
+        {
+            rigbod.velocity = new Vector2(rigbod.velocity.x, jumpForce);
+        }
+
+        
     }
 
     // Applying the Movment of the Input Direction to the Rigidbody via the Y axis
