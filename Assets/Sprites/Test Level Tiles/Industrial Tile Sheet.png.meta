@@ -139,19 +139,19 @@ TextureImporter:
       name: Industrial Tile Sheet_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 42
-        width: 31
+        width: 32
         height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1340c4281029af046bdd2cca2f83be98
-      internalID: -505520192
+      spriteID: 404e7cc614f3383409f3fa82dd83757b
+      internalID: -1109112528
       vertices: []
       indices: 
       edges: []
@@ -165,14 +165,14 @@ TextureImporter:
         width: 32
         height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62d3d0af9e2667f4aaacd94cd45e62ad
-      internalID: -1199243920
+      spriteID: 2b6f732fea6f29a4889aaf92cca64cfc
+      internalID: 1010056928
       vertices: []
       indices: 
       edges: []
@@ -181,19 +181,19 @@ TextureImporter:
       name: Industrial Tile Sheet_2
       rect:
         serializedVersion: 2
-        x: 2
-        y: 18
-        width: 31
+        x: 0
+        y: 13
+        width: 32
         height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0ebf15e8b8599443b6ede29afbd031b
-      internalID: 1426703078
+      spriteID: 1baf10a7845afa445b99c2ce04a557a4
+      internalID: 1266606324
       vertices: []
       indices: 
       edges: []
@@ -203,18 +203,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 36
-        y: 7
+        y: 6
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61977f59b20f5e64485e19ab37e46fd5
-      internalID: -1223524670
+      spriteID: c44407ceb7cfdf241a5c8c7a5d2f492b
+      internalID: 1254759239
       vertices: []
       indices: 
       edges: []
@@ -230,10 +230,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Industrial Tile Sheet_0: -505520192
-      Industrial Tile Sheet_1: -1199243920
-      Industrial Tile Sheet_2: 1426703078
-      Industrial Tile Sheet_3: -1223524670
+      Industrial Tile Sheet_0: -1109112528
+      Industrial Tile Sheet_1: 1010056928
+      Industrial Tile Sheet_2: 1266606324
+      Industrial Tile Sheet_3: 1254759239
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
