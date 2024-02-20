@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 
     private float movementInputDirection;
 
+    private int amountOfJumpLeft;
+
     public bool isFacingRight = true;
     public bool isRunning;
     public bool isGrounded;
@@ -15,6 +17,8 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rigbod;
     private Animator anim;
+
+    public int amountOfJumps;
 
     public float movementSpeed;
     public float jumpForce;
@@ -30,6 +34,7 @@ public class PlayerController : MonoBehaviour
         // Getting the Rigidbody
         rigbod = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        amountOfJumpLeft = amountOfJumps;
 
     }
 
@@ -55,6 +60,7 @@ public class PlayerController : MonoBehaviour
         CheckSurroundings();
     }
 
+    // Checking the Circle Object Ground Check
     private void CheckSurroundings()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
@@ -64,15 +70,26 @@ public class PlayerController : MonoBehaviour
     private void CheckIfCanJump()
     {
         // If IsGrounded is True
+            // Needed to set this to .1 instead of 0 or else it bugs out
         if (isGrounded && rigbod.velocity.y <= .1)
         {
-            // Then Can Jump
-            canJump = true;
+
+            // If we are grounded and not moving vertically, then set the amount of jumps left back to the standard amount of jumps
+            amountOfJumpLeft = amountOfJumps;
+
         }
+
+        // If we have no jumps left, Cannot Jump
+        if (amountOfJumpLeft <= 0)
+        {
+            canJump = false;
+        }
+
+        // Else, Can Jump
         else
         {
-            // Then Cannot Jump
-            canJump = false;
+            
+            canJump = true;
         }
     }
 
@@ -129,12 +146,16 @@ public class PlayerController : MonoBehaviour
     // Jump Function
     private void Jump()
     {
+        // If we can jump
         if (canJump)
         {
+            // Jump
             rigbod.velocity = new Vector2(rigbod.velocity.x, jumpForce);
+
+            // One Less Jump
+            amountOfJumpLeft--;
         }
 
-        
     }
 
     // Applying the Movment of the Input Direction to the Rigidbody via the Y axis
