@@ -1143,6 +1143,7 @@ MonoBehaviour:
   isRunning: 0
   isGrounded: 0
   canJump: 0
+  amountOfJumps: 2
   movementSpeed: 7
   jumpForce: 18
   groundCheckRadius: 0.2
@@ -1449,14 +1450,14 @@ Tilemap:
   m_TileMatrixArray:
   - m_RefCount: 1
     m_Data:
-      e00: 1
-      e01: 0
+      e00: 0.99838173
+      e01: 0.056867246
       e02: 0
       e03: 0
-      e10: 0
-      e11: 1
+      e10: -0.056867246
+      e11: 0.99838173
       e12: 0
-      e13: 0
+      e13: -0.12
       e20: 0
       e21: 0
       e22: 1
