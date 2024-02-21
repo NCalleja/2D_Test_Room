@@ -118,11 +118,14 @@ public class PlayerController : MonoBehaviour
         }
     }
  
-
+    // Updating Animations
     private void UpdateAnimations()
     {
         anim.SetBool("isRunning", isRunning);
         anim.SetBool("isGrounded", isGrounded);
+
+        // Seting the Float for the Animation Parameter "yVelocity" to be the Rigid Body's y Velocity
+        anim.SetFloat("yVelocity", rigbod.velocity.y);
 
     }
 
