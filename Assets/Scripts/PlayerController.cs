@@ -10,12 +10,12 @@ public class PlayerController : MonoBehaviour
 
     private int amountOfJumpLeft;
 
-    public bool isFacingRight = true;
-    public bool isRunning;
-    public bool isGrounded;
+    private bool isFacingRight = true;
+    private bool isRunning;
+    private bool isGrounded;
     // Boolean for if we're touching the wall
-    public bool isTouchingWall;
-    public bool canJump;
+    private bool isTouchingWall;
+    private bool canJump;
 
     private Rigidbody2D rigbod;
     private Animator anim;

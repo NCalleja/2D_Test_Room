@@ -1177,15 +1177,18 @@ MonoBehaviour:
   isFacingRight: 1
   isRunning: 0
   isGrounded: 0
+  isTouchingWall: 0
   canJump: 0
   amountOfJumps: 2
   movementSpeed: 7
   jumpForce: 18
   groundCheckRadius: 0.2
+  wallCheckDistance: 0.3
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
   groundCheck: {fileID: 367578764}
+  wallCheck: {fileID: 1180461520}
 --- !u!1 &1059880902
 GameObject:
   m_ObjectHideFlags: 0
