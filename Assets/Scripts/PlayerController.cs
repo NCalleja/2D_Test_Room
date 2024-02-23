@@ -159,6 +159,9 @@ public class PlayerController : MonoBehaviour
         // Seting the Float for the Animation Parameter "yVelocity" to be the Rigid Body's y Velocity
         anim.SetFloat("yVelocity", rigbod.velocity.y);
 
+        // Setting the WallSliding Parameter
+        anim.SetBool("isWallSliding", isWallSliding);
+
     }
 
     // Grabbing the Input
