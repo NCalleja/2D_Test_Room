@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     // Boolean for if we're touching the wall
     private bool isTouchingWall;
+    // Boolean for if we're wall sliding
+    private bool isWallSliding;
     private bool canJump;
 
     private Rigidbody2D rigbod;
@@ -57,6 +59,9 @@ public class PlayerController : MonoBehaviour
 
         // Checking if Player Can Jump
         CheckIfCanJump();
+
+        // Check if Player is Wall Sliding
+        CheckIfWallSliding();
     }
 
     private void FixedUpdate()
@@ -72,6 +77,22 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
 
         isTouchingWall = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, whatIsGround);
+    }
+
+    // Checking if Player is Wall Sliding
+    private void CheckIfWallSliding()
+    {
+        // If Player is Touching the Wall AND isn't grounded AND is moving downward
+        if(isTouchingWall && !isGrounded && rigbod.velocity.y < 0)
+        {
+            // Is Wall Sliding
+            isWallSliding = true;
+        }
+        else
+        {   
+            // Is NOT Wall Sliding
+            isWallSliding = false;
+        }
     }
 
     // Function to See if We Can Jump
