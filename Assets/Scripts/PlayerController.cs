@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public bool isFacingRight = true;
     public bool isRunning;
     public bool isGrounded;
+    // Boolean for if we're touching the wall
+    public bool isTouchingWall;
     public bool canJump;
 
     private Rigidbody2D rigbod;
@@ -23,10 +25,13 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed;
     public float jumpForce;
     public float groundCheckRadius;
+    public float wallCheckDistance;
 
     public LayerMask whatIsGround;
 
     public Transform groundCheck;
+    // Wall Check Transform
+    public Transform wallCheck;
 
     // Start is called before the first frame update
     void Start()
@@ -63,7 +68,10 @@ public class PlayerController : MonoBehaviour
     // Checking the Circle Object Ground Check
     private void CheckSurroundings()
     {
+        // This checks if we are grounded or not using the game object circle under the player
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+
+        isTouchingWall = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, whatIsGround);
     }
 
     // Function to See if We Can Jump
@@ -178,6 +186,9 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+
+        // Creating Gizmos to Draw a Line via the Wall Check Position
+        Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y, wallCheck.position.z));
     }
 
 }
