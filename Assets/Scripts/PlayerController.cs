@@ -27,7 +27,10 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed;
     public float jumpForce;
     public float groundCheckRadius;
+    // Distance of the Wall Checker
     public float wallCheckDistance;
+    // Downward Speed of Wall Slide
+    public float wallSlideSpeed;
 
     public LayerMask whatIsGround;
 
@@ -193,7 +196,19 @@ public class PlayerController : MonoBehaviour
     // Applying the Movment of the Input Direction to the Rigidbody via the Y axis
     private void ApplyMovement()
     {
+        // Movement Speed * Movement Direction and Y Speed
         rigbod.velocity = new Vector2(movementSpeed * movementInputDirection, rigbod.velocity.y);
+
+        // IF Player is Wall Sliding
+        if (isWallSliding)
+        {   
+            // If Y Velocity is less than Wall Slide Speed
+            if(rigbod.velocity.y < -wallSlideSpeed)
+            {
+                // New Speed is Same X Speed but new Y Wall Slide Speed
+                rigbod.velocity = new Vector2(rigbod.velocity.x, -wallSlideSpeed);
+            }
+        }
     }
 
     // Flipping Sprite
