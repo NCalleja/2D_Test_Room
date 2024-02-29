@@ -185,6 +185,13 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
+        // If Jump Button is Unpressed
+        if(Input.GetButtonUp("Jump"))
+        {
+            // multiple the y velocity with the jump height multiplier
+            rigbod.velocity = new Vector2(rigbod.velocity.x, rigbod.velocity.y * variableJumpHeightMultiplier);
+        }
+
     }
 
     // Jump Function
