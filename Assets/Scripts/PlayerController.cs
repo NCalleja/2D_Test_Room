@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
     public float wallSlideSpeed;
     // Movment Force in the Air
     public float movementForceInAir;
+    // Air Drag on Player
+    public float airDragMultiplier;
 
     public LayerMask whatIsGround;
 
@@ -219,10 +221,15 @@ public class PlayerController : MonoBehaviour
             // If the absolute precisie x velocity is faster than the movment speed
             if(Mathf.Abs(rigbod.velocity.x) > movementSpeed)
             {   
-                // Then the new velocity is movement speed * movment direction
+                // Then the new velocity is movement speed * movment direction and whatever y is
                 rigbod.velocity = new Vector2(movementSpeed * movementInputDirection, rigbod.velocity.y);
             }
 
+        }
+        // If NOT grounded and NOT wall sliding AND is NOT Moving
+        else if (!isGrounded && !isWallSliding && movementInputDirection == 0)
+        {
+            rigbod.velocity = new Vector2(rigbod.velocity.x * airDragMultiplier, rigbod.velocity.y);
         }
 
 
