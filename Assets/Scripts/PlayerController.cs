@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     public float movementForceInAir;
     // Air Drag on Player
     public float airDragMultiplier;
+    // Varaible Jump
+    public float variableJumpHeightMultiplier;
 
     public LayerMask whatIsGround;
 

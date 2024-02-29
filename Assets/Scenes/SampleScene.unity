@@ -1180,7 +1180,8 @@ MonoBehaviour:
   groundCheckRadius: 0.2
   wallCheckDistance: 0.3
   wallSlideSpeed: 2
-  movementForceInAir: 10
+  movementForceInAir: 25
+  airDragMultiplier: 0.95
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
