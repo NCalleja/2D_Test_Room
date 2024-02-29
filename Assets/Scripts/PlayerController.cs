@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     public float wallCheckDistance;
     // Downward Speed of Wall Slide
     public float wallSlideSpeed;
+    // Movment Force in the Air
+    public float movementForceInAir;
 
     public LayerMask whatIsGround;
 
@@ -204,7 +206,25 @@ public class PlayerController : MonoBehaviour
         {
             // Movement Speed * Movement Direction and Y Speed
             rigbod.velocity = new Vector2(movementSpeed * movementInputDirection, rigbod.velocity.y);
+
         }
+        // If Player is NOT Grounded AND is NOT Wall Sliding AND is Moving in a direction still
+        else if (!isGrounded && !isWallSliding && movementInputDirection != 0) {
+
+            // New Vector to Add, the Force in the Air * the Input Direction, Y is 0 because this is horizontal movement in the air
+            Vector2 forceToAdd = new Vector2(movementForceInAir * movementInputDirection, 0);
+            // Add the Force from the forceToAdd
+            rigbod.AddForce(forceToAdd);
+
+            // If the absolute precisie x velocity is faster than the movment speed
+            if(Mathf.Abs(rigbod.velocity.x) > movementSpeed)
+            {   
+                // Then the new velocity is movement speed * movment direction
+                rigbod.velocity = new Vector2(movementSpeed * movementInputDirection, rigbod.velocity.y);
+            }
+
+        }
+
 
         // IF Player is Wall Sliding
         if (isWallSliding)
