@@ -220,9 +220,15 @@ public class PlayerController : MonoBehaviour
 
     // Flipping Sprite
     private void Flip()
-    {
-        isFacingRight = !isFacingRight;
-        transform.Rotate(0.0f, 180.0f, 0.0f);
+    {   
+
+        // Added a Condition that says when Player is Wall Sliding, Then Stop Flipping
+        if(!isWallSliding)
+        {
+            isFacingRight = !isFacingRight;
+            transform.Rotate(0.0f, 180.0f, 0.0f);
+        }
+        
     }
     
 
