@@ -226,7 +226,7 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-        // If NOT grounded and NOT wall sliding AND is NOT Moving
+        // If NOT grounded and NOT wall sliding AND is NOT Moving (to help slow down when not moving)
         else if (!isGrounded && !isWallSliding && movementInputDirection == 0)
         {
             rigbod.velocity = new Vector2(rigbod.velocity.x * airDragMultiplier, rigbod.velocity.y);
@@ -242,6 +242,9 @@ public class PlayerController : MonoBehaviour
                 // New Speed is Same X Speed but new Y Wall Slide Speed
                 rigbod.velocity = new Vector2(rigbod.velocity.x, -wallSlideSpeed);
             }
+
+            // If Wall Slide the Jumps is reset back to the amount of jumps
+            amountOfJumpLeft = amountOfJumps;
         }
     }
 
