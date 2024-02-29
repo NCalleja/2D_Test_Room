@@ -199,8 +199,12 @@ public class PlayerController : MonoBehaviour
     // Applying the Movment of the Input Direction to the Rigidbody via the Y axis
     private void ApplyMovement()
     {
-        // Movement Speed * Movement Direction and Y Speed
-        rigbod.velocity = new Vector2(movementSpeed * movementInputDirection, rigbod.velocity.y);
+        // Can only move horizontally when they're grounded
+        if (isGrounded)
+        {
+            // Movement Speed * Movement Direction and Y Speed
+            rigbod.velocity = new Vector2(movementSpeed * movementInputDirection, rigbod.velocity.y);
+        }
 
         // IF Player is Wall Sliding
         if (isWallSliding)
