@@ -25,8 +25,10 @@ public class PlayerController : MonoBehaviour
     private bool isTouchingWall;
     // Boolean for if we're wall sliding
     private bool isWallSliding;
-    // Boolean for can jump?
-    private bool canJump;
+    // Boolean for can normal jump?
+    private bool canNormalJump;
+    // Boolean for can wall jump?
+    private bool canWallJump;
     // Boolean for Attempting to Jump
     private bool isAttemptingToJump;
 
@@ -242,7 +244,7 @@ public class PlayerController : MonoBehaviour
     // Jump Function
     private void checkJump()
     {
-
+        // If Jump Timer isn't 0
         if (jumpTimer > 0)
         {
             // Wall Jump
@@ -257,6 +259,10 @@ public class PlayerController : MonoBehaviour
             {
                 NormalJump();
             }
+        }
+        if (isAttemptingToJump)
+        {
+            jumpTimer -= Time.deltaTime;
         }
 
         /*
@@ -289,6 +295,13 @@ public class PlayerController : MonoBehaviour
 
             // One Less Jump
             amountOfJumpLeft--;
+
+
+            // Jump Timer is 0
+            jumpTimer = 0;
+
+            // Attempting to Jump is False Now
+            isAttemptingToJump = false;
         }
     }
 
@@ -302,12 +315,21 @@ public class PlayerController : MonoBehaviour
         {
             // Wall Slide is Now False
             isWallSliding = false;
+
             // Amount of Jumps Left Down By One
             amountOfJumpLeft--;
+
             // Force to Add is = new Vector that is (the Wall Jump Force TIMES Wall Jump Direction TIMES movement Input Direction ) as X, (wall jump force TIMES wall jump direction of y) as Y
             Vector2 forceToAdd = new Vector2(wallJumpForce * wallJumpDirection.x * movementInputDirection, wallJumpForce * wallJumpDirection.y);
+
             // Add Force to the Test Dummy, the new vector and force as impulse
             rigbod.AddForce(forceToAdd, ForceMode2D.Impulse);
+
+            // Jump Timer is 0
+            jumpTimer = 0;
+
+            // Attempting to Jump is False Now
+            isAttemptingToJump = false;
         }
     }
 
