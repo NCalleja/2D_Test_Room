@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
 
     // Vector to Decide Wall Hop Direction
     public Vector2 wallHopDirection;
+    // Vector to Decide Wall Jump Direction
+    public Vector2 wallJumpDirection;
 
     // Checking for Ground
     public Transform groundCheck;
