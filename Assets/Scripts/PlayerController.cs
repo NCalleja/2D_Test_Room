@@ -42,6 +42,10 @@ public class PlayerController : MonoBehaviour
     public float airDragMultiplier;
     // Varaible Jump
     public float variableJumpHeightMultiplier;
+    // Wall Hop Force
+    public float wallHopForce;
+    // Wall Jump Force
+    public float wallJumpForce;
 
     // Vector to Decide Wall Hop Direction
     public Vector2 wallHopDirection;
