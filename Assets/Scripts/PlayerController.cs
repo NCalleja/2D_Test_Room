@@ -253,7 +253,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // If Wall Slide the Jumps is reset back to the amount of jumps
-            amountOfJumpLeft = 1;
+            amountOfJumpLeft = amountOfJumps;
         }
     }
 
