@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     private bool canWallJump;
     // Boolean for Attempting to Jump
     private bool isAttemptingToJump;
+    // Boolean for Checking Jump Multiplier
+    private bool checkJumpMultiplier;
 
     // My Player Character Rigidy Body
     private Rigidbody2D rigbod;
@@ -130,7 +132,7 @@ public class PlayerController : MonoBehaviour
     private void CheckIfWallSliding()
     {
         // If Player is Touching the Wall AND isn't grounded AND is moving downward
-        if(isTouchingWall && !isGrounded && rigbod.velocity.y < 0)
+        if(isTouchingWall && movementInputDirection == facingDirection)
         {
             // Is Wall Sliding
             isWallSliding = true;
@@ -147,12 +149,17 @@ public class PlayerController : MonoBehaviour
     {
         // If IsGrounded is True
             // Needed to set this to .1 instead of 0 or else it bugs out OR is Wall Sliding
-        if ((isGrounded && rigbod.velocity.y <= .01f) || isWallSliding)
+        if (isGrounded && rigbod.velocity.y <= .01f)
         {
 
             // If we are grounded and not moving vertically, then set the amount of jumps left back to the standard amount of jumps
             amountOfJumpLeft = amountOfJumps;
 
+        }
+
+        if(isTouchingWall)
+        {
+            canWallJump = true;
         }
 
         // If we have no jumps left, Cannot Jump
@@ -233,8 +240,11 @@ public class PlayerController : MonoBehaviour
         }
 
         // If Jump Button is Unpressed AND they can jump
-        if(Input.GetButtonUp("Jump") && canJump)
+        if(checkJumpMultiplier && !Input.GetButton("Jump"))
         {
+
+            checkJumpMultiplier = false;
+
             // multiple the y velocity with the jump height multiplier
             rigbod.velocity = new Vector2(rigbod.velocity.x, rigbod.velocity.y * variableJumpHeightMultiplier);
         }
@@ -264,24 +274,6 @@ public class PlayerController : MonoBehaviour
         {
             jumpTimer -= Time.deltaTime;
         }
-
-        /*
-         * Commented Out Wall Hop as It's Not Needed
-
-        // Wall Hop
-        else if (isWallSliding && movementInputDirection == 0 && canJump)
-        {
-            // Wall Slide is Now False
-            isWallSliding = false;
-            // Amount of Jumps Left Down By One
-            amountOfJumpLeft--;
-            // Force to Add is = new Vector that is (the Wall Hop Force TIMES Wall Hop Direction TIMES negatvie facing direction (to flip the direction) ) as X, (wall hop force TIMES wall hop direction of y) as Y
-            Vector2 forceToAdd = new Vector2(wallHopForce * wallHopDirection.x * -facingDirection, wallHopForce * wallHopDirection.y);
-            // Add Force to the Test Dummy, the new vector and force as impulse
-            rigbod.AddForce(forceToAdd, ForceMode2D.Impulse);
-        }
-
-        */
     }
 
     // Normal Jump Method
@@ -302,6 +294,8 @@ public class PlayerController : MonoBehaviour
 
             // Attempting to Jump is False Now
             isAttemptingToJump = false;
+
+            checkJumpMultiplier = true;
         }
     }
 
@@ -313,8 +307,13 @@ public class PlayerController : MonoBehaviour
             // If - (Are Wall Sliding OR Are Touching Wall) AND Still Moving AND can Jump
         if (canWallJump)
         {
+
+            rigbod.velocity = new Vector2(rigbod.velocity.x, 0.0f);
+
             // Wall Slide is Now False
             isWallSliding = false;
+
+            amountOfJumpLeft = amountOfJumps;
 
             // Amount of Jumps Left Down By One
             amountOfJumpLeft--;
@@ -330,6 +329,8 @@ public class PlayerController : MonoBehaviour
 
             // Attempting to Jump is False Now
             isAttemptingToJump = false;
+
+            checkJumpMultiplier = true;
         }
     }
 
