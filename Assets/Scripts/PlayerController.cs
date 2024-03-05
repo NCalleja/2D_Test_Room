@@ -300,28 +300,18 @@ public class PlayerController : MonoBehaviour
         {
 
             rigbod.velocity = new Vector2(rigbod.velocity.x, 0.0f);
-
-            // Wall Slide is Now False
             isWallSliding = false;
-
             amountOfJumpLeft = amountOfJumps;
-
-            // Amount of Jumps Left Down By One
             amountOfJumpLeft--;
-
             // Force to Add is = new Vector that is (the Wall Jump Force TIMES Wall Jump Direction TIMES movement Input Direction ) as X, (wall jump force TIMES wall jump direction of y) as Y
             Vector2 forceToAdd = new Vector2(wallJumpForce * wallJumpDirection.x * movementInputDirection, wallJumpForce * wallJumpDirection.y);
-
-            // Add Force to the Test Dummy, the new vector and force as impulse
             rigbod.AddForce(forceToAdd, ForceMode2D.Impulse);
-
-            // Jump Timer is 0
             jumpTimer = 0;
-
-            // Attempting to Jump is False Now
             isAttemptingToJump = false;
-
             checkJumpMultiplier = true;
+            turnTimer = 0;
+            canMove = true;
+            canFlip = true;
         }
     }
 

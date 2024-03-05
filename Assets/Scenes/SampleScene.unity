@@ -1115,7 +1115,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &1034694837
 BoxCollider2D:
@@ -1185,6 +1185,8 @@ MonoBehaviour:
   variableJumpHeightMultiplier: 0.2
   wallHopForce: 5
   wallJumpForce: 15
+  jumpTimerSet: 0.15
+  turnTimerSet: 0.1
   wallHopDirection: {x: 1, y: 1}
   wallJumpDirection: {x: 1, y: 3}
   groundCheck: {fileID: 367578764}
