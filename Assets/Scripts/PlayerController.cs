@@ -5,18 +5,23 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+    // Float for the input movement direction
     private float movementInputDirection;
 
+    // Int for the amount of jumps left
     private int amountOfJumpLeft;
 
+    // Boolean for if the Player is facing the right
     private bool isFacingRight = true;
+    // Boolean for if we are running
     private bool isRunning;
+    // Boolean for if we are touching the ground
     private bool isGrounded;
     // Boolean for if we're touching the wall
     private bool isTouchingWall;
     // Boolean for if we're wall sliding
     private bool isWallSliding;
+    // Boolean for can jump?
     private bool canJump;
 
     // My Player Character Rigidy Body
@@ -57,6 +62,7 @@ public class PlayerController : MonoBehaviour
     // Wall Check Transform
     public Transform wallCheck;
 
+    // Defining Which Layer is the Ground Layer
     public LayerMask whatIsGround;
 
     // Start is called before the first frame update
