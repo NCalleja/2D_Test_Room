@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 
     private float movementInputDirection;
     private float jumpTimer;
+    private float turnTimer;
 
     private int amountOfJumpLeft;
     // Int for Facing Direction (-1 Left and 1 is Right)
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
     public float wallHopForce;
     public float wallJumpForce;
     public float jumpTimerSet = 0.15f;
+    public float turnTimerSet = 0.1f;
 
     public Vector2 wallHopDirection;
     public Vector2 wallJumpDirection;
@@ -101,7 +103,7 @@ public class PlayerController : MonoBehaviour
     private void CheckIfWallSliding()
     {
        
-        if(isTouchingWall && movementInputDirection == facingDirection)
+        if(isTouchingWall && movementInputDirection == facingDirection && rigbod.velocity.y < 0)
         {
        
             isWallSliding = true;
@@ -212,6 +214,19 @@ public class PlayerController : MonoBehaviour
             {
                 canMove = false;
                 canFlip = false;
+
+                turnTimer = turnTimerSet;
+            }
+        }
+
+        if(!canMove)
+        {
+            turnTimer -= Time.deltaTime;
+
+            if(turnTimer <= 0)
+            {
+                canMove = true;
+                canFlip = true;
             }
         }
 
