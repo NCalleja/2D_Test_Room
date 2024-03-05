@@ -19,13 +19,18 @@ public class PlayerController : MonoBehaviour
     private bool isWallSliding;
     private bool canJump;
 
+    // My Player Character Rigidy Body
     private Rigidbody2D rigbod;
     private Animator anim;
 
+    // Amount of Jumps Total
     public int amountOfJumps;
 
+    // Movement Speed
     public float movementSpeed;
+    // Jump Force
     public float jumpForce;
+    // Ground Check Radius Size
     public float groundCheckRadius;
     // Distance of the Wall Checker
     public float wallCheckDistance;
@@ -38,11 +43,15 @@ public class PlayerController : MonoBehaviour
     // Varaible Jump
     public float variableJumpHeightMultiplier;
 
-    public LayerMask whatIsGround;
+    // Vector to Decide Wall Hop Direction
+    public Vector2 wallHopDirection;
 
+    // Checking for Ground
     public Transform groundCheck;
     // Wall Check Transform
     public Transform wallCheck;
+
+    public LayerMask whatIsGround;
 
     // Start is called before the first frame update
     void Start()
