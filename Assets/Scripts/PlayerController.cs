@@ -186,7 +186,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // If Jump Button is Unpressed
-        if(Input.GetButtonUp("Jump"))
+        if(Input.GetButtonUp("Jump") && canJump)
         {
             // multiple the y velocity with the jump height multiplier
             rigbod.velocity = new Vector2(rigbod.velocity.x, rigbod.velocity.y * variableJumpHeightMultiplier);
@@ -253,7 +253,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // If Wall Slide the Jumps is reset back to the amount of jumps
-            amountOfJumpLeft = amountOfJumps;
+            amountOfJumpLeft = 1;
         }
     }
 
