@@ -233,18 +233,7 @@ public class PlayerController : MonoBehaviour
             // One Less Jump
             amountOfJumpLeft--;
         }
-        // Wall Hop
-        else if (isWallSliding && movementInputDirection == 0 && canJump)
-        {
-            // Wall Slide is Now False
-            isWallSliding = false;
-            // Amount of Jumps Left Down By One
-            amountOfJumpLeft--;
-            // Force to Add is = new Vector that is (the Wall Hop Force TIMES Wall Hop Direction TIMES negatvie facing direction (to flip the direction) ) as X, (wall hop force TIMES wall hop direction of y) as Y
-            Vector2 forceToAdd = new Vector2(wallHopForce * wallHopDirection.x * -facingDirection, wallHopForce * wallHopDirection.y);
-            // Add Force to the Test Dummy, the new vector and force as impulse
-            rigbod.AddForce(forceToAdd, ForceMode2D.Impulse);
-        }
+
         // Wall Jump
             // If - (Are Wall Sliding OR Are Touching Wall) AND Still Moving AND can Jump
         else if ((isWallSliding || isTouchingWall) && movementInputDirection != 0 && canJump)
@@ -260,6 +249,8 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+
 
     // Applying the Movment of the Input Direction to the Rigidbody via the Y axis
     private void ApplyMovement()
