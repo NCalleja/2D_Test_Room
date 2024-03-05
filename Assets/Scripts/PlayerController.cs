@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     // Int for the amount of jumps left
     private int amountOfJumpLeft;
     // Int for Facing Direction (-1 Left and 1 is Right)
-    private int facingDirection;
+    private int facingDirection = 1;
 
     // Boolean for if the Player is facing the right
     private bool isFacingRight = true;
@@ -291,6 +291,8 @@ public class PlayerController : MonoBehaviour
         // Added a Condition that says when Player is Wall Sliding, Then Stop Flipping
         if(!isWallSliding)
         {
+            // *= will flip -1 and 1 each time it flips
+            facingDirection *= -1;
             isFacingRight = !isFacingRight;
             transform.Rotate(0.0f, 180.0f, 0.0f);
         }
