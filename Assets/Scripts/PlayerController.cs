@@ -224,7 +224,7 @@ public class PlayerController : MonoBehaviour
     // Jump Function
     private void Jump()
     {
-        // If we can jump
+        // If we can jump & isn't wall sliding
         if (canJump && !isWallSliding)
         {
             // Jump

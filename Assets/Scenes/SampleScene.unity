@@ -1182,11 +1182,16 @@ MonoBehaviour:
   wallSlideSpeed: 2
   movementForceInAir: 25
   airDragMultiplier: 0.95
+  variableJumpHeightMultiplier: 0.2
+  wallHopForce: 1
+  wallJumpForce: 15
+  wallHopDirection: {x: 1, y: 0.5}
+  wallJumpDirection: {x: 1, y: 2}
+  groundCheck: {fileID: 367578764}
+  wallCheck: {fileID: 1180461520}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
-  groundCheck: {fileID: 367578764}
-  wallCheck: {fileID: 1180461520}
 --- !u!1 &1059880902
 GameObject:
   m_ObjectHideFlags: 0
