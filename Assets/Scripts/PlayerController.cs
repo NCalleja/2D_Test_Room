@@ -185,7 +185,7 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
-        // If Jump Button is Unpressed
+        // If Jump Button is Unpressed AND they can jump
         if(Input.GetButtonUp("Jump") && canJump)
         {
             // multiple the y velocity with the jump height multiplier
