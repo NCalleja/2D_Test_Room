@@ -135,8 +135,8 @@ public class PlayerController : MonoBehaviour
     private void CheckIfCanJump()
     {
         // If IsGrounded is True
-            // Needed to set this to .1 instead of 0 or else it bugs out
-        if (isGrounded && rigbod.velocity.y <= .1)
+            // Needed to set this to .1 instead of 0 or else it bugs out OR is Wall Sliding
+        if ((isGrounded && rigbod.velocity.y <= .1) || isWallSliding)
         {
 
             // If we are grounded and not moving vertically, then set the amount of jumps left back to the standard amount of jumps
@@ -225,7 +225,7 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         // If we can jump
-        if (canJump)
+        if (canJump && !isWallSliding)
         {
             // Jump
             rigbod.velocity = new Vector2(rigbod.velocity.x, jumpForce);
@@ -304,8 +304,6 @@ public class PlayerController : MonoBehaviour
                 rigbod.velocity = new Vector2(rigbod.velocity.x, -wallSlideSpeed);
             }
 
-            // If Wall Slide the Jumps is reset back to the amount of jumps
-            amountOfJumpLeft = amountOfJumps;
         }
     }
 
