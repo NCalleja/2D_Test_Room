@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
 
     // Int for the amount of jumps left
     private int amountOfJumpLeft;
+    // Int for Facing Direction (-1 Left and 1 is Right)
+    private int facingDirection;
 
     // Boolean for if the Player is facing the right
     private bool isFacingRight = true;
