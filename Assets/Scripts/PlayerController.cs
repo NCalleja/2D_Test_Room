@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
     {
         // If IsGrounded is True
             // Needed to set this to .1 instead of 0 or else it bugs out OR is Wall Sliding
-        if (isGrounded && rigbod.velocity.y <= .01f)
+        if (isGrounded && rigbod.velocity.y <= .1f)
         {
 
             // If we are grounded and not moving vertically, then set the amount of jumps left back to the standard amount of jumps
@@ -196,8 +196,8 @@ public class PlayerController : MonoBehaviour
         // Jumping
         if(Input.GetButtonDown("Jump"))
         {
-            // If the Player is Grounded OR (There are some Jumps Left AND they're touching the wall)
-            if(isGrounded || (amountOfJumpLeft > 0 && isTouchingWall))
+            // If the Player is Grounded OR (There are some Jumps Left AND they're aren't touching the wall)
+            if(isGrounded || (amountOfJumpLeft > 0 && !isTouchingWall))
             {
                 NormalJump();
             }
