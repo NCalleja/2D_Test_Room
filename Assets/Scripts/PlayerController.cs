@@ -5,76 +5,50 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Float for the input movement direction
+
     private float movementInputDirection;
-    // Jump Timer
     private float jumpTimer;
 
-    // Int for the amount of jumps left
     private int amountOfJumpLeft;
     // Int for Facing Direction (-1 Left and 1 is Right)
     private int facingDirection = 1;
 
-    // Boolean for if the Player is facing the right
     private bool isFacingRight = true;
-    // Boolean for if we are running
     private bool isRunning;
-    // Boolean for if we are touching the ground
     private bool isGrounded;
-    // Boolean for if we're touching the wall
     private bool isTouchingWall;
-    // Boolean for if we're wall sliding
     private bool isWallSliding;
-    // Boolean for can normal jump?
     private bool canNormalJump;
-    // Boolean for can wall jump?
     private bool canWallJump;
-    // Boolean for Attempting to Jump
     private bool isAttemptingToJump;
-    // Boolean for Checking Jump Multiplier
     private bool checkJumpMultiplier;
+    private bool canMove;
+    private bool canFlip;
 
-    // My Player Character Rigidy Body
     private Rigidbody2D rigbod;
     private Animator anim;
 
-    // Amount of Jumps Total
     public int amountOfJumps;
 
-    // Movement Speed
     public float movementSpeed;
-    // Jump Force
     public float jumpForce;
     // Ground Check Radius Size
     public float groundCheckRadius;
-    // Distance of the Wall Checker
     public float wallCheckDistance;
-    // Downward Speed of Wall Slide
     public float wallSlideSpeed;
-    // Movment Force in the Air
     public float movementForceInAir;
-    // Air Drag on Player
     public float airDragMultiplier;
-    // Varaible Jump
     public float variableJumpHeightMultiplier;
-    // Wall Hop Force
     public float wallHopForce;
-    // Wall Jump Force
     public float wallJumpForce;
-    // Jump Timer
     public float jumpTimerSet = 0.15f;
 
-    // Vector to Decide Wall Hop Direction
     public Vector2 wallHopDirection;
-    // Vector to Decide Wall Jump Direction
     public Vector2 wallJumpDirection;
 
-    // Checking for Ground
     public Transform groundCheck;
-    // Wall Check Transform
     public Transform wallCheck;
 
-    // Defining Which Layer is the Ground Layer
     public LayerMask whatIsGround;
 
     // Start is called before the first frame update
