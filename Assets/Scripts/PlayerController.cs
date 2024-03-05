@@ -68,22 +68,17 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Calling Check Input Function
+
         CheckInput();
 
-        // Calling Check Direction Function
         CheckMovementDirection();
 
-        // Updating Animations
         UpdateAnimations();
 
-        // Checking if Player Can Jump
         CheckIfCanJump();
 
-        // Check if Player is Wall Sliding
         CheckIfWallSliding();
 
-        // Check What Kind of Jump
         checkJump();
     }
 
@@ -105,15 +100,15 @@ public class PlayerController : MonoBehaviour
     // Checking if Player is Wall Sliding
     private void CheckIfWallSliding()
     {
-        // If Player is Touching the Wall AND isn't grounded AND is moving downward
+       
         if(isTouchingWall && movementInputDirection == facingDirection)
         {
-            // Is Wall Sliding
+       
             isWallSliding = true;
         }
         else
         {   
-            // Is NOT Wall Sliding
+            
             isWallSliding = false;
         }
     }
@@ -135,14 +130,12 @@ public class PlayerController : MonoBehaviour
         {
             canWallJump = true;
         }
-
-        // If we have no jumps left, Cannot Jump
+     
         if (amountOfJumpLeft <= 0)
         {
             canNormalJump = false;
         }
 
-        // Else, Can Jump
         else
         {
             
@@ -210,6 +203,15 @@ public class PlayerController : MonoBehaviour
             {
                 jumpTimer = jumpTimerSet;
                 isAttemptingToJump = true;
+            }
+        }
+
+        if(Input.GetButtonDown("Horizontal") && isTouchingWall)
+        {
+            if(!isGrounded && movementInputDirection != facingDirection)
+            {
+                canMove = false;
+                canFlip = false;
             }
         }
 
@@ -315,9 +317,8 @@ public class PlayerController : MonoBehaviour
         if (!isGrounded && !isWallSliding && movementInputDirection == 0)
         {
             rigbod.velocity = new Vector2(rigbod.velocity.x * airDragMultiplier, rigbod.velocity.y);
-        }
-        // Can only move horizontally when they're grounded
-        else
+        }    
+        else if(canMove)
         {
 
             // Movement Speed * Movement Direction and Y Speed
@@ -344,7 +345,7 @@ public class PlayerController : MonoBehaviour
     {   
 
         // Added a Condition that says when Player is Wall Sliding, Then Stop Flipping
-        if(!isWallSliding)
+        if(!isWallSliding && canFlip)
         {
             // *= will flip -1 and 1 each time it flips
             facingDirection *= -1;
