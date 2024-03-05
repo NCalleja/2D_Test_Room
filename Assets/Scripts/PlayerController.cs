@@ -104,6 +104,9 @@ public class PlayerController : MonoBehaviour
 
         // Check if Player is Wall Sliding
         CheckIfWallSliding();
+
+        // Check What Kind of Jump
+        checkJump();
     }
 
     private void FixedUpdate()
@@ -239,7 +242,23 @@ public class PlayerController : MonoBehaviour
     // Jump Function
     private void checkJump()
     {
-    
+
+        if (jumpTimer > 0)
+        {
+            // Wall Jump
+                // If Not Grounded AND is Touching Wall AND movment input isn't 0 AND movment direction is away from facing direction
+            if(!isGrounded && isTouchingWall && movementInputDirection != 0 && movementInputDirection != facingDirection)
+            {
+                wallJump();
+            }
+            // Normal Jump
+                // If you're grounded
+            else if (isGrounded)
+            {
+                NormalJump();
+            }
+        }
+
         /*
          * Commented Out Wall Hop as It's Not Needed
 
@@ -257,10 +276,6 @@ public class PlayerController : MonoBehaviour
         }
 
         */
-
-        // Wall Jump
-            // If - (Are Wall Sliding OR Are Touching Wall) AND Still Moving AND can Jump
-     
     }
 
     // Normal Jump Method
