@@ -63,6 +63,10 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         amountOfJumpLeft = amountOfJumps;
 
+        // Making the Vectors itself equal 1
+        wallHopDirection.Normalize();
+        wallJumpDirection.Normalize();
+
     }
 
     // Update is called once per frame
