@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     // Float for the input movement direction
     private float movementInputDirection;
+    // Jump Timer
+    private float jumpTimer;
 
     // Int for the amount of jumps left
     private int amountOfJumpLeft;
@@ -25,6 +27,8 @@ public class PlayerController : MonoBehaviour
     private bool isWallSliding;
     // Boolean for can jump?
     private bool canJump;
+    // Boolean for Attempting to Jump
+    private bool isAttemptingToJump;
 
     // My Player Character Rigidy Body
     private Rigidbody2D rigbod;
@@ -53,6 +57,8 @@ public class PlayerController : MonoBehaviour
     public float wallHopForce;
     // Wall Jump Force
     public float wallJumpForce;
+    // Jump Timer
+    public float jumpTimerSet = 0.15f;
 
     // Vector to Decide Wall Hop Direction
     public Vector2 wallHopDirection;
@@ -209,7 +215,16 @@ public class PlayerController : MonoBehaviour
         // Jumping
         if(Input.GetButtonDown("Jump"))
         {
-            Jump();
+            // If the Player is Grounded OR (There are some Jumps Left AND they're touching the wall)
+            if(isGrounded || (amountOfJumpLeft > 0 && isTouchingWall))
+            {
+                NormalJump();
+            }
+            else
+            {
+                jumpTimer = jumpTimerSet;
+                isAttemptingToJump = true;
+            }
         }
 
         // If Jump Button is Unpressed AND they can jump
@@ -222,7 +237,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Jump Function
-    private void Jump()
+    private void checkJump()
     {
     
         /*
