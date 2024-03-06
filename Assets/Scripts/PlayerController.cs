@@ -269,6 +269,22 @@ public class PlayerController : MonoBehaviour
         {
             jumpTimer -= Time.deltaTime;
         }
+        if (wallJumpTimer > 0)
+        {
+            if (hasWallJumped && movementInputDirection == -lastWallJumpDirection)
+            {
+                rigbod.velocity = new Vector2(rigbod.velocity.x, 0.0f);
+                hasWallJumped = false;
+            }
+            else if (wallJumpTimer <= 0)
+            {
+                hasWallJumped = false; 
+            }
+            else
+            {
+                wallJumpTimer -= Time.deltaTime;
+            }
+        }
     }
 
     // Normal Jump Method
@@ -316,6 +332,9 @@ public class PlayerController : MonoBehaviour
             turnTimer = 0;
             canMove = true;
             canFlip = true;
+            hasWallJumped = true;
+            wallJumpTimer = wallJumpTimerSet;
+            lastWallJumpDirection = -facingDirection;
         }
     }
 
