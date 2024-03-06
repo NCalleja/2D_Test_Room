@@ -9,10 +9,12 @@ public class PlayerController : MonoBehaviour
     private float movementInputDirection;
     private float jumpTimer;
     private float turnTimer;
+    private float wallJumpTimer;
 
     private int amountOfJumpLeft;
     // Int for Facing Direction (-1 Left and 1 is Right)
     private int facingDirection = 1;
+    private int lastWallJumpDirection;
 
     private bool isFacingRight = true;
     private bool isRunning;
@@ -25,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private bool checkJumpMultiplier;
     private bool canMove;
     private bool canFlip;
+    private bool hasWallJumped;
 
     private Rigidbody2D rigbod;
     private Animator anim;
@@ -44,6 +47,7 @@ public class PlayerController : MonoBehaviour
     public float wallJumpForce;
     public float jumpTimerSet = 0.15f;
     public float turnTimerSet = 0.1f;
+    public float wallJumpTimerSet = 0.5f;
 
     public Vector2 wallHopDirection;
     public Vector2 wallJumpDirection;
