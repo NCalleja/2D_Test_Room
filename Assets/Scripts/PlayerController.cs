@@ -128,21 +128,20 @@ public class PlayerController : MonoBehaviour
     // Check If Can Jump -----
     private void CheckIfCanJump()
     {
-        // If IsGrounded is True
-            // Needed to set this to .1 instead of 0 or else it bugs out OR is Wall Sliding
+        // Grounded Check
         if (isGrounded && rigbod.velocity.y <= .1f)
         {
 
-            // If we are grounded and not moving vertically, then set the amount of jumps left back to the standard amount of jumps
             amountOfJumpLeft = amountOfJumps;
-
         }
 
-        if(isTouchingWall)
+        // Wall Check
+        if(isTouchingWall & isWallSliding)
         {
             canWallJump = true;
         }
-     
+        
+        // Jump Ability Check
         if (amountOfJumpLeft <= 0)
         {
             canNormalJump = false;
