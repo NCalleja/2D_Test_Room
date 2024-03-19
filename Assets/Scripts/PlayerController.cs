@@ -6,13 +6,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    // State Variables -----
     private float movementInputDirection;
     private float jumpTimer;
     private float turnTimer;
     private float wallJumpTimer;
 
     private int amountOfJumpLeft;
-    // Int for Facing Direction (-1 Left and 1 is Right)
+        // Int for Facing Direction (-1 Left and 1 is Right)
     private int facingDirection = 1;
     private int lastWallJumpDirection;
 
@@ -29,14 +30,16 @@ public class PlayerController : MonoBehaviour
     private bool canFlip;
     private bool hasWallJumped;
 
+    // Component References -----
     private Rigidbody2D rigbod;
     private Animator anim;
 
+    // Configurable Paramters -----
     public int amountOfJumps;
 
     public float movementSpeed;
     public float jumpForce;
-    // Ground Check Radius Size
+        // Ground Check Radius Size
     public float groundCheckRadius;
     public float wallCheckDistance;
     public float wallSlideSpeed;
