@@ -192,16 +192,13 @@ public class PlayerController : MonoBehaviour
     // Check Input -----
     private void CheckInput()
     {   
-        // Movement
-            // Using GetAxisRaw allows us to get the quick input for 'A' and 'D' along the horizontal axis
-            // If we used "GetAxis" it would track between 0 and -1 and however far you go. 
-            // With GetAxis Raw it keeps track of 1 or 2 based on direction. It's faster, snappier movement.
+        
         movementInputDirection = Input.GetAxisRaw("Horizontal");
 
         // Jumping
         if(Input.GetButtonDown("Jump"))
         {
-            // If the Player is Grounded OR (There are some Jumps Left AND they're aren't touching the wall)
+            
             if(isGrounded || (amountOfJumpLeft > 0 && !isTouchingWall))
             {
                 NormalJump();
@@ -235,16 +232,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // If Jump Button is Unpressed AND they can jump
         if(checkJumpMultiplier && !Input.GetButton("Jump"))
         {
 
             checkJumpMultiplier = false;
 
-            // multiple the y velocity with the jump height multiplier
             rigbod.velocity = new Vector2(rigbod.velocity.x, rigbod.velocity.y * variableJumpHeightMultiplier);
         }
-
     }
 
     // Jump Function
