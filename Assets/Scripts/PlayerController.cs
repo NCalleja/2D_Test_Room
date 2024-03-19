@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
     public float wallHopForce;
     public float wallJumpForce;
     public float jumpTimerSet = 0.15f;
-    public float turnTimerSet = 0.1f;
+    public float turnTimerSet = .1f;
     public float wallJumpTimerSet = 0.8f;
 
     public Vector2 wallHopDirection;
@@ -195,7 +195,6 @@ public class PlayerController : MonoBehaviour
         
         movementInputDirection = Input.GetAxisRaw("Horizontal");
 
-        // Jumping
         if(Input.GetButtonDown("Jump"))
         {
             
@@ -241,20 +240,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Jump Function
+    // Check Jump -----
     private void checkJump()
     {
-        // If Jump Timer isn't 0
+
         if (jumpTimer > 0)
         {
-            // Wall Jump
-                // If Not Grounded AND is Touching Wall AND movment input isn't 0 AND movment direction is away from facing direction
+            
             if(!isGrounded && isTouchingWall && movementInputDirection != 0 && movementInputDirection != facingDirection)
             {
                 wallJump();
             }
-            // Normal Jump
-                // If you're grounded
+  
             else if (isGrounded)
             {
                 NormalJump();
