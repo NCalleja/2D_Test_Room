@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
         CheckSurroundings();
     }
 
-    // Checking the Circle Object Ground Check
+    // CheckSurroundings -----
     private void CheckSurroundings()
     {
         // This checks if we are grounded or not using the game object circle under the player
@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
         isTouchingWall = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, whatIsGround);
     }
 
-    // Checking if Player is Wall Sliding
+    // Check If Wall Sliding -----
     private void CheckIfWallSliding()
     {
        
