@@ -60,10 +60,10 @@ public class PlayerController : MonoBehaviour
 
     public LayerMask whatIsGround;
 
-    // Start is called before the first frame update
+    // Start Method -----
+        // Start is called before the first frame update
     void Start()
     {
-        // Getting the Rigidbody
         rigbod = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         amountOfJumpLeft = amountOfJumps;
@@ -74,7 +74,8 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    // Update Method -----
+        // Update is called once per frame
     void Update()
     {
 
