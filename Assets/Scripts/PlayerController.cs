@@ -179,21 +179,17 @@ public class PlayerController : MonoBehaviour
         }
     }
  
-    // Updating Animations
+    // Updating Animations -----
     private void UpdateAnimations()
     {
+
         anim.SetBool("isRunning", isRunning);
         anim.SetBool("isGrounded", isGrounded);
-
-        // Seting the Float for the Animation Parameter "yVelocity" to be the Rigid Body's y Velocity
         anim.SetFloat("yVelocity", rigbod.velocity.y);
-
-        // Setting the WallSliding Parameter
         anim.SetBool("isWallSliding", isWallSliding);
-
     }
 
-    // Grabbing the Input
+    // Check Input -----
     private void CheckInput()
     {   
         // Movement
