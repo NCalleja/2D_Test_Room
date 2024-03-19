@@ -279,23 +279,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Normal Jump Method
+    // Normal Jump -----
     private void NormalJump()
     {
-        // If we can jump & isn't wall sliding
+        
         if (canNormalJump)
         {
-            // Jump
+            
             rigbod.velocity = new Vector2(rigbod.velocity.x, jumpForce);
 
-            // One Less Jump
             amountOfJumpLeft--;
 
-
-            // Jump Timer is 0
             jumpTimer = 0;
 
-            // Attempting to Jump is False Now
             isAttemptingToJump = false;
 
             checkJumpMultiplier = true;
