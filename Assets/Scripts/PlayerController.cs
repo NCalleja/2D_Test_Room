@@ -124,7 +124,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Function to See if We Can Jump
+
+    // Check If Can Jump -----
     private void CheckIfCanJump()
     {
         // If IsGrounded is True
