@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Wall Check
-        if(isTouchingWall & isWallSliding)
+        if(isTouchingWall && isWallSliding)
         {
             canWallJump = true;
         }
@@ -154,8 +154,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Function for checking Direction and Flipping
- private void CheckMovementDirection()
+    // Check Movement Direction -----
+    private void CheckMovementDirection()
     {
         
         if(isFacingRight && movementInputDirection < 0)
