@@ -92,6 +92,7 @@ public class PlayerController : MonoBehaviour
         checkJump();
     }
 
+    // Fixed Update -----
     private void FixedUpdate()
     {
         ApplyMovement();
