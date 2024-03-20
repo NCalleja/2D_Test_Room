@@ -355,7 +355,6 @@ public class PlayerController : MonoBehaviour
     private void Flip()
     {   
 
-        // Added a Condition that says when Player is Wall Sliding, Then Stop Flipping
         if(!isWallSliding && canFlip)
         {
             // *= will flip -1 and 1 each time it flips
@@ -366,7 +365,7 @@ public class PlayerController : MonoBehaviour
         
     }
     
-
+    // 
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
