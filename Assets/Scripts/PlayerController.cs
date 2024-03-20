@@ -298,20 +298,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Wall Jump Method
+    // Wall Jump -----
     private void wallJump()
     {
 
-        // Wall Jump
-            // If - (Are Wall Sliding OR Are Touching Wall) AND Still Moving AND can Jump
         if (canWallJump)
         {
 
             rigbod.velocity = new Vector2(rigbod.velocity.x, 0.0f);
+
+            // State Updates
             isWallSliding = false;
             amountOfJumpLeft = amountOfJumps;
             amountOfJumpLeft--;
-            // Force to Add is = new Vector that is (the Wall Jump Force TIMES Wall Jump Direction TIMES movement Input Direction ) as X, (wall jump force TIMES wall jump direction of y) as Y
             Vector2 forceToAdd = new Vector2(wallJumpForce * wallJumpDirection.x * movementInputDirection, wallJumpForce * wallJumpDirection.y);
             rigbod.AddForce(forceToAdd, ForceMode2D.Impulse);
             jumpTimer = 0;
@@ -326,7 +325,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Applying the Movment of the Input Direction to the Rigidbody via the Y axis
+    // Apply Movement -----
     private void ApplyMovement()
     {   
         // If NOT grounded and NOT wall sliding AND is NOT Moving (to help slow down when not moving)
