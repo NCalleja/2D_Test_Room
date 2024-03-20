@@ -238,6 +238,13 @@ public class PlayerController : MonoBehaviour
 
             rigbod.velocity = new Vector2(rigbod.velocity.x, rigbod.velocity.y * variableJumpHeightMultiplier);
         }
+
+        // NEW CONDITION ADDED
+        if(isWallSliding && movementInputDirection == -facingDirection)
+        {
+            isWallSliding = false;
+        }
+
     }
 
     // Check Jump -----
