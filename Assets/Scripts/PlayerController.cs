@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
     private void CheckIfWallSliding()
     {
        
-        if(isTouchingWall && movementInputDirection == facingDirection && rigbod.velocity.y < 0)
+        if(isTouchingWall && !isGrounded)
         {
        
             isWallSliding = true;
