@@ -309,8 +309,11 @@ public class PlayerController : MonoBehaviour
     private void wallJump()
     {
 
-        if (canWallJump)
+        // MODIFIED METHOD HEREEEEEEEEEEEEEEE
+        if (isWallSliding && canWallJump)
         {
+
+            if (movementInputDirection != facingDirection) {
 
             rigbod.velocity = new Vector2(rigbod.velocity.x, 0.0f);
 
@@ -329,6 +332,8 @@ public class PlayerController : MonoBehaviour
             hasWallJumped = true;
             wallJumpTimer = wallJumpTimerSet;
             lastWallJumpDirection = -facingDirection;
+
+            }
         }
     }
 
