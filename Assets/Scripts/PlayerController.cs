@@ -328,7 +328,7 @@ public class PlayerController : MonoBehaviour
     // Apply Movement -----
     private void ApplyMovement()
     {   
-        // If NOT grounded and NOT wall sliding AND is NOT Moving (to help slow down when not moving)
+
         if (!isGrounded && !isWallSliding && movementInputDirection == 0)
         {
             rigbod.velocity = new Vector2(rigbod.velocity.x * airDragMultiplier, rigbod.velocity.y);
@@ -336,19 +336,15 @@ public class PlayerController : MonoBehaviour
         else if(canMove)
         {
 
-            // Movement Speed * Movement Direction and Y Speed
             rigbod.velocity = new Vector2(movementSpeed * movementInputDirection, rigbod.velocity.y);
         }
         
-
-
-        // IF Player is Wall Sliding
         if (isWallSliding)
         {   
-            // If Y Velocity is less than Wall Slide Speed
+           
             if(rigbod.velocity.y < -wallSlideSpeed)
             {
-                // New Speed is Same X Speed but new Y Wall Slide Speed
+                
                 rigbod.velocity = new Vector2(rigbod.velocity.x, -wallSlideSpeed);
             }
 
