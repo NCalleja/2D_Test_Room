@@ -242,6 +242,10 @@ public class PlayerController : MonoBehaviour
         // NEW CONDITION ADDED
         if(isWallSliding && movementInputDirection == -facingDirection)
         {
+
+            Vector2 forceToApply = new Vector2(wallHopForce * -facingDirection, 0);
+            rigbod.AddForce(forceToApply, ForceMode2D.Impulse);
+
             isWallSliding = false;
         }
 
