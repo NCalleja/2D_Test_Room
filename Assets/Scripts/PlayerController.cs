@@ -313,6 +313,16 @@ public class PlayerController : MonoBehaviour
     private void wallJump()
     {
 
+        Debug.Log("wallJump Method Executed");
+
+        // Apply a significant horizontal force to clearly observe the effect
+        float testHorizontalForce = 10f; // Adjust this value to ensure it's noticeable
+        Vector2 forceToAdd = new Vector2(testHorizontalForce * -facingDirection, 5f); // Added a modest upward force for visual effect
+        rigbod.AddForce(forceToAdd, ForceMode2D.Impulse);
+
+        Debug.Log($"Force to Add: {forceToAdd}");
+
+        /*
         if (isWallSliding && canWallJump)
         {
 
@@ -343,6 +353,7 @@ public class PlayerController : MonoBehaviour
             wallJumpTimer = wallJumpTimerSet;
             lastWallJumpDirection = -facingDirection;
         }
+        */
     }
 
     // Apply Movement -----
