@@ -280,14 +280,14 @@ public class PlayerController : MonoBehaviour
                 rigbod.velocity = new Vector2(rigbod.velocity.x, 0.0f);
                 hasWallJumped = false;
             }
-            else if (wallJumpTimer <= 0)
-            {
-                hasWallJumped = false; 
-            }
             else
             {
                 wallJumpTimer -= Time.deltaTime;
             }
+        }
+        else if (wallJumpTimer <= 0 && hasWallJumped)
+        {
+            hasWallJumped = false;
         }
     }
 
