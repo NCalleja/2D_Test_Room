@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
     public float jumpTimerSet = 0.15f;
     public float turnTimerSet = .1f;
     public float wallJumpTimerSet = 0.8f;
+    public float wallSeparationDistance;
 
     public Vector2 wallHopDirection;
     public Vector2 wallJumpDirection;
@@ -197,7 +198,7 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetButtonDown("Jump"))
         {
-            
+
             if(isGrounded || (amountOfJumpLeft > 0 && !isTouchingWall))
             {
                 NormalJump();
@@ -318,22 +319,22 @@ public class PlayerController : MonoBehaviour
 
             rigbod.velocity = new Vector2(rigbod.velocity.x, 0.0f);
 
-            // State Updates
-            isWallSliding = false;
-            amountOfJumpLeft = amountOfJumps;
-            amountOfJumpLeft--;
-
             int jumpDirection = facingDirection > 0 ? -1 : 1;
 
             Vector2 forceToAdd = new Vector2(wallJumpForce * wallJumpDirection.x * jumpDirection, wallJumpForce * wallJumpDirection.y);
             rigbod.AddForce(forceToAdd, ForceMode2D.Impulse);
+
+            // State Updates
+            isWallSliding = false;
+            canMove = true;
+            amountOfJumpLeft = amountOfJumps;
+            amountOfJumpLeft--;
 
             // Reset Jump-Related States & Timers
             jumpTimer = 0;
             isAttemptingToJump = false;
             checkJumpMultiplier = true;
             turnTimer = 0;
-            canMove = true;
             canFlip = true;
             hasWallJumped = true;
             wallJumpTimer = wallJumpTimerSet;
