@@ -241,7 +241,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // NEW CONDITION ADDED
-        if(isWallSliding && movementInputDirection == -facingDirection)
+         if(isWallSliding && movementInputDirection == -facingDirection)
         {
 
             Vector2 forceToApply = new Vector2(wallHopForce * -facingDirection, 0);
@@ -249,7 +249,6 @@ public class PlayerController : MonoBehaviour
 
             isWallSliding = false;
         }
-
     }
 
     // Check Jump -----
