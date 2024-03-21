@@ -316,6 +316,7 @@ public class PlayerController : MonoBehaviour
 
         if (isWallSliding && canWallJump)
         {
+            Debug.Log("wallJump Method Executed");
 
             rigbod.velocity = new Vector2(rigbod.velocity.x, 0.0f);
 
