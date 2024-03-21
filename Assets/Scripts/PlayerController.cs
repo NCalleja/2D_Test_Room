@@ -317,16 +317,19 @@ public class PlayerController : MonoBehaviour
         if (isWallSliding && canWallJump)
         {
 
-            if (movementInputDirection != facingDirection) {
-
             rigbod.velocity = new Vector2(rigbod.velocity.x, 0.0f);
 
             // State Updates
             isWallSliding = false;
             amountOfJumpLeft = amountOfJumps;
             amountOfJumpLeft--;
+
+            int jumpDirection = facingDirection > 0 ? -1 : 1;
+
             Vector2 forceToAdd = new Vector2(wallJumpForce * wallJumpDirection.x * movementInputDirection, wallJumpForce * wallJumpDirection.y);
             rigbod.AddForce(forceToAdd, ForceMode2D.Impulse);
+
+            // Reset Jump-Related States and Timers
             jumpTimer = 0;
             isAttemptingToJump = false;
             checkJumpMultiplier = true;
@@ -337,7 +340,7 @@ public class PlayerController : MonoBehaviour
             wallJumpTimer = wallJumpTimerSet;
             lastWallJumpDirection = -facingDirection;
 
-            }
+            
         }
     }
 
