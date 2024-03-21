@@ -327,6 +327,9 @@ public class PlayerController : MonoBehaviour
             Debug.Log("wallJump Method Executed");
             Debug.Log($"Force to Add: {forceToAdd}");
 
+            StartCoroutine(DelayedResetWallSlideState());
+
+            /*
             // State Updates
             isWallSliding = false;
             canMove = true;
@@ -342,7 +345,28 @@ public class PlayerController : MonoBehaviour
             hasWallJumped = true;
             wallJumpTimer = wallJumpTimerSet;
             lastWallJumpDirection = -facingDirection;
+            */
         }
+    }
+
+    IEnumerator DelayedResetWallSlideState()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        isWallSliding = false;
+        canMove = true;
+        amountOfJumpLeft = amountOfJumps;
+        amountOfJumpLeft--;
+
+        // Reset Jump-Related States & Timers
+        jumpTimer = 0;
+        isAttemptingToJump = false;
+        checkJumpMultiplier = true;
+        turnTimer = 0;
+        canFlip = true;
+        hasWallJumped = true;
+        wallJumpTimer = wallJumpTimerSet;
+        lastWallJumpDirection = -facingDirection;
     }
 
     // Apply Movement -----
