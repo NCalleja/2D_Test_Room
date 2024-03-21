@@ -316,7 +316,6 @@ public class PlayerController : MonoBehaviour
 
         if (isWallSliding && canWallJump)
         {
-            Debug.Log("wallJump Method Executed");
 
             rigbod.velocity = new Vector2(rigbod.velocity.x, 0.0f);
 
@@ -324,6 +323,10 @@ public class PlayerController : MonoBehaviour
 
             Vector2 forceToAdd = new Vector2(wallJumpForce * wallJumpDirection.x * jumpDirection, wallJumpForce * wallJumpDirection.y);
             rigbod.AddForce(forceToAdd, ForceMode2D.Impulse);
+
+            // DEBUG
+            Debug.Log("wallJump Method Executed");
+            Debug.Log($"Force to Add: {forceToAdd}");
 
             // State Updates
             isWallSliding = false;
