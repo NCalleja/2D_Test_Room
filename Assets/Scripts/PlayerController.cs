@@ -257,8 +257,8 @@ public class PlayerController : MonoBehaviour
 
         if (jumpTimer > 0)
         {
-            
-            if(!isGrounded && isTouchingWall && movementInputDirection != 0 && movementInputDirection != facingDirection)
+            // removing condition "movementInputDirection != 0"
+            if(!isGrounded && isTouchingWall && movementInputDirection != facingDirection)
             {
                 wallJump();
             }
