@@ -257,8 +257,8 @@ public class PlayerController : MonoBehaviour
 
         if (jumpTimer > 0)
         {
-            // removing condition "movementInputDirection != 0"
-            if(!isGrounded && isTouchingWall && movementInputDirection != facingDirection)
+
+            if(!isGrounded && isTouchingWall && movementInputDirection != 0 && movementInputDirection != facingDirection)
             {
                 wallJump();
             }
@@ -298,6 +298,8 @@ public class PlayerController : MonoBehaviour
         {
             
             rigbod.velocity = new Vector2(rigbod.velocity.x, jumpForce);
+
+            Debug.Log("Normal Jump Executed");
 
             amountOfJumpLeft--;
 

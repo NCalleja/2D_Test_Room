@@ -1188,7 +1188,6 @@ MonoBehaviour:
   jumpTimerSet: 0.15
   turnTimerSet: 0.1
   wallJumpTimerSet: 0.8
-  wallSeparationDistance: 0.1
   wallHopDirection: {x: 1, y: 1}
   wallJumpDirection: {x: 1, y: 3}
   groundCheck: {fileID: 367578764}
