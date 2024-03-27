@@ -95,8 +95,8 @@ public class PlayerController : MonoBehaviour
     // Fixed Update -----
     private void FixedUpdate()
     {
-        ApplyMovement();
         CheckSurroundings();
+        ApplyMovement();
     }
 
     // CheckSurroundings -----
@@ -135,18 +135,11 @@ public class PlayerController : MonoBehaviour
             amountOfJumpLeft = amountOfJumps;
         }
 
-        // Wall Check
-        if(isTouchingWall && isWallSliding)
-        {
-            canWallJump = true;
-        }
-        
         // Jump Ability Check
         if (amountOfJumpLeft <= 0)
         {
             canNormalJump = false;
         }
-
         else
         {
             
@@ -166,7 +159,6 @@ public class PlayerController : MonoBehaviour
         {
             Flip();
         }
-        
 
         if(rigbod.velocity.x != 0)
         {
@@ -240,7 +232,6 @@ public class PlayerController : MonoBehaviour
             rigbod.velocity = new Vector2(rigbod.velocity.x, rigbod.velocity.y * variableJumpHeightMultiplier);
         }
 
-        // NEW CONDITION ADDED
          if(isWallSliding && movementInputDirection == -facingDirection)
         {
 
@@ -258,7 +249,7 @@ public class PlayerController : MonoBehaviour
         if (jumpTimer > 0)
         {
 
-            if(!isGrounded && isTouchingWall && movementInputDirection != 0 && movementInputDirection != facingDirection)
+            if(!isGrounded && isTouchingWall && movementInputDirection != facingDirection)
             {
                 wallJump();
             }
@@ -276,6 +267,7 @@ public class PlayerController : MonoBehaviour
         {
             if (hasWallJumped && movementInputDirection == -lastWallJumpDirection)
             {
+
                 rigbod.velocity = new Vector2(rigbod.velocity.x, 0.0f);
                 hasWallJumped = false;
             }
@@ -315,7 +307,7 @@ public class PlayerController : MonoBehaviour
     private void wallJump()
     {
 
-        if (isWallSliding && canWallJump)
+        if (isWallSliding)
         {
 
             rigbod.velocity = new Vector2(rigbod.velocity.x, 0.0f);
@@ -328,6 +320,7 @@ public class PlayerController : MonoBehaviour
             // DEBUG
             Debug.Log("wallJump Method Executed");
             Debug.Log($"Force to Add: {forceToAdd}");
+            Debug.Log($"Rigidbody Velocity: {rigbod.velocity.x}, {rigbod.velocity.y}");
 
             // State Updates
             isWallSliding = false;
@@ -359,7 +352,21 @@ public class PlayerController : MonoBehaviour
         else if(canMove)
         {
 
-            rigbod.velocity = new Vector2(movementSpeed * movementInputDirection, rigbod.velocity.y);
+            if (hasWallJumped)
+            {
+                rigbod.velocity = new Vector2(movementSpeed * movementInputDirection + lastWallJumpDirection * wallJumpForce, rigbod.velocity.y);
+                hasWallJumped = false;
+            }
+            else
+            {
+                rigbod.velocity = new Vector2(movementSpeed * movementInputDirection, rigbod.velocity.y);
+            }
+
+            /*
+            Vector2 forceToAdd = new Vector2(movementSpeed * movementInputDirection, 0.0f);
+
+            rigbod.AddForce(forceToAdd, ForceMode2D.Impulse);
+            */
         }
         
         if (isWallSliding)
@@ -385,7 +392,6 @@ public class PlayerController : MonoBehaviour
             isFacingRight = !isFacingRight;
             transform.Rotate(0.0f, 180.0f, 0.0f);
         }
-        
     }
     
     // On Draw Gizmos
