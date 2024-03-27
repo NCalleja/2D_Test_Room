@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private bool canFlip;
     private bool hasWallJumped;
     private bool justWallJumped;
+    private bool isTouchingLedge;
 
     // Component References -----
     private Rigidbody2D rigbod;
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour
 
     public Transform groundCheck;
     public Transform wallCheck;
+    public Transform ledgeCheck;
 
     public LayerMask whatIsGround;
 
@@ -108,6 +110,8 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
 
         isTouchingWall = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, whatIsGround);
+
+        isTouchingLedge = Physics2D.Raycast(ledgeCheck.position, transform.right, wallCheckDistance, whatIsGround);
     }
 
     // Check If Wall Sliding -----
