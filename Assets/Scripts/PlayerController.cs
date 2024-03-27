@@ -29,9 +29,16 @@ public class PlayerController : MonoBehaviour
     private bool canMove;
     private bool canFlip;
     private bool hasWallJumped;
-
-    // To Fix BUG
     private bool justWallJumped;
+
+    // Dashing Variables
+    public float dashForce;
+    public float dashDuration = .3f;
+    private bool isDashing = false;
+    private float dashTimer;
+    public float dashCooldown = 1f;
+    private float dashCoolDownTimer = 0;
+
 
     // Component References -----
     private Rigidbody2D rigbod;
