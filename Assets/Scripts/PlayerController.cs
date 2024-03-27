@@ -355,7 +355,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /*
-     *  The Problem:
+     *  The Problem: (SOLVED)
      *  
      *      Apply Movement in the else if (canMove) is setting the vector for the Rigibody in Apply Movement constantly.
      *  Then in my wallJump, we're applying that force to a vector that has no movement Input Direction, thus making it 0.
