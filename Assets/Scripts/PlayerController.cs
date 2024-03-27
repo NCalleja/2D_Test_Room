@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour
     private bool canFlip;
     private bool hasWallJumped;
 
+    // To Fix BUG
+    private bool justWallJumped;
+
     // Component References -----
     private Rigidbody2D rigbod;
     private Animator anim;
@@ -124,7 +127,6 @@ public class PlayerController : MonoBehaviour
             isWallSliding = false;
         }
     }
-
 
     // Check If Can Jump -----
     private void CheckIfCanJump()
