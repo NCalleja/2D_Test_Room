@@ -115,6 +115,16 @@ public class PlayerController : MonoBehaviour
         checkJump();
     }
 
+    public void FinishLedgeClimg()
+    {
+        canClimbLedge = false;
+        transform.position = ledgePos2;
+        canMove = true;
+        canFlip = true;
+        ledgeDetected = false;
+        anim.SetBool("canClimbLedge", canClimbLedge);
+    }
+
     // CheckSurroundings -----
     private void CheckSurroundings()
     {
@@ -136,7 +146,7 @@ public class PlayerController : MonoBehaviour
     private void CheckIfWallSliding()
     {
        
-        if(isTouchingWall && !isGrounded)
+        if(isTouchingWall && !isGrounded && !canClimbLedge)
         {
        
             isWallSliding = true;
@@ -167,6 +177,8 @@ public class PlayerController : MonoBehaviour
 
             canMove = false;
             canFlip = false;
+
+            anim.SetBool("canClimbLedge", canClimbLedge);
         }
 
         if(canClimbLedge)
