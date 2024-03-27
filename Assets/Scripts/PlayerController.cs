@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     private bool hasWallJumped;
     private bool justWallJumped;
     private bool isTouchingLedge;
+    private bool canClimbLedge = false;
+    private bool ledgeDetected;
 
     // Component References -----
     private Rigidbody2D rigbod;
@@ -92,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
         CheckIfWallSliding();
 
-        //checkJump();
+        CheckLedgeClimb();
     }
 
     // Fixed Update -----
@@ -112,6 +114,11 @@ public class PlayerController : MonoBehaviour
         isTouchingWall = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, whatIsGround);
 
         isTouchingLedge = Physics2D.Raycast(ledgeCheck.position, transform.right, wallCheckDistance, whatIsGround);
+
+        if(isTouchingWall && !isTouchingLedge && !ledgeDetected)
+        {
+            ledgeDetected = true;
+        }
     }
 
     // Check If Wall Sliding -----
@@ -128,6 +135,11 @@ public class PlayerController : MonoBehaviour
             
             isWallSliding = false;
         }
+    }
+
+    private void CheckLedgeClimb()
+    {
+
     }
 
     // Check If Can Jump -----
