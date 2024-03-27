@@ -31,15 +31,6 @@ public class PlayerController : MonoBehaviour
     private bool hasWallJumped;
     private bool justWallJumped;
 
-    // Dashing Variables
-    public float dashForce;
-    public float dashDuration = .3f;
-    private bool isDashing = false;
-    private float dashTimer;
-    public float dashCooldown = 1f;
-    private float dashCoolDownTimer = 0;
-
-
     // Component References -----
     private Rigidbody2D rigbod;
     private Animator anim;
@@ -242,11 +233,6 @@ public class PlayerController : MonoBehaviour
             rigbod.velocity = new Vector2(rigbod.velocity.x, rigbod.velocity.y * variableJumpHeightMultiplier);
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && dashCooldown <= 0)
-        {
-            StartCoroutine(DoDash());
-        }
-
          if(isWallSliding && movementInputDirection == -facingDirection)
         {
 
@@ -366,23 +352,6 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         justWallJumped = false;
-    }
-
-    IEnumerator DoDash()
-    {
-        float originalGravity = rigbod.gravityScale;
-        isDashing = true;
-        dashCoolDownTimer = dashCooldown;
-
-        rigbod.velocity = Vector2.zero;
-        rigbod.gravityScale = 0;
-        Vector2 dashDirection = new Vector2(transform.localScale.x, 0).normalized;
-        rigbod.velocity = dashDirection * dashForce;
-
-        yield return new WaitForSeconds(dashDuration);
-
-        rigbod.gravityScale = originalGravity;
-        isDashing = false;
     }
 
     /*
