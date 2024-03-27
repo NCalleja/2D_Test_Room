@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
         CheckIfWallSliding();
 
-        checkJump();
+        //checkJump();
     }
 
     // Fixed Update -----
@@ -97,6 +97,7 @@ public class PlayerController : MonoBehaviour
     {
         CheckSurroundings();
         ApplyMovement();
+        checkJump();
     }
 
     // CheckSurroundings -----
@@ -341,6 +342,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /*
+     *  The Problem:
+     *  
+     *      Apply Movement in the else if (canMove) is setting the vector for the Rigibody in Apply Movement constantly.
+     *  Then in my wallJump, we're applying that force to a vector that has no movement Input Direction, thus making it 0.
+     *  My "CheckJump" is now in the Fixed Update too (instead of Update), but it's still getting overwritten by Apply Movement but not as constant. 
+     *  Now I can actually get the player to move away from the wall but still, it's setting that vector horizontially to 0 because in my
+     *  applyMovement, it's "movementSpeed * movementInputDirection" and that would come out to 0 if I'm trying to just tap "Jump" to be
+     *  propelled off of the wall. Thus dropping right after it comes off the wall now.
+     * 
+     *      The issue is now, I'm not quite sure where to go with this. I will either have to rewrite how my apply movement works, 
+     *  or do even further rewrites. Or perhaps rewrite the entire code.
+     * 
+     */
+
     // Apply Movement -----
     private void ApplyMovement()
     {   
@@ -351,22 +367,8 @@ public class PlayerController : MonoBehaviour
         }    
         else if(canMove)
         {
-
-            if (hasWallJumped)
-            {
-                rigbod.velocity = new Vector2(movementSpeed * movementInputDirection + lastWallJumpDirection * wallJumpForce, rigbod.velocity.y);
-                hasWallJumped = false;
-            }
-            else
-            {
-                rigbod.velocity = new Vector2(movementSpeed * movementInputDirection, rigbod.velocity.y);
-            }
-
-            /*
-            Vector2 forceToAdd = new Vector2(movementSpeed * movementInputDirection, 0.0f);
-
-            rigbod.AddForce(forceToAdd, ForceMode2D.Impulse);
-            */
+            
+            rigbod.velocity = new Vector2(movementSpeed * movementInputDirection, rigbod.velocity.y);
         }
         
         if (isWallSliding)
