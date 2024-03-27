@@ -344,6 +344,7 @@ public class PlayerController : MonoBehaviour
             wallJumpTimer = wallJumpTimerSet;
             lastWallJumpDirection = -facingDirection;
 
+            Flip();
         }
     }
 

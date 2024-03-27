@@ -1184,12 +1184,12 @@ MonoBehaviour:
   airDragMultiplier: 0.95
   variableJumpHeightMultiplier: 0.2
   wallHopForce: 0.1
-  wallJumpForce: 15
+  wallJumpForce: 17.5
   jumpTimerSet: 0.15
   turnTimerSet: 0.1
   wallJumpTimerSet: 0.8
   wallHopDirection: {x: 1, y: 1}
-  wallJumpDirection: {x: 1, y: 3}
+  wallJumpDirection: {x: 3, y: 5}
   groundCheck: {fileID: 367578764}
   wallCheck: {fileID: 1180461520}
   whatIsGround:
