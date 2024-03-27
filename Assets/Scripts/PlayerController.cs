@@ -313,6 +313,9 @@ public class PlayerController : MonoBehaviour
         if (isWallSliding)
         {
 
+            justWallJumped = true;
+            StartCoroutine(ResetJustWallJumpedFlag());
+
             rigbod.velocity = new Vector2(rigbod.velocity.x, 0.0f);
 
             int jumpDirection = facingDirection > 0 ? -1 : 1;
@@ -344,6 +347,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    IEnumerator ResetJustWallJumpedFlag()
+    {
+        yield return new WaitForSeconds(0.2f);
+        justWallJumped = false;
+    }
+
     /*
      *  The Problem:
      *  
@@ -361,16 +370,21 @@ public class PlayerController : MonoBehaviour
 
     // Apply Movement -----
     private void ApplyMovement()
-    {   
+    {
 
-        if (!isGrounded && !isWallSliding && movementInputDirection == 0)
+        if (!justWallJumped)
         {
-            rigbod.velocity = new Vector2(rigbod.velocity.x * airDragMultiplier, rigbod.velocity.y);
-        }    
-        else if(canMove)
-        {
-            
-            rigbod.velocity = new Vector2(movementSpeed * movementInputDirection, rigbod.velocity.y);
+
+            if (!isGrounded && !isWallSliding && movementInputDirection == 0)
+            {
+                rigbod.velocity = new Vector2(rigbod.velocity.x * airDragMultiplier, rigbod.velocity.y);
+            }
+            else if (canMove)
+            {
+
+                rigbod.velocity = new Vector2(movementSpeed * movementInputDirection, rigbod.velocity.y);
+            }
+
         }
         
         if (isWallSliding)
