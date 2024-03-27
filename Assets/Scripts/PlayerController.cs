@@ -34,6 +34,10 @@ public class PlayerController : MonoBehaviour
     private bool canClimbLedge = false;
     private bool ledgeDetected;
 
+    private Vector2 ledgePosBot;
+    private Vector2 ledgePos1;
+    private Vector2 ledgePos2;
+
     // Component References -----
     private Rigidbody2D rigbod;
     private Animator anim;
@@ -55,6 +59,11 @@ public class PlayerController : MonoBehaviour
     public float jumpTimerSet = 0.15f;
     public float turnTimerSet = .1f;
     public float wallJumpTimerSet = 0.8f;
+
+    public float ledgeClimbXOffset1 = 0f;
+    public float ledgeClimbYOffset1 = 0f;
+    public float ledgeClimbXOffset2 = 0f;
+    public float ledgeClimbYOffset2 = 0f;
 
     public Vector2 wallHopDirection;
     public Vector2 wallJumpDirection;
@@ -118,6 +127,7 @@ public class PlayerController : MonoBehaviour
         if(isTouchingWall && !isTouchingLedge && !ledgeDetected)
         {
             ledgeDetected = true;
+            ledgePosBot = wallCheck.position;
         }
     }
 
@@ -139,7 +149,15 @@ public class PlayerController : MonoBehaviour
 
     private void CheckLedgeClimb()
     {
+        if(ledgeDetected && !canClimbLedge)
+        {
+            canClimbLedge = true;
 
+            if(isFacingRight)
+            {
+
+            }
+        }
     }
 
     // Check If Can Jump -----
