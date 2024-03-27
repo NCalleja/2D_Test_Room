@@ -161,10 +161,19 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                ledgePos1 = new Vector2(Mathf.Ceil(ledgePosBot.x + wallCheckDistance) - ledgeClimbXOffset1, Mathf.Ceil(ledgePosBot.y) + ledgeClimbYOffset1);
-                ledgePos2 = new Vector2(Mathf.Ceil(ledgePosBot.x + wallCheckDistance) - ledgeClimbXOffset2, Mathf.Ceil(ledgePosBot.y) - ledgeClimbYOffset2);
+                ledgePos1 = new Vector2(Mathf.Ceil(ledgePosBot.x + wallCheckDistance) - ledgeClimbXOffset1, Mathf.Floor(ledgePosBot.y) + ledgeClimbYOffset1);
+                ledgePos2 = new Vector2(Mathf.Ceil(ledgePosBot.x + wallCheckDistance) - ledgeClimbXOffset2, Mathf.Floor(ledgePosBot.y) - ledgeClimbYOffset2);
             }
+
+            canMove = false;
+            canFlip = false;
         }
+
+        if(canClimbLedge)
+        {
+            transform.position = ledgePos1;
+        }
+
     }
 
     // Check If Can Jump -----
@@ -255,7 +264,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(!canMove)
+        if(turnTimer >= 0)
         {
             turnTimer -= Time.deltaTime;
 
