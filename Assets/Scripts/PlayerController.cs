@@ -140,6 +140,10 @@ public class PlayerController : MonoBehaviour
             ledgeDetected = true;
             ledgePosBot = wallCheck.position;
         }
+        else
+        {
+            ledgeDetected= false;
+        }
     }
 
     // Check If Wall Sliding -----
