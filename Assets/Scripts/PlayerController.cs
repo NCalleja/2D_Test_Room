@@ -166,6 +166,7 @@ public class PlayerController : MonoBehaviour
     {
         if(ledgeDetected && !canClimbLedge)
         {
+            isRunning = false;
             canClimbLedge = true;
 
             if(isFacingRight)
@@ -229,7 +230,7 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
 
-        if(rigbod.velocity.x != 0)
+        if(Mathf.Abs(rigbod.velocity.x) > 0.00001f && isGrounded  /*rigbod.velocity.x != 0*/)
         {
             isRunning = true;
 
