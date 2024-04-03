@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
         canMove = true;
         canFlip = true;
         ledgeDetected = false;
-        //anim.SetBool("canClimbLedge", canClimbLedge);
+        anim.SetBool("canClimbLedge", canClimbLedge);
     }
 
     // CheckSurroundings -----
@@ -178,7 +178,7 @@ public class PlayerController : MonoBehaviour
             canMove = false;
             canFlip = false;
 
-            //anim.SetBool("canClimbLedge", canClimbLedge);
+            anim.SetBool("canClimbLedge", canClimbLedge);
         }
         
         
@@ -244,7 +244,7 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("yVelocity", rigbod.velocity.y);
         anim.SetBool("isWallSliding", isWallSliding);
-        anim.SetBool("canClimbLedge", canClimbLedge);
+        //anim.SetBool("canClimbLedge", canClimbLedge);
     }
 
     // Check Input -----
