@@ -465,6 +465,8 @@ public class PlayerController : MonoBehaviour
     // On Draw Gizmos
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.red;
+
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
 
         // Creating Gizmos to Draw a Line via the Wall Check Position
