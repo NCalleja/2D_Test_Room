@@ -150,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 21452634}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.6098776, y: -1.7386718, z: -10.109942}
+  m_LocalPosition: {x: 13.690123, y: -1.7386718, z: -10.109942}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -406,7 +406,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.6098776, y: -1.7386718, z: -10.109942}
+  m_LocalPosition: {x: 13.690123, y: -1.7386718, z: -10.109942}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1113,7 +1113,7 @@ Transform:
   m_GameObject: {fileID: 1034694832}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.76, y: -3.47, z: 0}
+  m_LocalPosition: {x: 7.54, y: -3.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1220,10 +1220,10 @@ MonoBehaviour:
   jumpTimerSet: 0.15
   turnTimerSet: 0.1
   wallJumpTimerSet: 0.8
-  ledgeClimbXOffset1: 0.5
-  ledgeClimbYOffset1: 0.5
-  ledgeClimbXOffset2: 1
-  ledgeClimbYOffset2: 1
+  ledgeClimbXOffset1: 0.2
+  ledgeClimbYOffset1: 0.2
+  ledgeClimbXOffset2: 0.3
+  ledgeClimbYOffset2: 0.9789
   wallHopDirection: {x: 1, y: 1}
   wallJumpDirection: {x: 3, y: 5}
   groundCheck: {fileID: 367578764}
