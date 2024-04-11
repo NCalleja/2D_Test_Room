@@ -223,9 +223,9 @@ TextureImporter:
       name: Ledge Climb Sheet v2_4
       rect:
         serializedVersion: 2
-        x: 63
+        x: 62
         y: 0
-        width: 15
+        width: 16
         height: 36
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -244,9 +244,9 @@ TextureImporter:
       name: Ledge Climb Sheet v2_5
       rect:
         serializedVersion: 2
-        x: 81
+        x: 79
         y: 0
-        width: 14
+        width: 16
         height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -265,9 +265,9 @@ TextureImporter:
       name: Ledge Climb Sheet v2_6
       rect:
         serializedVersion: 2
-        x: 101
+        x: 97
         y: 0
-        width: 12
+        width: 16
         height: 57
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
