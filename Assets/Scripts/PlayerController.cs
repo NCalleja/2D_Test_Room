@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private float jumpTimer;
     private float turnTimer;
     private float wallJumpTimer;
+    private float verticalInputDirection;
 
     private int amountOfJumpLeft;
         // Int for Facing Direction (-1 Left and 1 is Right)
@@ -164,7 +165,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckLedgeClimb()
     {
-        if(ledgeDetected && !canClimbLedge)
+        if(ledgeDetected && !canClimbLedge && verticalInputDirection >= 0)
         {
             isRunning = false;
             canClimbLedge = true;
@@ -257,6 +258,8 @@ public class PlayerController : MonoBehaviour
     {   
         
         movementInputDirection = Input.GetAxisRaw("Horizontal");
+
+        verticalInputDirection = Input.GetAxisRaw("Vertical");
 
         if(Input.GetButtonDown("Jump"))
         {
