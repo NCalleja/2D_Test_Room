@@ -1207,8 +1207,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountOfJumps: 2
-  movementSpeed: 7
-  jumpForce: 18
+  movementSpeed: 6.5
+  jumpForce: 17
   groundCheckRadius: 0.12
   wallCheckDistance: 0.25
   wallSlideSpeed: 2
