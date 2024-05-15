@@ -317,6 +317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea12b88dd93a0440ab4e45a48fe04a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeTime: 0.1
+  alphaSet: 0
 --- !u!212 &258493314
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1123,7 +1125,7 @@ GameObject:
   - component: {fileID: 1034694837}
   m_Layer: 0
   m_Name: Test Dummy
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

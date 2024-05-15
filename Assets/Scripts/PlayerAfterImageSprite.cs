@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAfterImageSprite : MonoBehaviour
 {
+    // Serialized Field allows us to Manage These in the Inspector
     [SerializeField]
     private float activeTime = 0.1f;
     private float timeActivated;
@@ -19,4 +20,10 @@ public class PlayerAfterImageSprite : MonoBehaviour
 
     private Color color;
 
+    // Gets Called Anytime the Game Object is Enabled
+    private void OnEnable()
+    {
+        SR = GetComponent<SpriteRenderer>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
 }
