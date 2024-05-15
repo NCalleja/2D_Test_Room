@@ -33,4 +33,16 @@ public class PlayerAfterImageSprite : MonoBehaviour
         transform.rotation = player.rotation;
         timeActivated = Time.time;
     }
+
+    private void Update()
+    {
+        alpha *= alphaMultiplier;
+        color = new Color(1f, 1f, 1f, alpha);
+        SR.color = color;
+
+        if(Time.time >= (timeActivated + activeTime)) 
+        { 
+            // Add back to Pool
+        }
+    }
 }
