@@ -25,5 +25,12 @@ public class PlayerAfterImageSprite : MonoBehaviour
     {
         SR = GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerSR = player.GetComponent<SpriteRenderer>();
+
+        alpha = alphaSet;
+        SR.sprite = playerSR.sprite;
+        transform.position = player.position;
+        transform.rotation = player.rotation;
+        timeActivated = Time.time;
     }
 }
