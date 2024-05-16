@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class PlayerAfterImagePool : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    private GameObject afterImagePrefab;
+
+    private Queue<GameObject> availableObjects = new Queue<GameObject>();
+
 }
