@@ -10,4 +10,8 @@ public class PlayerAfterImagePool : MonoBehaviour
 
     private Queue<GameObject> availableObjects = new Queue<GameObject>();
 
+    public static PlayerAfterImagePool Instance { get; private set; }
+
+
+
 }
