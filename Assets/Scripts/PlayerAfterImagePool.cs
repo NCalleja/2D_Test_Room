@@ -19,6 +19,17 @@ public class PlayerAfterImagePool : MonoBehaviour
 
     private void GrowPool()
     {
+        for (int i = 0; i < 10; i++)
+        {
+            var instanceToAdd = Instantiate(afterImagePrefab);
+            instanceToAdd.transform.SetParent(transform);
+            AddToPool(instanceToAdd);
+
+        }
+    }
+
+    private void AddToPool(GameObject instance)
+    {
 
     }
 
