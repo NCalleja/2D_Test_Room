@@ -324,7 +324,24 @@ public class PlayerController : MonoBehaviour
             isWallSliding = false;
         }
 
+         // Adding Dash Button
+         if(Input.GetButtonDown("Dash"))
+        {
+            if(Time.time >= (lastDash + dashCoolDown))
+            AttemptToDash();
+        }
 
+    }
+
+    // Attempting to Dash Function
+    private void AttemptToDash()
+    {
+        isDashing = true;
+        dashTimeLeft = dashTime;
+        lastDash = Time.time;
+
+        PlayerAfterImagePool.Instance.GetFromPool();
+        lastImageXpos = transform.position.x;
     }
 
     // Check Jump -----
