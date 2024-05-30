@@ -344,6 +344,34 @@ public class PlayerController : MonoBehaviour
         lastImageXpos = transform.position.x;
     }
 
+    // Check Dash Function
+    private void CheckDash()
+    {
+        if (isDashing)
+        {
+            if (dashTimeLeft > 0) {
+
+                canMove = false;
+                canFlip = false;
+                rigbod.velocity = new Vector2(dashSpeed * facingDirection, rigbod.velocity.y);
+                dashTimeLeft -= Time.deltaTime;
+
+                if (Mathf.Abs(transform.position.x - lastImageXpos) > distanceBetweenImages)
+                {
+                    PlayerAfterImagePool.Instance.GetFromPool();
+                    lastImageXpos = transform.position.x;
+                }
+            }
+
+            if(dashTimeLeft <= 0 || isTouchingWall)
+            {
+                isDashing = false;
+                canMove = true;
+                canFlip = true;
+            }
+        }
+    }
+
     // Check Jump -----
     private void checkJump()
     {
