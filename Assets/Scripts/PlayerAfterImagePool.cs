@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAfterImagePool : MonoBehaviour
 {
 
+    // Serialize Field adds the below field to the Inspector
     [SerializeField]
     private GameObject afterImagePrefab;
 
