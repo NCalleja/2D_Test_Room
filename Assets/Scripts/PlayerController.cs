@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
     private float turnTimer;
     private float wallJumpTimer;
     private float verticalInputDirection;
+    private float dashTimeLeft;
+    private float lastImageXpos;
+    // Setting to -100 for Default so we can Dash when the Game Starts
+    private float lastDash = -100f;
 
     private int amountOfJumpLeft;
         // Int for Facing Direction (-1 Left and 1 is Right)
@@ -34,6 +38,7 @@ public class PlayerController : MonoBehaviour
     private bool isTouchingLedge;
     private bool canClimbLedge = false;
     private bool ledgeDetected;
+    private bool isDashing;
 
     // Ledge Position Bottom
     private Vector2 ledgePosBot;
@@ -66,6 +71,11 @@ public class PlayerController : MonoBehaviour
     public float ledgeClimbYOffset1 = 0f;
     public float ledgeClimbXOffset2 = 0f;
     public float ledgeClimbYOffset2 = 0f;
+
+    public float dashTime;
+    public float dashSpeed;
+    public float distanceBetweenImages;
+    public float dashCoolDown;
 
     public Vector2 wallHopDirection;
     public Vector2 wallJumpDirection;
@@ -263,7 +273,6 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetButtonDown("Jump"))
         {
-            //wallJump();
 
             if(isGrounded || (amountOfJumpLeft > 0 && !isTouchingWall))
             {
