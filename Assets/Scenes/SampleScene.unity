@@ -1224,6 +1224,10 @@ MonoBehaviour:
   ledgeClimbYOffset1: 0.95
   ledgeClimbXOffset2: 0.3
   ledgeClimbYOffset2: 0.9789
+  dashTime: 0.2
+  dashSpeed: 50
+  distanceBetweenImages: 0.1
+  dashCoolDown: 2.5
   wallHopDirection: {x: 1, y: 1}
   wallJumpDirection: {x: 3, y: 5}
   groundCheck: {fileID: 367578764}

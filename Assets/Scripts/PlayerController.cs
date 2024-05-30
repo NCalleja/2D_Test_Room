@@ -116,6 +116,8 @@ public class PlayerController : MonoBehaviour
         CheckIfWallSliding();
 
         CheckLedgeClimb();
+
+        CheckDash();
     }
 
     // Fixed Update -----
