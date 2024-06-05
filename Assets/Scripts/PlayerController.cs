@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     private float wallJumpTimer;
     private float verticalInputDirection;
     private float dashTimeLeft;
-    private float lastImageXpos;
     // Setting to -100 for Default so we can Dash when the Game Starts
     private float lastDash = -100f;
     // Storing Y Postion Before Dash
@@ -76,7 +75,6 @@ public class PlayerController : MonoBehaviour
 
     public float dashTime;
     public float dashSpeed;
-    public float distanceBetweenImages;
     public float dashCoolDown;
 
     public Vector2 wallHopDirection;
@@ -264,7 +262,9 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("yVelocity", rigbod.velocity.y);
         anim.SetBool("isWallSliding", isWallSliding);
+        //anim.SetBool("isDashing", isDashing);
         //anim.SetBool("canClimbLedge", canClimbLedge);
+        HandleDashAnimation();
     }
 
     // Check Input -----
@@ -343,12 +343,26 @@ public class PlayerController : MonoBehaviour
         isDashing = true;
         dashTimeLeft = dashTime;
         lastDash = Time.time;
-
-        // Store the initial y position when dash starts.
         dashStartY = transform.position.y;
 
-        PlayerAfterImagePool.Instance.GetFromPool();
-        lastImageXpos = transform.position.x;
+        anim.SetTrigger("isDashing");
+
+        // Removing After Image Feature
+            // PlayerAfterImagePool.Instance.GetFromPool();
+            // lastImageXpos = transform.position.x;
+    }
+
+    private void HandleDashAnimation()
+    {
+        if(isDashing)
+        {
+            anim.SetBool("isDashing", true);
+
+        }
+        else
+        {
+            anim.SetBool("isDashing", false);
+        }
     }
 
     // Check Dash Function
@@ -368,11 +382,14 @@ public class PlayerController : MonoBehaviour
 
                 dashTimeLeft -= Time.deltaTime;
 
-                if (Mathf.Abs(transform.position.x - lastImageXpos) > distanceBetweenImages)
-                {
-                    PlayerAfterImagePool.Instance.GetFromPool();
-                    lastImageXpos = transform.position.x;
-                }
+                // Removing After Image Features
+                    /*
+                    if (Mathf.Abs(transform.position.x - lastImageXpos) > distanceBetweenImages)
+                    {
+                        PlayerAfterImagePool.Instance.GetFromPool();
+                        lastImageXpos = transform.position.x;
+                    }
+                    */
             }
 
             if(dashTimeLeft <= 0 || isTouchingWall)

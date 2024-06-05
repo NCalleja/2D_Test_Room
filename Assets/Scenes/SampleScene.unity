@@ -1181,7 +1181,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0066576004, y: 0.0248003}
+  m_Offset: {x: -0.0009624958, y: 0.0248003}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1192,7 +1192,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3312645, y: 0.83455086}
+  m_Size: {x: 0.37471724, y: 0.83455086}
   m_EdgeRadius: 0
 --- !u!114 &1034694838
 MonoBehaviour:
@@ -1226,7 +1226,6 @@ MonoBehaviour:
   ledgeClimbYOffset2: 0.9789
   dashTime: 0.2
   dashSpeed: 17.5
-  distanceBetweenImages: 0.25
   dashCoolDown: 1.5
   wallHopDirection: {x: 1, y: 1}
   wallJumpDirection: {x: 3, y: 5}
