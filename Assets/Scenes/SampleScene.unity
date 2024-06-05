@@ -1226,7 +1226,7 @@ MonoBehaviour:
   ledgeClimbYOffset2: 0.9789
   dashTime: 0.2
   dashSpeed: 17.5
-  distanceBetweenImages: 0.1
+  distanceBetweenImages: 0.25
   dashCoolDown: 1.5
   wallHopDirection: {x: 1, y: 1}
   wallJumpDirection: {x: 3, y: 5}
@@ -1799,7 +1799,7 @@ GameObject:
   - component: {fileID: 1449255854}
   - component: {fileID: 1449255855}
   m_Layer: 0
-  m_Name: PlayerAfterImgaePool
+  m_Name: PlayerAfterImagePool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

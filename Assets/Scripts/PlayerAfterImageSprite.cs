@@ -57,6 +57,9 @@ public class PlayerAfterImageSprite : MonoBehaviour
         color = new Color(1f, 1f, 1f, alpha);
         SR.color = color;
 
+        // DEBUG
+        Debug.Log($"Afterimage color set to: {color}");
+
         if(Time.time >= (timeActivated + activeTime)) 
         {
             PlayerAfterImagePool.Instance.AddToPool(gameObject);
