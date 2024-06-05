@@ -29,13 +29,23 @@ public class PlayerAfterImagePool : MonoBehaviour
             instanceToAdd.transform.SetParent(transform);
             AddToPool(instanceToAdd);
 
+            // DEBUG
+            Debug.Log("Afterimage added to pool: " + instanceToAdd.name);
+
         }
+
+        // DEBUG
+        Debug.Log("Pool Grown: " + availableObjects.Count + " after images available");
+
     }
 
     public void AddToPool(GameObject instance)
     {
         instance.SetActive(false);
         availableObjects.Enqueue(instance);
+
+        // DEBUG
+        Debug.Log("Afterimage Added Back to Pool: " + instance.name);
     }
 
     public GameObject GetFromPool()
@@ -47,6 +57,10 @@ public class PlayerAfterImagePool : MonoBehaviour
 
         var instance = availableObjects.Dequeue();
         instance.SetActive(true);
+
+        // DEBUG
+        Debug.Log("Afterimage Activated " + instance.name);
+
         return instance;
     }
 }
