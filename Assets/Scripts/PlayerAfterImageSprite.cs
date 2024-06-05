@@ -28,10 +28,27 @@ public class PlayerAfterImageSprite : MonoBehaviour
         playerSR = player.GetComponent<SpriteRenderer>();
 
         alpha = alphaSet;
+
+        // DEBUG
+        if (playerSR.sprite != null)
+        {
+            Debug.Log("Splayer Sprite is Assigned: " +  playerSR.sprite.name);
+        }
+        else
+        {
+            Debug.LogError("Player sprite is not assigned!");
+        }
+
         SR.sprite = playerSR.sprite;
+        // DEBUG
+        Debug.Log("Afterimage Sprite Set to: " + SR.sprite.name);
+
         transform.position = player.position;
         transform.rotation = player.rotation;
         timeActivated = Time.time;
+
+        // DEBUG
+        Debug.Log("Afterimage Enabled at Position: " + transform.position);
     }
 
     private void Update()
@@ -43,6 +60,8 @@ public class PlayerAfterImageSprite : MonoBehaviour
         if(Time.time >= (timeActivated + activeTime)) 
         {
             PlayerAfterImagePool.Instance.AddToPool(gameObject);
+            // DEBUG
+            Debug.Log("Afterimage Deactivated");
         }
     }
 }
