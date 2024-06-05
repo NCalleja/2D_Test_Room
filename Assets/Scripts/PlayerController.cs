@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private float lastImageXpos;
     // Setting to -100 for Default so we can Dash when the Game Starts
     private float lastDash = -100f;
+    // Storing Y Postion Before Dash
+    private float dashStartY;
 
     private int amountOfJumpLeft;
         // Int for Facing Direction (-1 Left and 1 is Right)
@@ -342,6 +344,9 @@ public class PlayerController : MonoBehaviour
         dashTimeLeft = dashTime;
         lastDash = Time.time;
 
+        // Store the initial y position when dash starts.
+        dashStartY = transform.position.y;
+
         PlayerAfterImagePool.Instance.GetFromPool();
         lastImageXpos = transform.position.x;
     }
@@ -355,7 +360,12 @@ public class PlayerController : MonoBehaviour
 
                 canMove = false;
                 canFlip = false;
-                rigbod.velocity = new Vector2(dashSpeed * facingDirection, rigbod.velocity.y);
+
+                // Setting Y to 0 so they do not rise or fall (It's a Velocity Not Transform)
+                rigbod.velocity = new Vector2(dashSpeed * facingDirection, 0);
+                // Manually set the Player's 'y' position to DashStartY on each frame during the dash
+                transform.position = new Vector2(transform.position.x, dashStartY);
+
                 dashTimeLeft -= Time.deltaTime;
 
                 if (Mathf.Abs(transform.position.x - lastImageXpos) > distanceBetweenImages)
