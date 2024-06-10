@@ -312,7 +312,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(checkJumpMultiplier && !Input.GetButton("Jump"))
+        if(checkJumpMultiplier && !Input.GetButton("Jump") && !Input.GetButtonDown("JumpControllerX") && Input.GetButtonDown("JumpControllerPS"))
         {
 
             checkJumpMultiplier = false;
