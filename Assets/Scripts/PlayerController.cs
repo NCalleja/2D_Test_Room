@@ -275,7 +275,8 @@ public class PlayerController : MonoBehaviour
 
         verticalInputDirection = Input.GetAxisRaw("Vertical");
 
-        if(Input.GetButtonDown("Jump"))
+        // Adding Xbox and PS Controller Inputs
+        if(Input.GetButtonDown("Jump") || Input.GetButtonDown("JumpControllerX") || Input.GetButtonDown("JumpControllerPS"))
         {
 
             if(isGrounded || (amountOfJumpLeft > 0 && !isTouchingWall))
