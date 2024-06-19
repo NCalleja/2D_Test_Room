@@ -58,7 +58,6 @@ public class PlayerController : MonoBehaviour
     private bool isWallSliding;
     private bool canNormalJump;
     private bool isAttemptingToJump;
-    private bool checkJumpMultiplier;
     private bool canMove;
     private bool canFlip;
     private bool hasWallJumped;
@@ -86,7 +85,6 @@ public class PlayerController : MonoBehaviour
     public float WALL_SLIDE_SPEED;
     public float MOVEMENT_FORCE_IN_AIR;
     public float AIR_DRAG_MULTIPLIER;
-    public float VARIABLE_JUMP_HEIGHT_MULTIPLIER;
     public float WALL_HOP_FORCE;
     public float WALL_JUMP_FORCE;
     public float JUMP_TIMER_SET;
@@ -167,8 +165,6 @@ public class PlayerController : MonoBehaviour
                     jumpTimer = 0;
 
                     isAttemptingToJump = false;
-
-                    checkJumpMultiplier = true;
                 }
             }
             else
@@ -198,14 +194,6 @@ public class PlayerController : MonoBehaviour
                 canMove = true;
                 canFlip = true;
             }
-        }
-
-        if (checkJumpMultiplier && !inputJump)
-        {
-
-            checkJumpMultiplier = false;
-
-            rigbod.velocity = new Vector2(rigbod.velocity.x, rigbod.velocity.y * VARIABLE_JUMP_HEIGHT_MULTIPLIER);
         }
 
         if (isWallSliding && horizontalDirection.Neg() == facingDirection)
@@ -243,7 +231,12 @@ public class PlayerController : MonoBehaviour
         // Check Movement Direction -----
         if (horizontalDirection.Neg() == facingDirection)
         {
-            Flip();
+            // Flipping Sprite
+            if (!isWallSliding && canFlip)
+            {
+                facingDirection = facingDirection.Neg();
+                transform.Rotate(0.0f, 180.0f, 0.0f);
+            }
         }
 
         bool isRunning = Mathf.Abs(rigbod.velocity.x) > 0.00001f && isGrounded;
@@ -415,14 +408,11 @@ public class PlayerController : MonoBehaviour
                     // Reset Jump-Related States & Timers
                     jumpTimer = 0;
                     isAttemptingToJump = false;
-                    checkJumpMultiplier = true;
                     turnTimer = 0;
                     canFlip = true;
                     hasWallJumped = true;
                     wallJumpTimer = WALL_JUMP_TIMER_SET;
                     lastWallJumpDirection = facingDirection.Neg();
-
-                    Flip();
                 }
             }
 
@@ -441,8 +431,6 @@ public class PlayerController : MonoBehaviour
                     jumpTimer = 0;
 
                     isAttemptingToJump = false;
-
-                    checkJumpMultiplier = true;
                 }
             }
         }
@@ -482,17 +470,6 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         justWallJumped = false;
-    }
-
-    // Flipping Sprite
-    private void Flip()
-    {
-        if (!isWallSliding && canFlip)
-        {
-            // *= will flip -1 and 1 each time it flips
-            facingDirection = facingDirection.Neg();
-            transform.Rotate(0.0f, 180.0f, 0.0f);
-        }
     }
 
     // On Draw Gizmos
