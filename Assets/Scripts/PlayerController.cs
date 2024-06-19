@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour
     private int lastWallJumpDirection;
 
     private bool isFacingRight = true;
-    private bool isRunning;
     private bool isGrounded;
     private bool isTouchingWall;
     private bool isWallSliding;
@@ -200,15 +199,7 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
 
-        if (Mathf.Abs(rigbod.velocity.x) > 0.00001f && isGrounded  /*rigbod.velocity.x != 0*/)
-        {
-            isRunning = true;
-
-        }
-        else
-        {
-            isRunning = false;
-        }
+        bool isRunning = Mathf.Abs(rigbod.velocity.x) > 0.00001f && isGrounded;
 
         // Check If Can Jump -----
         // Grounded Check
