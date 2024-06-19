@@ -8,6 +8,9 @@ public enum HorizontalDirection
 
 static class HorizontalDirectionMethds
 {
+    /// <summary>
+    /// Converts a value between [-1, 1] to a <c>HorizontalDirection</c>
+    /// </summary>
     public static HorizontalDirection FromHorizontalInput(float input)
     {
         return input.CompareTo(0) switch
@@ -19,6 +22,11 @@ static class HorizontalDirectionMethds
         };
     }
 
+    /// <summary>
+    /// Negates the current value.
+    /// <c>Left</c> becomes <c>Right</c> and vice-versa.
+    /// <c>None</c> returns itself.
+    /// </summary>
     public static HorizontalDirection Neg(this HorizontalDirection input)
     {
         return input switch
@@ -34,69 +42,57 @@ static class HorizontalDirectionMethds
 public class PlayerController : MonoBehaviour
 {
     #region InputVariables
-    /**
-     * <summary>
-     * Will be true if the "Jump" button was just pressed
-     * </summary>
-     */
+    /// <summary>
+    /// Will be <c>true</c> if the "Jump" button was just pressed
+    /// </summary>
     private bool inputJumpPressed = false;
-    /**
-     * <summary>
-     * Will be true if the "Dash" button was just pressed
-     * </summary>
-     */
+    /// <summary>
+    /// Will be <c>true</c> if the "Dash" button was just pressed
+    /// </summary>
     private bool inputDashPressed = false;
-    /**
-     * <summary>
-     * Will be a number between [-1, 1] indicating the horizontal direction pressed.
-     * -1 meaning all Left and 1 meaning all Right
-     * </summary>
-     */
+    /// <summary>
+    /// Will be a number between [-1, 1] indicating the horizontal direction pressed.
+    /// -1 meaning all Left and 1 meaning all Right
+    /// </summary>
     private float inputHorizontal = 0f;
-    /**
-     * <summary>
-     * Will be a number between [-1, 1] indicating the vertical direction pressed.
-     * -1 meaning all Up and 1 meaning all Down
-     * </summary>
-     */
+    /// <summary>
+    /// Will be a number between [-1, 1] indicating the vertical direction pressed.
+    /// -1 meaning all Up and 1 meaning all Down
+    /// </summary>
     private float inputVertical = 0f;
     #endregion
 
     #region StateVariables
+    /// <summary>
+    /// The number of "Jump" actions used
+    /// </summary>
+    private int numJumpsUsed = 0;
+    /// <summary>
+    /// The current direction the Player is facing
+    /// </summary>
+    private HorizontalDirection facingDirection = HorizontalDirection.Right;
+    /// <summary>
+    /// The <c>Time.time</c> which the "Dash" action ends at.
+    /// </summary>
+    private float dashEndTime = -1f;
+    /// <summary>
+    /// The <c>Time.time</c> which the "Dash" action can be used again.
+    /// </summary>
+    private float dashCoolDownTime = -1f;
+    /// <summary>
+    /// The <c>Y</c> position which the last "Dash" action started at.
+    /// </summary>
+    private float dashStartY;
+
     private float jumpTimer;
     private float turnTimer;
-    private float wallJumpTimer;
-
-    private int numJumpsUsed = 0;
-    private HorizontalDirection facingDirection = HorizontalDirection.Right;
-    private HorizontalDirection lastWallJumpDirection = HorizontalDirection.None;
     private bool isWallSliding;
     private bool isAttemptingToJump;
     private bool canMove;
     private bool canFlip;
-    private bool hasWallJumped;
     private bool justWallJumped;
     private bool isLedgeClimbing = false;
     private bool ledgeDetected;
-
-    /**
-     * <summary>
-     * The `Time.time` which the "Dash" action ends at.
-     * </summary>
-     */
-    private float dashEndTime = -1f;
-    /**
-     * <summary>
-     * The `Time.time` which the "Dash" action can be used again.
-     * </summary>
-     */
-    private float dashCoolDownTime = -1f;
-    /**
-     * <summary>
-     * The Y position which the last "Dash" action started at.
-     * </summary>
-     */
-    private float dashStartY;
 
     // Ledge Position Bottom
     private Vector2 ledgePosBot;
@@ -104,9 +100,10 @@ public class PlayerController : MonoBehaviour
     private Vector2 ledgePos2;
     #endregion
 
-    // Component References -----
+    #region ComponentReferences
     private Rigidbody2D rigbod;
     private Animator anim;
+    #endregion
 
     #region ConfigurableParameters
     public int MAX_NUM_JUMPS;
@@ -121,7 +118,6 @@ public class PlayerController : MonoBehaviour
     public float WALL_JUMP_FORCE;
     public float JUMP_TIMER_SET;
     public float TURN_TIMER_SET;
-    public float WALL_JUMP_TIMER_SET;
 
     public float LEDGE_CLIMB_X_OFFSET_1;
     public float LEDGE_CLIMB_Y_OFFSET_1;
@@ -425,9 +421,6 @@ public class PlayerController : MonoBehaviour
                     isAttemptingToJump = false;
                     turnTimer = 0;
                     canFlip = true;
-                    hasWallJumped = true;
-                    wallJumpTimer = WALL_JUMP_TIMER_SET;
-                    lastWallJumpDirection = facingDirection.Neg();
                 }
             }
 
@@ -452,23 +445,6 @@ public class PlayerController : MonoBehaviour
         if (isAttemptingToJump)
         {
             jumpTimer -= Time.deltaTime;
-        }
-        if (wallJumpTimer > 0)
-        {
-            if (hasWallJumped && horizontalDirection.Neg() == lastWallJumpDirection)
-            {
-
-                rigbod.velocity = new Vector2(rigbod.velocity.x, 0.0f);
-                hasWallJumped = false;
-            }
-            else
-            {
-                wallJumpTimer -= Time.deltaTime;
-            }
-        }
-        else if (wallJumpTimer <= 0 && hasWallJumped)
-        {
-            hasWallJumped = false;
         }
     }
 
