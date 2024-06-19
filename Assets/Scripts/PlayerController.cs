@@ -49,40 +49,40 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
 
     // Configurable Paramters -----
-    public int amountOfJumps;
+    public int AMOUNT_OF_JUMPS;
 
-    public float movementSpeed;
-    public float jumpForce;
+    public float MOVEMENT_SPEED;
+    public float JUMP_FORCE;
     // Ground Check Radius Size
-    public float groundCheckRadius;
-    public float wallCheckDistance;
-    public float wallSlideSpeed;
-    public float movementForceInAir;
-    public float airDragMultiplier;
-    public float variableJumpHeightMultiplier;
-    public float wallHopForce;
-    public float wallJumpForce;
-    public float jumpTimerSet = 0.15f;
-    public float turnTimerSet = .1f;
-    public float wallJumpTimerSet = 0.8f;
+    public float GROUND_CHECK_RADIUS;
+    public float WALL_CHECK_DISTANCE;
+    public float WALL_SLIDE_SPEED;
+    public float MOVEMENT_FORCE_IN_AIR;
+    public float AIR_DRAG_MULTIPLIER;
+    public float VARIABLE_JUMP_HEIGHT_MULTIPLIER;
+    public float WALL_HOP_FORCE;
+    public float WALL_JUMP_FORCE;
+    public float JUMP_TIMER_SET = 0.15f;
+    public float TURN_TIMER_SET = .1f;
+    public float WALL_JUMP_TIMER_SET = 0.8f;
 
-    public float ledgeClimbXOffset1 = 0f;
-    public float ledgeClimbYOffset1 = 0f;
-    public float ledgeClimbXOffset2 = 0f;
-    public float ledgeClimbYOffset2 = 0f;
+    public float LEDGE_CLIMB_X_OFFSET_1 = 0f;
+    public float LEDGE_CLIMB_Y_OFFSET_1 = 0f;
+    public float LEDGE_CLIMB_X_OFFSET_2 = 0f;
+    public float LEDGE_CLIB_Y_OFFSET_2 = 0f;
 
-    public float dashTime;
-    public float dashSpeed;
-    public float dashCoolDown;
+    public float DASH_TIME;
+    public float DASH_SPEED;
+    public float DASH_COOL_DOWN;
 
-    public Vector2 wallHopDirection;
-    public Vector2 wallJumpDirection;
+    public Vector2 WALL_HOP_DIRECTION;
+    public Vector2 WALL_JUMP_DIRECTION;
 
-    public Transform groundCheck;
-    public Transform wallCheck;
-    public Transform ledgeCheck;
+    public Transform GROUND_CHECK;
+    public Transform WALL_CHECK;
+    public Transform LEDGE_CHECK;
 
-    public LayerMask whatIsGround;
+    public LayerMask WHAT_IS_GROUND;
 
     // Start Method -----
     // Start is called before the first frame update
@@ -90,11 +90,11 @@ public class PlayerController : MonoBehaviour
     {
         rigbod = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        amountOfJumpLeft = amountOfJumps;
+        amountOfJumpLeft = AMOUNT_OF_JUMPS;
 
         // Making the Vectors itself equal 1
-        wallHopDirection.Normalize();
-        wallJumpDirection.Normalize();
+        WALL_HOP_DIRECTION.Normalize();
+        WALL_JUMP_DIRECTION.Normalize();
 
     }
 
@@ -140,16 +140,16 @@ public class PlayerController : MonoBehaviour
     private void CheckSurroundings()
     {
         // This checks if we are grounded or not using the game object circle under the player
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+        isGrounded = Physics2D.OverlapCircle(GROUND_CHECK.position, GROUND_CHECK_RADIUS, WHAT_IS_GROUND);
 
-        isTouchingWall = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, whatIsGround);
+        isTouchingWall = Physics2D.Raycast(WALL_CHECK.position, transform.right, WALL_CHECK_DISTANCE, WHAT_IS_GROUND);
 
-        isTouchingLedge = Physics2D.Raycast(ledgeCheck.position, transform.right, wallCheckDistance, whatIsGround);
+        isTouchingLedge = Physics2D.Raycast(LEDGE_CHECK.position, transform.right, WALL_CHECK_DISTANCE, WHAT_IS_GROUND);
 
         if (isTouchingWall && !isTouchingLedge && !ledgeDetected)
         {
             ledgeDetected = true;
-            ledgePosBot = wallCheck.position;
+            ledgePosBot = WALL_CHECK.position;
         }
         else
         {
@@ -172,13 +172,13 @@ public class PlayerController : MonoBehaviour
 
             if (isFacingRight)
             {
-                ledgePos1 = new Vector2(Mathf.Floor(ledgePosBot.x + wallCheckDistance) - ledgeClimbXOffset1, Mathf.Floor(ledgePosBot.y) + ledgeClimbYOffset1);
-                ledgePos2 = new Vector2(Mathf.Floor(ledgePosBot.x + wallCheckDistance) + ledgeClimbXOffset2, Mathf.Floor(ledgePosBot.y) + ledgeClimbYOffset2);
+                ledgePos1 = new Vector2(Mathf.Floor(ledgePosBot.x + WALL_CHECK_DISTANCE) - LEDGE_CLIMB_X_OFFSET_1, Mathf.Floor(ledgePosBot.y) + LEDGE_CLIMB_Y_OFFSET_1);
+                ledgePos2 = new Vector2(Mathf.Floor(ledgePosBot.x + WALL_CHECK_DISTANCE) + LEDGE_CLIMB_X_OFFSET_2, Mathf.Floor(ledgePosBot.y) + LEDGE_CLIB_Y_OFFSET_2);
             }
             else
             {
-                ledgePos1 = new Vector2(Mathf.Ceil(ledgePosBot.x - wallCheckDistance) + ledgeClimbXOffset1, Mathf.Floor(ledgePosBot.y) + ledgeClimbYOffset1);
-                ledgePos2 = new Vector2(Mathf.Ceil(ledgePosBot.x - wallCheckDistance) - ledgeClimbXOffset2, Mathf.Floor(ledgePosBot.y) + ledgeClimbYOffset2);
+                ledgePos1 = new Vector2(Mathf.Ceil(ledgePosBot.x - WALL_CHECK_DISTANCE) + LEDGE_CLIMB_X_OFFSET_1, Mathf.Floor(ledgePosBot.y) + LEDGE_CLIMB_Y_OFFSET_1);
+                ledgePos2 = new Vector2(Mathf.Ceil(ledgePosBot.x - WALL_CHECK_DISTANCE) - LEDGE_CLIMB_X_OFFSET_2, Mathf.Floor(ledgePosBot.y) + LEDGE_CLIB_Y_OFFSET_2);
             }
 
             canMove = false;
@@ -203,7 +203,7 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && rigbod.velocity.y <= .1f)
         {
 
-            amountOfJumpLeft = amountOfJumps;
+            amountOfJumpLeft = AMOUNT_OF_JUMPS;
         }
 
         // Jump Ability Check
@@ -264,7 +264,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                jumpTimer = jumpTimerSet;
+                jumpTimer = JUMP_TIMER_SET;
                 isAttemptingToJump = true;
             }
         }
@@ -276,7 +276,7 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canFlip = false;
 
-                turnTimer = turnTimerSet;
+                turnTimer = TURN_TIMER_SET;
             }
         }
 
@@ -296,13 +296,13 @@ public class PlayerController : MonoBehaviour
 
             checkJumpMultiplier = false;
 
-            rigbod.velocity = new Vector2(rigbod.velocity.x, rigbod.velocity.y * variableJumpHeightMultiplier);
+            rigbod.velocity = new Vector2(rigbod.velocity.x, rigbod.velocity.y * VARIABLE_JUMP_HEIGHT_MULTIPLIER);
         }
 
         if (isWallSliding && movementInputDirection == -facingDirection)
         {
 
-            Vector2 forceToApply = new Vector2(wallHopForce * -facingDirection, 0);
+            Vector2 forceToApply = new Vector2(WALL_HOP_FORCE * -facingDirection, 0);
             rigbod.AddForce(forceToApply, ForceMode2D.Impulse);
 
             isWallSliding = false;
@@ -311,7 +311,7 @@ public class PlayerController : MonoBehaviour
         // Adding Dash Button
         if (Input.GetButtonDown("Dash"))
         {
-            if (Time.time >= (lastDash + dashCoolDown))
+            if (Time.time >= (lastDash + DASH_COOL_DOWN))
                 AttemptToDash();
         }
 
@@ -321,7 +321,7 @@ public class PlayerController : MonoBehaviour
     private void AttemptToDash()
     {
         isDashing = true;
-        dashTimeLeft = dashTime;
+        dashTimeLeft = DASH_TIME;
         lastDash = Time.time;
         dashStartY = transform.position.y;
 
@@ -349,7 +349,7 @@ public class PlayerController : MonoBehaviour
                 canFlip = false;
 
                 // Setting Y to 0 so they do not rise or fall (It's a Velocity Not Transform)
-                rigbod.velocity = new Vector2(dashSpeed * facingDirection, 0);
+                rigbod.velocity = new Vector2(DASH_SPEED * facingDirection, 0);
                 // Manually set the Player's 'y' position to DashStartY on each frame during the dash
                 transform.position = new Vector2(transform.position.x, dashStartY);
 
@@ -421,7 +421,7 @@ public class PlayerController : MonoBehaviour
         if (canNormalJump)
         {
 
-            rigbod.velocity = new Vector2(rigbod.velocity.x, jumpForce);
+            rigbod.velocity = new Vector2(rigbod.velocity.x, JUMP_FORCE);
 
             Debug.Log("Normal Jump Executed");
 
@@ -449,7 +449,7 @@ public class PlayerController : MonoBehaviour
 
             int jumpDirection = facingDirection > 0 ? -1 : 1;
 
-            Vector2 forceToAdd = new Vector2(wallJumpForce * wallJumpDirection.x * jumpDirection, wallJumpForce * wallJumpDirection.y);
+            Vector2 forceToAdd = new Vector2(WALL_JUMP_FORCE * WALL_JUMP_DIRECTION.x * jumpDirection, WALL_JUMP_FORCE * WALL_JUMP_DIRECTION.y);
             rigbod.AddForce(forceToAdd, ForceMode2D.Impulse);
 
             // DEBUG
@@ -460,7 +460,7 @@ public class PlayerController : MonoBehaviour
             // State Updates
             isWallSliding = false;
             canMove = true;
-            amountOfJumpLeft = amountOfJumps;
+            amountOfJumpLeft = AMOUNT_OF_JUMPS;
             amountOfJumpLeft--;
 
             // Reset Jump-Related States & Timers
@@ -470,7 +470,7 @@ public class PlayerController : MonoBehaviour
             turnTimer = 0;
             canFlip = true;
             hasWallJumped = true;
-            wallJumpTimer = wallJumpTimerSet;
+            wallJumpTimer = WALL_JUMP_TIMER_SET;
             lastWallJumpDirection = -facingDirection;
 
             Flip();
@@ -492,12 +492,12 @@ public class PlayerController : MonoBehaviour
 
             if (!isGrounded && !isWallSliding && movementInputDirection == 0)
             {
-                rigbod.velocity = new Vector2(rigbod.velocity.x * airDragMultiplier, rigbod.velocity.y);
+                rigbod.velocity = new Vector2(rigbod.velocity.x * AIR_DRAG_MULTIPLIER, rigbod.velocity.y);
             }
             else if (canMove)
             {
 
-                rigbod.velocity = new Vector2(movementSpeed * movementInputDirection, rigbod.velocity.y);
+                rigbod.velocity = new Vector2(MOVEMENT_SPEED * movementInputDirection, rigbod.velocity.y);
             }
 
         }
@@ -505,10 +505,10 @@ public class PlayerController : MonoBehaviour
         if (isWallSliding)
         {
 
-            if (rigbod.velocity.y < -wallSlideSpeed)
+            if (rigbod.velocity.y < -WALL_SLIDE_SPEED)
             {
 
-                rigbod.velocity = new Vector2(rigbod.velocity.x, -wallSlideSpeed);
+                rigbod.velocity = new Vector2(rigbod.velocity.x, -WALL_SLIDE_SPEED);
             }
 
         }
@@ -531,10 +531,10 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.color = Color.red;
 
-        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        Gizmos.DrawWireSphere(GROUND_CHECK.position, GROUND_CHECK_RADIUS);
 
         // Creating Gizmos to Draw a Line via the Wall Check Position
-        Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y, wallCheck.position.z));
+        Gizmos.DrawLine(WALL_CHECK.position, new Vector3(WALL_CHECK.position.x + WALL_CHECK_DISTANCE, WALL_CHECK.position.y, WALL_CHECK.position.z));
 
         Gizmos.DrawLine(ledgePos1, ledgePos2);
     }

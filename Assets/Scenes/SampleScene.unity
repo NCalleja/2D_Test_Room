@@ -1206,33 +1206,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72e552edf40fd54ab799feaa8bdfaab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfJumps: 2
-  movementSpeed: 6.5
-  jumpForce: 17
-  groundCheckRadius: 0.12
-  wallCheckDistance: 0.25
-  wallSlideSpeed: 2
-  movementForceInAir: 25
-  airDragMultiplier: 0.95
-  variableJumpHeightMultiplier: 0.2
-  wallHopForce: 0.1
-  wallJumpForce: 17.5
-  jumpTimerSet: 0.15
-  turnTimerSet: 0.1
-  wallJumpTimerSet: 0.8
-  ledgeClimbXOffset1: 0.05
-  ledgeClimbYOffset1: 0.95
-  ledgeClimbXOffset2: 0.3
-  ledgeClimbYOffset2: 0.9789
-  dashTime: 0.2
-  dashSpeed: 17.5
-  dashCoolDown: 1.5
-  wallHopDirection: {x: 1, y: 1}
-  wallJumpDirection: {x: 3, y: 5}
-  groundCheck: {fileID: 367578764}
-  wallCheck: {fileID: 1180461520}
-  ledgeCheck: {fileID: 181970957}
-  whatIsGround:
+  AMOUNT_OF_JUMPS: 2
+  MOVEMENT_SPEED: 6.5
+  JUMP_FORCE: 17
+  GROUND_CHECK_RADIUS: 0.12
+  WALL_CHECK_DISTANCE: 0.25
+  WALL_SLIDE_SPEED: 2
+  MOVEMENT_FORCE_IN_AIR: 25
+  AIR_DRAG_MULTIPLIER: 0.95
+  VARIABLE_JUMP_HEIGHT_MULTIPLIER: 0.2
+  WALL_HOP_FORCE: 0.1
+  WALL_JUMP_FORCE: 17.5
+  JUMP_TIMER_SET: 0.15
+  TURN_TIMER_SET: 0.1
+  WALL_JUMP_TIMER_SET: 0.8
+  LEDGE_CLIMB_X_OFFSET_1: 0.05
+  LEDGE_CLIMB_Y_OFFSET_1: 0.95
+  LEDGE_CLIMB_X_OFFSET_2: 0.3
+  LEDGE_CLIB_Y_OFFSET_2: 0.9789
+  DASH_TIME: 0.2
+  DASH_SPEED: 17.5
+  DASH_COOL_DOWN: 1.5
+  WALL_HOP_DIRECTION: {x: 1, y: 1}
+  WALL_JUMP_DIRECTION: {x: 3, y: 5}
+  GROUND_CHECK: {fileID: 367578764}
+  WALL_CHECK: {fileID: 1180461520}
+  LEDGE_CHECK: {fileID: 181970957}
+  WHAT_IS_GROUND:
     serializedVersion: 2
     m_Bits: 256
 --- !u!1 &1059880902
