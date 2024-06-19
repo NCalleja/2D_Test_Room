@@ -171,22 +171,17 @@ public class PlayerController : MonoBehaviour
         }
 
         // Adding Dash Button
-        if (Input.GetButtonDown("Dash"))
+        if (Input.GetButtonDown("Dash") && Time.time >= nextDashCoolDown)
         {
-            if (Time.time >= nextDashCoolDown)
-            {
-                // Attempting to Dash Function
-                isDashing = true;
-                dashTimeLeft = DASH_TIME;
-                nextDashCoolDown = Time.time + DASH_COOL_DOWN;
-                dashStartY = transform.position.y;
+            // Attempting to Dash Function
+            isDashing = true;
+            dashTimeLeft = DASH_TIME;
+            nextDashCoolDown = Time.time + DASH_COOL_DOWN;
+            dashStartY = transform.position.y;
 
-                anim.SetTrigger("isDashing");
-
-                // Removing After Image Feature
-                // PlayerAfterImagePool.Instance.GetFromPool();
-                // lastImageXpos = transform.position.x;
-            }
+            // Removing After Image Feature
+            // PlayerAfterImagePool.Instance.GetFromPool();
+            // lastImageXpos = transform.position.x;
         }
 
         // Check Movement Direction -----
@@ -279,7 +274,6 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("yVelocity", rigbod.velocity.y);
         anim.SetBool("isWallSliding", isWallSliding);
-        //anim.SetBool("isDashing", isDashing);
         anim.SetBool("canClimbLedge", isLedgeClimbing);
         anim.SetBool("isDashing", isDashing);
     }
@@ -424,14 +418,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void FinishLedgeClimg()
+    public void FinishLedgeClimb()
     {
         isLedgeClimbing = false;
         transform.position = ledgePos2;
         canMove = true;
         canFlip = true;
         ledgeDetected = false;
-        anim.SetBool("canClimbLedge", isLedgeClimbing);
     }
 
     IEnumerator ResetJustWallJumpedFlag()

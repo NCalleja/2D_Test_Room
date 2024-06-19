@@ -1206,7 +1206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72e552edf40fd54ab799feaa8bdfaab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AMOUNT_OF_JUMPS: 2
+  MAX_NUM_JUMPS: 2
   MOVEMENT_SPEED: 6.5
   JUMP_FORCE: 17
   GROUND_CHECK_RADIUS: 0.12
