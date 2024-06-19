@@ -84,8 +84,6 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private float dashStartY;
 
-    private float turnTimer;
-    private bool canMove;
     private bool canFlip;
     private bool justWallJumped;
     private bool isLedgeClimbing = false;
@@ -225,38 +223,15 @@ public class PlayerController : MonoBehaviour
 
                 // State Updates
                 isWallSliding = false;
-                canMove = true;
 
                 numJumpsUsed = 1;
 
                 // Reset Jump-Related States & Timers
-                turnTimer = 0;
                 canFlip = true;
             }
         }
         inputJumpPressed = false;
 
-        if (Input.GetButtonDown("Horizontal") && isTouchingWall)
-        {
-            if (!isGrounded && horizontalDirection != facingDirection)
-            {
-                canMove = false;
-                canFlip = false;
-
-                turnTimer = TURN_TIMER_SET;
-            }
-        }
-
-        if (turnTimer >= 0)
-        {
-            turnTimer -= Time.deltaTime;
-
-            if (turnTimer <= 0)
-            {
-                canMove = true;
-                canFlip = true;
-            }
-        }
 
         if (isWallSliding && horizontalDirection.Neg() == facingDirection)
         {
@@ -273,21 +248,19 @@ public class PlayerController : MonoBehaviour
         }
 
         // Adding Dash Button
-        if (inputDashPressed)
+        if (inputDashPressed && Time.time >= dashCoolDownTime)
         {
-            inputDashPressed = false;
-            if (Time.time >= dashCoolDownTime)
-            {
-                // Attempting to Dash Function
-                dashEndTime = Time.time + DASH_TIME;
-                dashCoolDownTime = Time.time + DASH_COOL_DOWN;
-                dashStartY = transform.position.y;
+            // Attempting to Dash Function
+            dashEndTime = Time.time + DASH_TIME;
+            dashCoolDownTime = Time.time + DASH_COOL_DOWN;
+            dashStartY = transform.position.y;
 
-                // Removing After Image Feature
-                // PlayerAfterImagePool.Instance.GetFromPool();
-                // lastImageXpos = transform.position.x;
-            }
+            // Removing After Image Feature
+            // PlayerAfterImagePool.Instance.GetFromPool();
+            // lastImageXpos = transform.position.x;
+            
         }
+        inputDashPressed = false;
 
         // Check Movement Direction -----
         if (horizontalDirection.Neg() == facingDirection)
@@ -316,7 +289,6 @@ public class PlayerController : MonoBehaviour
                 ledgePos2 = new Vector2(Mathf.Ceil(ledgePosBot.x - WALL_CHECK_DISTANCE) - LEDGE_CLIMB_X_OFFSET_2, Mathf.Floor(ledgePosBot.y) + LEDGE_CLIB_Y_OFFSET_2);
             }
 
-            canMove = false;
             canFlip = false;
         }
 
@@ -330,7 +302,6 @@ public class PlayerController : MonoBehaviour
         bool isDashing = dashEndTime > Time.time;
         if (isDashing)
         {
-            canMove = false;
             canFlip = false;
 
             // Setting Y to 0 so they do not rise or fall (It's a Velocity Not Transform)
@@ -357,7 +328,6 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            canMove = true;
             canFlip = true;
         }
 
@@ -390,7 +360,7 @@ public class PlayerController : MonoBehaviour
                 // not touching anything and falling through the air
                 rigbod.velocity = new Vector2(rigbod.velocity.x * AIR_DRAG_MULTIPLIER, rigbod.velocity.y);
             }
-            else if (canMove)
+            else if (!isLedgeClimbing && !isDashing)
             {
                 rigbod.velocity = new Vector2(MOVEMENT_SPEED * inputHorizontal, rigbod.velocity.y);
             }
@@ -401,7 +371,6 @@ public class PlayerController : MonoBehaviour
         {
             if (rigbod.velocity.y < -WALL_SLIDE_SPEED)
             {
-
                 rigbod.velocity = new Vector2(rigbod.velocity.x, -WALL_SLIDE_SPEED);
             }
         }
@@ -411,7 +380,6 @@ public class PlayerController : MonoBehaviour
     {
         isLedgeClimbing = false;
         transform.position = ledgePos2;
-        canMove = true;
         canFlip = true;
         ledgeDetected = false;
     }
