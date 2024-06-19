@@ -84,10 +84,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private float dashStartY;
 
-    private float jumpTimer;
     private float turnTimer;
-    private bool isWallSliding;
-    private bool isAttemptingToJump;
     private bool canMove;
     private bool canFlip;
     private bool justWallJumped;
@@ -182,35 +179,62 @@ public class PlayerController : MonoBehaviour
 
         bool isRunning = Mathf.Abs(rigbod.velocity.x) > 0.00001f && isGrounded;
 
+        bool isWallSliding = isTouchingWall && !isGrounded && !isLedgeClimbing;
+
         if (isGrounded && rigbod.velocity.y <= 0.1f)
         {
             // Reset jump counter since we are on the ground
             numJumpsUsed = 0;
         }
 
-        // Adding Xbox and PS Controller Inputs
-        if (inputJumpPressed)
+        if (isWallSliding)
         {
-            inputJumpPressed = false;
-            if (numJumpsUsed < MAX_NUM_JUMPS && !isTouchingWall)
-            {
-                // Normal Jump -----
-                rigbod.velocity = new Vector2(rigbod.velocity.x, JUMP_FORCE);
+            // Reset jump counter since we are on a wall
+            numJumpsUsed = 0;
+        }
 
+        // Adding Xbox and PS Controller Inputs
+        if (inputJumpPressed && numJumpsUsed < MAX_NUM_JUMPS)
+        {
+            if (!isTouchingWall || isGrounded)
+            {
                 Debug.Log("Normal Jump Executed");
 
+                rigbod.velocity = new Vector2(rigbod.velocity.x, JUMP_FORCE);
+
                 numJumpsUsed += 1;
-
-                jumpTimer = 0;
-
-                isAttemptingToJump = false;
             }
-            else
+            else if (!isGrounded && isTouchingWall && horizontalDirection != facingDirection && isWallSliding)
             {
-                jumpTimer = JUMP_TIMER_SET;
-                isAttemptingToJump = true;
+                Debug.Log("Wall Jump Executed");
+
+                justWallJumped = true;
+                StartCoroutine(ResetJustWallJumpedFlag());
+
+                rigbod.velocity = new Vector2(rigbod.velocity.x, 0.0f);
+
+                int jumpDirection = facingDirection > 0 ? -1 : 1;
+
+                rigbod.AddForce(
+                    new Vector2(
+                        WALL_JUMP_FORCE * WALL_JUMP_DIRECTION.x * jumpDirection,
+                        WALL_JUMP_FORCE * WALL_JUMP_DIRECTION.y
+                    ),
+                    ForceMode2D.Impulse
+                );
+
+                // State Updates
+                isWallSliding = false;
+                canMove = true;
+
+                numJumpsUsed = 1;
+
+                // Reset Jump-Related States & Timers
+                turnTimer = 0;
+                canFlip = true;
             }
         }
+        inputJumpPressed = false;
 
         if (Input.GetButtonDown("Horizontal") && isTouchingWall)
         {
@@ -275,9 +299,6 @@ public class PlayerController : MonoBehaviour
                 transform.Rotate(0.0f, 180.0f, 0.0f);
             }
         }
-
-        // Check If Wall Sliding -----
-        isWallSliding = isTouchingWall && !isGrounded && !isLedgeClimbing;
 
         if (ledgeDetected && !isLedgeClimbing && inputVertical >= 0)
         {
@@ -383,68 +404,6 @@ public class PlayerController : MonoBehaviour
 
                 rigbod.velocity = new Vector2(rigbod.velocity.x, -WALL_SLIDE_SPEED);
             }
-        }
-
-        // Check Jump -----
-        if (jumpTimer > 0)
-        {
-
-            if (!isGrounded && isTouchingWall && horizontalDirection != facingDirection)
-            {
-                // Wall Jump -----
-                if (isWallSliding)
-                {
-
-                    justWallJumped = true;
-                    StartCoroutine(ResetJustWallJumpedFlag());
-
-                    rigbod.velocity = new Vector2(rigbod.velocity.x, 0.0f);
-
-                    int jumpDirection = facingDirection > 0 ? -1 : 1;
-
-                    Vector2 forceToAdd = new Vector2(WALL_JUMP_FORCE * WALL_JUMP_DIRECTION.x * jumpDirection, WALL_JUMP_FORCE * WALL_JUMP_DIRECTION.y);
-                    rigbod.AddForce(forceToAdd, ForceMode2D.Impulse);
-
-                    // DEBUG
-                    Debug.Log("wallJump Method Executed");
-                    Debug.Log($"Force to Add: {forceToAdd}");
-                    Debug.Log($"Rigidbody Velocity: {rigbod.velocity.x}, {rigbod.velocity.y}");
-
-                    // State Updates
-                    isWallSliding = false;
-                    canMove = true;
-
-                    numJumpsUsed = 1;
-
-                    // Reset Jump-Related States & Timers
-                    jumpTimer = 0;
-                    isAttemptingToJump = false;
-                    turnTimer = 0;
-                    canFlip = true;
-                }
-            }
-
-            else if (isGrounded)
-            {
-                // Normal Jump -----
-                if (numJumpsUsed < MAX_NUM_JUMPS)
-                {
-
-                    rigbod.velocity = new Vector2(rigbod.velocity.x, JUMP_FORCE);
-
-                    Debug.Log("Normal Jump Executed");
-
-                    numJumpsUsed += 1;
-
-                    jumpTimer = 0;
-
-                    isAttemptingToJump = false;
-                }
-            }
-        }
-        if (isAttemptingToJump)
-        {
-            jumpTimer -= Time.deltaTime;
         }
     }
 
