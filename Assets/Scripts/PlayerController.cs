@@ -84,7 +84,6 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private float dashStartY;
 
-    private bool canFlip;
     private bool justWallJumped;
     private bool isLedgeClimbing = false;
     private bool ledgeDetected;
@@ -179,6 +178,8 @@ public class PlayerController : MonoBehaviour
 
         bool isWallSliding = isTouchingWall && !isGrounded && !isLedgeClimbing;
 
+        bool isDashing = dashEndTime > Time.time;
+
         if (isGrounded && rigbod.velocity.y <= 0.1f)
         {
             // Reset jump counter since we are on the ground
@@ -225,9 +226,6 @@ public class PlayerController : MonoBehaviour
                 isWallSliding = false;
 
                 numJumpsUsed = 1;
-
-                // Reset Jump-Related States & Timers
-                canFlip = true;
             }
         }
         inputJumpPressed = false;
@@ -266,7 +264,7 @@ public class PlayerController : MonoBehaviour
         if (horizontalDirection.Neg() == facingDirection)
         {
             // Flipping Sprite
-            if (!isWallSliding && canFlip)
+            if (!isWallSliding && !isLedgeClimbing && !isDashing)
             {
                 facingDirection = facingDirection.Neg();
                 transform.Rotate(0.0f, 180.0f, 0.0f);
@@ -288,8 +286,6 @@ public class PlayerController : MonoBehaviour
                 ledgePos1 = new Vector2(Mathf.Ceil(ledgePosBot.x - WALL_CHECK_DISTANCE) + LEDGE_CLIMB_X_OFFSET_1, Mathf.Floor(ledgePosBot.y) + LEDGE_CLIMB_Y_OFFSET_1);
                 ledgePos2 = new Vector2(Mathf.Ceil(ledgePosBot.x - WALL_CHECK_DISTANCE) - LEDGE_CLIMB_X_OFFSET_2, Mathf.Floor(ledgePosBot.y) + LEDGE_CLIB_Y_OFFSET_2);
             }
-
-            canFlip = false;
         }
 
         if (isLedgeClimbing)
@@ -299,10 +295,8 @@ public class PlayerController : MonoBehaviour
         }
 
         // Check Dash Function
-        bool isDashing = dashEndTime > Time.time;
         if (isDashing)
         {
-            canFlip = false;
 
             // Setting Y to 0 so they do not rise or fall (It's a Velocity Not Transform)
 
@@ -325,10 +319,6 @@ public class PlayerController : MonoBehaviour
                 lastImageXpos = transform.position.x;
             }
             */
-        }
-        else
-        {
-            canFlip = true;
         }
 
         // Updating Animations -----
@@ -380,7 +370,6 @@ public class PlayerController : MonoBehaviour
     {
         isLedgeClimbing = false;
         transform.position = ledgePos2;
-        canFlip = true;
         ledgeDetected = false;
     }
 
