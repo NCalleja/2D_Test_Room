@@ -53,8 +53,6 @@ public class PlayerController : MonoBehaviour
     private int numJumpsUsed = 0;
     private HorizontalDirection facingDirection = HorizontalDirection.Right;
     private HorizontalDirection lastWallJumpDirection = HorizontalDirection.None;
-
-    private bool isFacingRight = true;
     private bool isGrounded;
     private bool isTouchingWall;
     private bool isWallSliding;
@@ -243,11 +241,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Check Movement Direction -----
-        if (isFacingRight && inputHorizontal < 0)
-        {
-            Flip();
-        }
-        else if (!isFacingRight && inputHorizontal > 0)
+        if (horizontalDirection.Neg() == facingDirection)
         {
             Flip();
         }
@@ -272,7 +266,7 @@ public class PlayerController : MonoBehaviour
             isRunning = false;
             isLedgeClimbing = true;
 
-            if (isFacingRight)
+            if (facingDirection == HorizontalDirection.Right)
             {
                 ledgePos1 = new Vector2(Mathf.Floor(ledgePosBot.x + WALL_CHECK_DISTANCE) - LEDGE_CLIMB_X_OFFSET_1, Mathf.Floor(ledgePosBot.y) + LEDGE_CLIMB_Y_OFFSET_1);
                 ledgePos2 = new Vector2(Mathf.Floor(ledgePosBot.x + WALL_CHECK_DISTANCE) + LEDGE_CLIMB_X_OFFSET_2, Mathf.Floor(ledgePosBot.y) + LEDGE_CLIB_Y_OFFSET_2);
@@ -497,7 +491,6 @@ public class PlayerController : MonoBehaviour
         {
             // *= will flip -1 and 1 each time it flips
             facingDirection = facingDirection.Neg();
-            isFacingRight = !isFacingRight;
             transform.Rotate(0.0f, 180.0f, 0.0f);
         }
     }
