@@ -1,8 +1,47 @@
 using System.Collections;
 using UnityEngine;
 
+public enum HorizontalDirection
+{
+    Left, Right, None
+}
+
+static class HorizontalDirectionMethds
+{
+    public static HorizontalDirection FromHorizontalInput(float input)
+    {
+        if (input < 0)
+        {
+            return HorizontalDirection.Left;
+        }
+        else if (input > 0)
+        {
+            return HorizontalDirection.Right;
+        }
+        else
+        {
+            return HorizontalDirection.None;
+        }
+    }
+
+    public static HorizontalDirection Neg(this HorizontalDirection d)
+    {
+        switch (d)
+        {
+            case HorizontalDirection.Left:
+                return HorizontalDirection.Right;
+            case HorizontalDirection.Right:
+                return HorizontalDirection.Left;
+            case HorizontalDirection.None:
+            default:
+                return HorizontalDirection.None;
+        }
+    }
+}
+
 public class PlayerController : MonoBehaviour
 {
+
     // Input variables
     private bool inputJump = false;
     private bool inputJumpPressed = false;
@@ -20,9 +59,8 @@ public class PlayerController : MonoBehaviour
     private float dashStartY;
 
     private int numJumpsUsed = 0;
-    // Int for Facing Direction (-1 Left and 1 is Right)
-    private int facingDirection = 1;
-    private int lastWallJumpDirection;
+    private HorizontalDirection facingDirection = HorizontalDirection.Right;
+    private HorizontalDirection lastWallJumpDirection = HorizontalDirection.None;
 
     private bool isFacingRight = true;
     private bool isGrounded;
@@ -118,6 +156,8 @@ public class PlayerController : MonoBehaviour
     // Fixed Update -----
     private void FixedUpdate()
     {
+        HorizontalDirection horizontalDirection = HorizontalDirectionMethds.FromHorizontalInput(inputHorizontal);
+
         // Adding Xbox and PS Controller Inputs
         if (inputJumpPressed)
         {
@@ -150,7 +190,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Horizontal") && isTouchingWall)
         {
-            if (!isGrounded && inputHorizontal != facingDirection)
+            if (!isGrounded && horizontalDirection != facingDirection)
             {
                 canMove = false;
                 canFlip = false;
@@ -178,12 +218,17 @@ public class PlayerController : MonoBehaviour
             rigbod.velocity = new Vector2(rigbod.velocity.x, rigbod.velocity.y * VARIABLE_JUMP_HEIGHT_MULTIPLIER);
         }
 
-        if (isWallSliding && inputHorizontal == -facingDirection)
+        if (isWallSliding && horizontalDirection.Neg() == facingDirection)
         {
-
-            Vector2 forceToApply = new Vector2(WALL_HOP_FORCE * -facingDirection, 0);
-            rigbod.AddForce(forceToApply, ForceMode2D.Impulse);
-
+            // detatch from the wall and go the other direction
+            if (facingDirection == HorizontalDirection.Left)
+            {
+                rigbod.AddForce(new Vector2(-WALL_HOP_FORCE, 0), ForceMode2D.Impulse);
+            }
+            else if (facingDirection == HorizontalDirection.Right)
+            {
+                rigbod.AddForce(new Vector2(WALL_HOP_FORCE, 0), ForceMode2D.Impulse);
+            }
             isWallSliding = false;
         }
 
@@ -266,7 +311,15 @@ public class PlayerController : MonoBehaviour
                 canFlip = false;
 
                 // Setting Y to 0 so they do not rise or fall (It's a Velocity Not Transform)
-                rigbod.velocity = new Vector2(DASH_SPEED * facingDirection, 0);
+
+                if (facingDirection == HorizontalDirection.Left)
+                {
+                    rigbod.velocity = new Vector2(-DASH_SPEED, 0);
+                }
+                else if (facingDirection == HorizontalDirection.Right)
+                {
+                    rigbod.velocity = new Vector2(DASH_SPEED, 0);
+                }
                 // Manually set the Player's 'y' position to DashStartY on each frame during the dash
                 transform.position = new Vector2(transform.position.x, dashStartY);
 
@@ -346,7 +399,7 @@ public class PlayerController : MonoBehaviour
         if (jumpTimer > 0)
         {
 
-            if (!isGrounded && isTouchingWall && inputHorizontal != facingDirection)
+            if (!isGrounded && isTouchingWall && horizontalDirection != facingDirection)
             {
                 // Wall Jump -----
                 if (isWallSliding)
@@ -381,7 +434,7 @@ public class PlayerController : MonoBehaviour
                     canFlip = true;
                     hasWallJumped = true;
                     wallJumpTimer = WALL_JUMP_TIMER_SET;
-                    lastWallJumpDirection = -facingDirection;
+                    lastWallJumpDirection = facingDirection.Neg();
 
                     Flip();
                 }
@@ -413,7 +466,7 @@ public class PlayerController : MonoBehaviour
         }
         if (wallJumpTimer > 0)
         {
-            if (hasWallJumped && inputHorizontal == -lastWallJumpDirection)
+            if (hasWallJumped && horizontalDirection.Neg() == lastWallJumpDirection)
             {
 
                 rigbod.velocity = new Vector2(rigbod.velocity.x, 0.0f);
@@ -451,7 +504,7 @@ public class PlayerController : MonoBehaviour
         if (!isWallSliding && canFlip)
         {
             // *= will flip -1 and 1 each time it flips
-            facingDirection *= -1;
+            facingDirection = facingDirection.Neg();
             isFacingRight = !isFacingRight;
             transform.Rotate(0.0f, 180.0f, 0.0f);
         }
