@@ -10,32 +10,24 @@ static class HorizontalDirectionMethds
 {
     public static HorizontalDirection FromHorizontalInput(float input)
     {
-        if (input < 0)
+        return input.CompareTo(0) switch
         {
-            return HorizontalDirection.Left;
-        }
-        else if (input > 0)
-        {
-            return HorizontalDirection.Right;
-        }
-        else
-        {
-            return HorizontalDirection.None;
-        }
+            -1 => HorizontalDirection.Left,
+            0 => HorizontalDirection.None,
+            1 => HorizontalDirection.Right,
+            _ => HorizontalDirection.None,
+        };
     }
 
     public static HorizontalDirection Neg(this HorizontalDirection d)
     {
-        switch (d)
+        return d switch
         {
-            case HorizontalDirection.Left:
-                return HorizontalDirection.Right;
-            case HorizontalDirection.Right:
-                return HorizontalDirection.Left;
-            case HorizontalDirection.None:
-            default:
-                return HorizontalDirection.None;
-        }
+            HorizontalDirection.Left => HorizontalDirection.Right,
+            HorizontalDirection.Right => HorizontalDirection.Left,
+            HorizontalDirection.None => HorizontalDirection.None,
+            _ => HorizontalDirection.None,
+        };
     }
 }
 
