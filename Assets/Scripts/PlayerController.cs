@@ -10,8 +10,7 @@ public class PlayerController : MonoBehaviour
     private float wallJumpTimer;
     private float verticalInputDirection;
     private float dashTimeLeft;
-    // Setting to -100 for Default so we can Dash when the Game Starts
-    private float lastDash = -100f;
+    private float nextDashCoolDown = 0f;
     // Storing Y Postion Before Dash
     private float dashStartY;
 
@@ -33,7 +32,7 @@ public class PlayerController : MonoBehaviour
     private bool hasWallJumped;
     private bool justWallJumped;
     private bool isTouchingLedge;
-    private bool canClimbLedge = false;
+    private bool isLedgeClimbing = false;
     private bool ledgeDetected;
     private bool isDashing;
 
@@ -175,12 +174,12 @@ public class PlayerController : MonoBehaviour
         // Adding Dash Button
         if (Input.GetButtonDown("Dash"))
         {
-            if (Time.time >= (lastDash + DASH_COOL_DOWN))
+            if (Time.time >= nextDashCoolDown)
             {
                 // Attempting to Dash Function
                 isDashing = true;
                 dashTimeLeft = DASH_TIME;
-                lastDash = Time.time;
+                nextDashCoolDown = Time.time + DASH_COOL_DOWN;
                 dashStartY = transform.position.y;
 
                 anim.SetTrigger("isDashing");
@@ -211,15 +210,6 @@ public class PlayerController : MonoBehaviour
             isRunning = false;
         }
 
-        // Updating Animations -----
-        anim.SetBool("isRunning", isRunning);
-        anim.SetBool("isGrounded", isGrounded);
-        anim.SetFloat("yVelocity", rigbod.velocity.y);
-        anim.SetBool("isWallSliding", isWallSliding);
-        //anim.SetBool("isDashing", isDashing);
-        //anim.SetBool("canClimbLedge", canClimbLedge);
-        anim.SetBool("isDashing", isDashing);
-
         // Check If Can Jump -----
         // Grounded Check
         if (isGrounded && rigbod.velocity.y <= .1f)
@@ -231,12 +221,12 @@ public class PlayerController : MonoBehaviour
         canNormalJump = numJumpsUsed < MAX_NUM_JUMPS;
 
         // Check If Wall Sliding -----
-        isWallSliding = isTouchingWall && !isGrounded && !canClimbLedge;
+        isWallSliding = isTouchingWall && !isGrounded && !isLedgeClimbing;
 
-        if (ledgeDetected && !canClimbLedge && verticalInputDirection >= 0)
+        if (ledgeDetected && !isLedgeClimbing && verticalInputDirection >= 0)
         {
             isRunning = false;
-            canClimbLedge = true;
+            isLedgeClimbing = true;
 
             if (isFacingRight)
             {
@@ -251,13 +241,11 @@ public class PlayerController : MonoBehaviour
 
             canMove = false;
             canFlip = false;
-
-            anim.SetBool("canClimbLedge", canClimbLedge);
         }
 
-
-        if (canClimbLedge)
+        if (isLedgeClimbing)
         {
+            // prevent character movement while we are ledge climbing
             transform.position = ledgePos1;
         }
 
@@ -294,6 +282,15 @@ public class PlayerController : MonoBehaviour
                 canFlip = true;
             }
         }
+
+        // Updating Animations -----
+        anim.SetBool("isRunning", isRunning);
+        anim.SetBool("isGrounded", isGrounded);
+        anim.SetFloat("yVelocity", rigbod.velocity.y);
+        anim.SetBool("isWallSliding", isWallSliding);
+        //anim.SetBool("isDashing", isDashing);
+        anim.SetBool("canClimbLedge", isLedgeClimbing);
+        anim.SetBool("isDashing", isDashing);
     }
 
     // Fixed Update -----
@@ -438,12 +435,12 @@ public class PlayerController : MonoBehaviour
 
     public void FinishLedgeClimg()
     {
-        canClimbLedge = false;
+        isLedgeClimbing = false;
         transform.position = ledgePos2;
         canMove = true;
         canFlip = true;
         ledgeDetected = false;
-        anim.SetBool("canClimbLedge", canClimbLedge);
+        anim.SetBool("canClimbLedge", isLedgeClimbing);
     }
 
     IEnumerator ResetJustWallJumpedFlag()
