@@ -3,12 +3,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    // Input variables
+    private bool inputJump = false;
+    private bool inputJumpPressed = false;
+    private bool inputDashPressed = false;
+    private float inputHorizontal = 0f;
+    private float inputVertical = 0f;
+
     // State Variables -----
-    private float movementInputDirection;
     private float jumpTimer;
     private float turnTimer;
     private float wallJumpTimer;
-    private float verticalInputDirection;
     private float dashTimeLeft;
     private float nextDashCoolDown = 0f;
     // Storing Y Postion Before Dash
@@ -95,16 +100,28 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        // Check Input -----
-        movementInputDirection = Input.GetAxisRaw("Horizontal");
-
-        verticalInputDirection = Input.GetAxisRaw("Vertical");
-
-        // Adding Xbox and PS Controller Inputs
+        inputJump = Input.GetButton("Jump");
         if (Input.GetButtonDown("Jump"))
         {
+            inputJumpPressed = true;
+        }
 
+        if (Input.GetButtonDown("Dash"))
+        {
+            inputDashPressed = true;
+        }
+
+        inputHorizontal = Input.GetAxisRaw("Horizontal");
+        inputVertical = Input.GetAxisRaw("Vertical");
+    }
+
+    // Fixed Update -----
+    private void FixedUpdate()
+    {
+        // Adding Xbox and PS Controller Inputs
+        if (inputJumpPressed)
+        {
+            inputJumpPressed = false;
             if (isGrounded || (numJumpsUsed < MAX_NUM_JUMPS && !isTouchingWall))
             {
                 // Normal Jump -----
@@ -133,7 +150,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Horizontal") && isTouchingWall)
         {
-            if (!isGrounded && movementInputDirection != facingDirection)
+            if (!isGrounded && inputHorizontal != facingDirection)
             {
                 canMove = false;
                 canFlip = false;
@@ -153,7 +170,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (checkJumpMultiplier && !Input.GetButton("Jump"))
+        if (checkJumpMultiplier && !inputJump)
         {
 
             checkJumpMultiplier = false;
@@ -161,7 +178,7 @@ public class PlayerController : MonoBehaviour
             rigbod.velocity = new Vector2(rigbod.velocity.x, rigbod.velocity.y * VARIABLE_JUMP_HEIGHT_MULTIPLIER);
         }
 
-        if (isWallSliding && movementInputDirection == -facingDirection)
+        if (isWallSliding && inputHorizontal == -facingDirection)
         {
 
             Vector2 forceToApply = new Vector2(WALL_HOP_FORCE * -facingDirection, 0);
@@ -171,25 +188,29 @@ public class PlayerController : MonoBehaviour
         }
 
         // Adding Dash Button
-        if (Input.GetButtonDown("Dash") && Time.time >= nextDashCoolDown)
+        if (inputDashPressed)
         {
-            // Attempting to Dash Function
-            isDashing = true;
-            dashTimeLeft = DASH_TIME;
-            nextDashCoolDown = Time.time + DASH_COOL_DOWN;
-            dashStartY = transform.position.y;
+            inputDashPressed = false;
+            if (Time.time >= nextDashCoolDown)
+            {
+                // Attempting to Dash Function
+                isDashing = true;
+                dashTimeLeft = DASH_TIME;
+                nextDashCoolDown = Time.time + DASH_COOL_DOWN;
+                dashStartY = transform.position.y;
 
-            // Removing After Image Feature
-            // PlayerAfterImagePool.Instance.GetFromPool();
-            // lastImageXpos = transform.position.x;
+                // Removing After Image Feature
+                // PlayerAfterImagePool.Instance.GetFromPool();
+                // lastImageXpos = transform.position.x;
+            }
         }
 
         // Check Movement Direction -----
-        if (isFacingRight && movementInputDirection < 0)
+        if (isFacingRight && inputHorizontal < 0)
         {
             Flip();
         }
-        else if (!isFacingRight && movementInputDirection > 0)
+        else if (!isFacingRight && inputHorizontal > 0)
         {
             Flip();
         }
@@ -209,7 +230,7 @@ public class PlayerController : MonoBehaviour
         // Check If Wall Sliding -----
         isWallSliding = isTouchingWall && !isGrounded && !isLedgeClimbing;
 
-        if (ledgeDetected && !isLedgeClimbing && verticalInputDirection >= 0)
+        if (ledgeDetected && !isLedgeClimbing && inputVertical >= 0)
         {
             isRunning = false;
             isLedgeClimbing = true;
@@ -276,11 +297,6 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isWallSliding", isWallSliding);
         anim.SetBool("canClimbLedge", isLedgeClimbing);
         anim.SetBool("isDashing", isDashing);
-    }
-
-    // Fixed Update -----
-    private void FixedUpdate()
-    {
         // CheckSurroundings -----
 
         // This checks if we are grounded or not using the game object circle under the player
@@ -305,36 +321,32 @@ public class PlayerController : MonoBehaviour
 
         if (!justWallJumped)
         {
-
-            if (!isGrounded && !isWallSliding && movementInputDirection == 0)
+            if (!isGrounded && !isWallSliding && inputHorizontal == 0)
             {
+                // not touching anything and falling through the air
                 rigbod.velocity = new Vector2(rigbod.velocity.x * AIR_DRAG_MULTIPLIER, rigbod.velocity.y);
             }
             else if (canMove)
             {
-
-                rigbod.velocity = new Vector2(MOVEMENT_SPEED * movementInputDirection, rigbod.velocity.y);
+                rigbod.velocity = new Vector2(MOVEMENT_SPEED * inputHorizontal, rigbod.velocity.y);
             }
 
         }
 
         if (isWallSliding)
         {
-
             if (rigbod.velocity.y < -WALL_SLIDE_SPEED)
             {
 
                 rigbod.velocity = new Vector2(rigbod.velocity.x, -WALL_SLIDE_SPEED);
             }
-
-
         }
 
         // Check Jump -----
         if (jumpTimer > 0)
         {
 
-            if (!isGrounded && isTouchingWall && movementInputDirection != facingDirection)
+            if (!isGrounded && isTouchingWall && inputHorizontal != facingDirection)
             {
                 // Wall Jump -----
                 if (isWallSliding)
@@ -401,7 +413,7 @@ public class PlayerController : MonoBehaviour
         }
         if (wallJumpTimer > 0)
         {
-            if (hasWallJumped && movementInputDirection == -lastWallJumpDirection)
+            if (hasWallJumped && inputHorizontal == -lastWallJumpDirection)
             {
 
                 rigbod.velocity = new Vector2(rigbod.velocity.x, 0.0f);
