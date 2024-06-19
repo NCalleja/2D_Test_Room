@@ -19,9 +19,9 @@ static class HorizontalDirectionMethds
         };
     }
 
-    public static HorizontalDirection Neg(this HorizontalDirection d)
+    public static HorizontalDirection Neg(this HorizontalDirection input)
     {
-        return d switch
+        return input switch
         {
             HorizontalDirection.Left => HorizontalDirection.Right,
             HorizontalDirection.Right => HorizontalDirection.Left,
@@ -33,50 +33,82 @@ static class HorizontalDirectionMethds
 
 public class PlayerController : MonoBehaviour
 {
-
-    // Input variables
-    private bool inputJump = false;
+    #region InputVariables
+    /**
+     * <summary>
+     * Will be true if the "Jump" button was just pressed
+     * </summary>
+     */
     private bool inputJumpPressed = false;
+    /**
+     * <summary>
+     * Will be true if the "Dash" button was just pressed
+     * </summary>
+     */
     private bool inputDashPressed = false;
+    /**
+     * <summary>
+     * Will be a number between [-1, 1] indicating the horizontal direction pressed.
+     * -1 meaning all Left and 1 meaning all Right
+     * </summary>
+     */
     private float inputHorizontal = 0f;
+    /**
+     * <summary>
+     * Will be a number between [-1, 1] indicating the vertical direction pressed.
+     * -1 meaning all Up and 1 meaning all Down
+     * </summary>
+     */
     private float inputVertical = 0f;
+    #endregion
 
-    // State Variables -----
+    #region StateVariables
     private float jumpTimer;
     private float turnTimer;
     private float wallJumpTimer;
-    private float dashTimeLeft;
-    private float nextDashCoolDown = 0f;
-    // Storing Y Postion Before Dash
-    private float dashStartY;
 
     private int numJumpsUsed = 0;
     private HorizontalDirection facingDirection = HorizontalDirection.Right;
     private HorizontalDirection lastWallJumpDirection = HorizontalDirection.None;
-    private bool isGrounded;
-    private bool isTouchingWall;
     private bool isWallSliding;
-    private bool canNormalJump;
     private bool isAttemptingToJump;
     private bool canMove;
     private bool canFlip;
     private bool hasWallJumped;
     private bool justWallJumped;
-    private bool isTouchingLedge;
     private bool isLedgeClimbing = false;
     private bool ledgeDetected;
-    private bool isDashing;
+
+    /**
+     * <summary>
+     * The `Time.time` which the "Dash" action ends at.
+     * </summary>
+     */
+    private float dashEndTime = -1f;
+    /**
+     * <summary>
+     * The `Time.time` which the "Dash" action can be used again.
+     * </summary>
+     */
+    private float dashCoolDownTime = -1f;
+    /**
+     * <summary>
+     * The Y position which the last "Dash" action started at.
+     * </summary>
+     */
+    private float dashStartY;
 
     // Ledge Position Bottom
     private Vector2 ledgePosBot;
     private Vector2 ledgePos1;
     private Vector2 ledgePos2;
+    #endregion
 
     // Component References -----
     private Rigidbody2D rigbod;
     private Animator anim;
 
-    // Configurable Paramters -----
+    #region ConfigurableParameters
     public int MAX_NUM_JUMPS;
     public float MOVEMENT_SPEED;
     public float JUMP_FORCE;
@@ -108,6 +140,7 @@ public class PlayerController : MonoBehaviour
     public Transform LEDGE_CHECK;
 
     public LayerMask WHAT_IS_GROUND;
+    #endregion
 
     // Start Method -----
     // Start is called before the first frame update
@@ -119,14 +152,12 @@ public class PlayerController : MonoBehaviour
         // Making the Vectors itself equal 1
         WALL_HOP_DIRECTION.Normalize();
         WALL_JUMP_DIRECTION.Normalize();
-
     }
 
     // Update Method -----
     // Update is called once per frame
     void Update()
     {
-        inputJump = Input.GetButton("Jump");
         if (Input.GetButtonDown("Jump"))
         {
             inputJumpPressed = true;
@@ -146,26 +177,37 @@ public class PlayerController : MonoBehaviour
     {
         HorizontalDirection horizontalDirection = HorizontalDirectionMethds.FromHorizontalInput(inputHorizontal);
 
+        // This checks if we are grounded or not using the game object circle under the player
+        bool isGrounded = Physics2D.OverlapCircle(GROUND_CHECK.position, GROUND_CHECK_RADIUS, WHAT_IS_GROUND);
+
+        bool isTouchingWall = Physics2D.Raycast(WALL_CHECK.position, transform.right, WALL_CHECK_DISTANCE, WHAT_IS_GROUND);
+
+        bool isTouchingLedge = Physics2D.Raycast(LEDGE_CHECK.position, transform.right, WALL_CHECK_DISTANCE, WHAT_IS_GROUND);
+
+        bool isRunning = Mathf.Abs(rigbod.velocity.x) > 0.00001f && isGrounded;
+
+        if (isGrounded && rigbod.velocity.y <= 0.1f)
+        {
+            // Reset jump counter since we are on the ground
+            numJumpsUsed = 0;
+        }
+
         // Adding Xbox and PS Controller Inputs
         if (inputJumpPressed)
         {
             inputJumpPressed = false;
-            if (isGrounded || (numJumpsUsed < MAX_NUM_JUMPS && !isTouchingWall))
+            if (numJumpsUsed < MAX_NUM_JUMPS && !isTouchingWall)
             {
                 // Normal Jump -----
-                if (canNormalJump)
-                {
+                rigbod.velocity = new Vector2(rigbod.velocity.x, JUMP_FORCE);
 
-                    rigbod.velocity = new Vector2(rigbod.velocity.x, JUMP_FORCE);
+                Debug.Log("Normal Jump Executed");
 
-                    Debug.Log("Normal Jump Executed");
+                numJumpsUsed += 1;
 
-                    numJumpsUsed += 1;
+                jumpTimer = 0;
 
-                    jumpTimer = 0;
-
-                    isAttemptingToJump = false;
-                }
+                isAttemptingToJump = false;
             }
             else
             {
@@ -214,12 +256,11 @@ public class PlayerController : MonoBehaviour
         if (inputDashPressed)
         {
             inputDashPressed = false;
-            if (Time.time >= nextDashCoolDown)
+            if (Time.time >= dashCoolDownTime)
             {
                 // Attempting to Dash Function
-                isDashing = true;
-                dashTimeLeft = DASH_TIME;
-                nextDashCoolDown = Time.time + DASH_COOL_DOWN;
+                dashEndTime = Time.time + DASH_TIME;
+                dashCoolDownTime = Time.time + DASH_COOL_DOWN;
                 dashStartY = transform.position.y;
 
                 // Removing After Image Feature
@@ -238,18 +279,6 @@ public class PlayerController : MonoBehaviour
                 transform.Rotate(0.0f, 180.0f, 0.0f);
             }
         }
-
-        bool isRunning = Mathf.Abs(rigbod.velocity.x) > 0.00001f && isGrounded;
-
-        // Check If Can Jump -----
-        // Grounded Check
-        if (isGrounded && rigbod.velocity.y <= .1f)
-        {
-            numJumpsUsed = 0;
-        }
-
-        // Jump Ability Check
-        canNormalJump = numJumpsUsed < MAX_NUM_JUMPS;
 
         // Check If Wall Sliding -----
         isWallSliding = isTouchingWall && !isGrounded && !isLedgeClimbing;
@@ -281,45 +310,38 @@ public class PlayerController : MonoBehaviour
         }
 
         // Check Dash Function
+        bool isDashing = dashEndTime > Time.time;
         if (isDashing)
         {
-            if (dashTimeLeft > 0)
+            canMove = false;
+            canFlip = false;
+
+            // Setting Y to 0 so they do not rise or fall (It's a Velocity Not Transform)
+
+            if (facingDirection == HorizontalDirection.Left)
             {
-
-                canMove = false;
-                canFlip = false;
-
-                // Setting Y to 0 so they do not rise or fall (It's a Velocity Not Transform)
-
-                if (facingDirection == HorizontalDirection.Left)
-                {
-                    rigbod.velocity = new Vector2(-DASH_SPEED, 0);
-                }
-                else if (facingDirection == HorizontalDirection.Right)
-                {
-                    rigbod.velocity = new Vector2(DASH_SPEED, 0);
-                }
-                // Manually set the Player's 'y' position to DashStartY on each frame during the dash
-                transform.position = new Vector2(transform.position.x, dashStartY);
-
-                dashTimeLeft -= Time.deltaTime;
-
-                // Removing After Image Features
-                /*
-                if (Mathf.Abs(transform.position.x - lastImageXpos) > distanceBetweenImages)
-                {
-                    PlayerAfterImagePool.Instance.GetFromPool();
-                    lastImageXpos = transform.position.x;
-                }
-                */
+                rigbod.velocity = new Vector2(-DASH_SPEED, 0);
             }
-
-            if (dashTimeLeft <= 0 || isTouchingWall)
+            else if (facingDirection == HorizontalDirection.Right)
             {
-                isDashing = false;
-                canMove = true;
-                canFlip = true;
+                rigbod.velocity = new Vector2(DASH_SPEED, 0);
             }
+            // Manually set the Player's 'y' position to DashStartY on each frame during the dash
+            transform.position = new Vector2(transform.position.x, dashStartY);
+
+            // Removing After Image Features
+            /*
+            if (Mathf.Abs(transform.position.x - lastImageXpos) > distanceBetweenImages)
+            {
+                PlayerAfterImagePool.Instance.GetFromPool();
+                lastImageXpos = transform.position.x;
+            }
+            */
+        }
+        else
+        {
+            canMove = true;
+            canFlip = true;
         }
 
         // Updating Animations -----
@@ -330,13 +352,6 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("canClimbLedge", isLedgeClimbing);
         anim.SetBool("isDashing", isDashing);
         // CheckSurroundings -----
-
-        // This checks if we are grounded or not using the game object circle under the player
-        isGrounded = Physics2D.OverlapCircle(GROUND_CHECK.position, GROUND_CHECK_RADIUS, WHAT_IS_GROUND);
-
-        isTouchingWall = Physics2D.Raycast(WALL_CHECK.position, transform.right, WALL_CHECK_DISTANCE, WHAT_IS_GROUND);
-
-        isTouchingLedge = Physics2D.Raycast(LEDGE_CHECK.position, transform.right, WALL_CHECK_DISTANCE, WHAT_IS_GROUND);
 
         if (isTouchingWall && !isTouchingLedge && !ledgeDetected)
         {
@@ -419,7 +434,7 @@ public class PlayerController : MonoBehaviour
             else if (isGrounded)
             {
                 // Normal Jump -----
-                if (canNormalJump)
+                if (numJumpsUsed < MAX_NUM_JUMPS)
                 {
 
                     rigbod.velocity = new Vector2(rigbod.velocity.x, JUMP_FORCE);
