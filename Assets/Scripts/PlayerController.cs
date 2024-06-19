@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     // Storing Y Postion Before Dash
     private float dashStartY;
 
-    private int amountOfJumpLeft;
+    private int numJumpsUsed = 0;
     // Int for Facing Direction (-1 Left and 1 is Right)
     private int facingDirection = 1;
     private int lastWallJumpDirection;
@@ -49,11 +49,9 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
 
     // Configurable Paramters -----
-    public int AMOUNT_OF_JUMPS;
-
+    public int MAX_NUM_JUMPS;
     public float MOVEMENT_SPEED;
     public float JUMP_FORCE;
-    // Ground Check Radius Size
     public float GROUND_CHECK_RADIUS;
     public float WALL_CHECK_DISTANCE;
     public float WALL_SLIDE_SPEED;
@@ -62,14 +60,14 @@ public class PlayerController : MonoBehaviour
     public float VARIABLE_JUMP_HEIGHT_MULTIPLIER;
     public float WALL_HOP_FORCE;
     public float WALL_JUMP_FORCE;
-    public float JUMP_TIMER_SET = 0.15f;
-    public float TURN_TIMER_SET = .1f;
-    public float WALL_JUMP_TIMER_SET = 0.8f;
+    public float JUMP_TIMER_SET;
+    public float TURN_TIMER_SET;
+    public float WALL_JUMP_TIMER_SET;
 
-    public float LEDGE_CLIMB_X_OFFSET_1 = 0f;
-    public float LEDGE_CLIMB_Y_OFFSET_1 = 0f;
-    public float LEDGE_CLIMB_X_OFFSET_2 = 0f;
-    public float LEDGE_CLIB_Y_OFFSET_2 = 0f;
+    public float LEDGE_CLIMB_X_OFFSET_1;
+    public float LEDGE_CLIMB_Y_OFFSET_1;
+    public float LEDGE_CLIMB_X_OFFSET_2;
+    public float LEDGE_CLIB_Y_OFFSET_2;
 
     public float DASH_TIME;
     public float DASH_SPEED;
@@ -90,7 +88,6 @@ public class PlayerController : MonoBehaviour
     {
         rigbod = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        amountOfJumpLeft = AMOUNT_OF_JUMPS;
 
         // Making the Vectors itself equal 1
         WALL_HOP_DIRECTION.Normalize();
@@ -202,12 +199,11 @@ public class PlayerController : MonoBehaviour
         // Grounded Check
         if (isGrounded && rigbod.velocity.y <= .1f)
         {
-
-            amountOfJumpLeft = AMOUNT_OF_JUMPS;
+            numJumpsUsed = 0;
         }
 
         // Jump Ability Check
-        canNormalJump = amountOfJumpLeft > 0;
+        canNormalJump = numJumpsUsed < MAX_NUM_JUMPS;
     }
 
     // Check Movement Direction -----
@@ -258,7 +254,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
 
-            if (isGrounded || (amountOfJumpLeft > 0 && !isTouchingWall))
+            if (isGrounded || (numJumpsUsed < MAX_NUM_JUMPS && !isTouchingWall))
             {
                 NormalJump();
             }
@@ -425,7 +421,7 @@ public class PlayerController : MonoBehaviour
 
             Debug.Log("Normal Jump Executed");
 
-            amountOfJumpLeft--;
+            numJumpsUsed += 1;
 
             jumpTimer = 0;
 
@@ -460,8 +456,8 @@ public class PlayerController : MonoBehaviour
             // State Updates
             isWallSliding = false;
             canMove = true;
-            amountOfJumpLeft = AMOUNT_OF_JUMPS;
-            amountOfJumpLeft--;
+
+            numJumpsUsed = 1;
 
             // Reset Jump-Related States & Timers
             jumpTimer = 0;
