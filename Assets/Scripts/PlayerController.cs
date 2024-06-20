@@ -220,6 +220,9 @@ public class PlayerController : MonoBehaviour
                     ForceMode2D.Impulse
                 );
 
+                facingDirection = facingDirection == HorizontalDirection.Right ? HorizontalDirection.Left : HorizontalDirection.Right;
+                transform.Rotate(0.0f, 180.0f, 0.0f);
+
                 // State Updates
                 isWallSliding = false;
 
