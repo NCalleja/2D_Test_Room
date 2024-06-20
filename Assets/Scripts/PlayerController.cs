@@ -64,27 +64,30 @@ public class PlayerController : MonoBehaviour
 
     #region StateVariables
     /// <summary>
-    /// The number of "Jump" actions used
+    /// The number of "Jump" actions allowed
     /// </summary>
-    private int numJumpsUsed = 0;
+    private int numJumpsLeft = 0;
     /// <summary>
     /// The current direction the Player is facing
     /// </summary>
     private HorizontalDirection facingDirection = HorizontalDirection.Right;
     /// <summary>
-    /// The <c>Time.time</c> which the "Dash" action ends at.
+    /// The <c>Time.time</c> which the last "Dash" action ends at.
     /// </summary>
     private float dashEndTime = -1f;
     /// <summary>
-    /// The <c>Time.time</c> which the "Dash" action can be used again.
+    /// The <c>Time.time</c> which the next "Dash" action can be activated.
     /// </summary>
     private float dashCoolDownTime = -1f;
     /// <summary>
     /// The <c>Y</c> position which the last "Dash" action started at.
     /// </summary>
     private float dashStartY;
+    /// <summary>
+    /// The <c>Time.time</c> which the last "Wall Jump" action ends at.
+    /// </summary>
+    private float wallJumpEndTime = -1f;
 
-    private bool justWallJumped;
     private bool isLedgeClimbing = false;
     private bool ledgeDetected;
 
@@ -100,18 +103,17 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region ConfigurableParameters
-    public int MAX_NUM_JUMPS;
+    public int MAX_JUMPS_FROM_GROUND;
+    public int MAX_JUMPS_FROM_WALL;
     public float MOVEMENT_SPEED;
     public float JUMP_FORCE;
     public float GROUND_CHECK_RADIUS;
     public float WALL_CHECK_DISTANCE;
     public float WALL_SLIDE_SPEED;
-    public float MOVEMENT_FORCE_IN_AIR;
     public float AIR_DRAG_MULTIPLIER;
     public float WALL_HOP_FORCE;
     public float WALL_JUMP_FORCE;
-    public float JUMP_TIMER_SET;
-    public float TURN_TIMER_SET;
+    public float WALL_JUMP_DURATION;
 
     public float LEDGE_CLIMB_X_OFFSET_1;
     public float LEDGE_CLIMB_Y_OFFSET_1;
@@ -178,22 +180,20 @@ public class PlayerController : MonoBehaviour
 
         bool isWallSliding = isTouchingWall && !isGrounded && !isLedgeClimbing;
 
-        bool isDashing = dashEndTime > Time.time;
-
         if (isGrounded && rigbod.velocity.y <= 0.1f)
         {
             // Reset jump counter since we are on the ground
-            numJumpsUsed = 0;
+            numJumpsLeft = MAX_JUMPS_FROM_GROUND;
         }
 
         if (isWallSliding)
         {
             // Reset jump counter since we are on a wall
-            numJumpsUsed = 0;
+            numJumpsLeft = MAX_JUMPS_FROM_WALL;
         }
 
         // Adding Xbox and PS Controller Inputs
-        if (inputJumpPressed && numJumpsUsed < MAX_NUM_JUMPS)
+        if (inputJumpPressed && numJumpsLeft > 0)
         {
             if (!isTouchingWall || isGrounded)
             {
@@ -201,14 +201,13 @@ public class PlayerController : MonoBehaviour
 
                 rigbod.velocity = new Vector2(rigbod.velocity.x, JUMP_FORCE);
 
-                numJumpsUsed += 1;
+                numJumpsLeft -= 1;
             }
-            else if (!isGrounded && isTouchingWall && horizontalDirection != facingDirection && isWallSliding)
+            else if (!isGrounded && isTouchingWall && isWallSliding)
             {
                 Debug.Log("Wall Jump Executed");
 
-                justWallJumped = true;
-                StartCoroutine(ResetJustWallJumpedFlag());
+                wallJumpEndTime = Time.time + WALL_JUMP_DURATION;
 
                 rigbod.velocity = new Vector2(rigbod.velocity.x, 0.0f);
 
@@ -225,25 +224,12 @@ public class PlayerController : MonoBehaviour
                 // State Updates
                 isWallSliding = false;
 
-                numJumpsUsed = 1;
+                numJumpsLeft -= 1;
             }
         }
         inputJumpPressed = false;
 
-
-        if (isWallSliding && horizontalDirection.Neg() == facingDirection)
-        {
-            // detatch from the wall and go the other direction
-            if (facingDirection == HorizontalDirection.Left)
-            {
-                rigbod.AddForce(new Vector2(-WALL_HOP_FORCE, 0), ForceMode2D.Impulse);
-            }
-            else if (facingDirection == HorizontalDirection.Right)
-            {
-                rigbod.AddForce(new Vector2(WALL_HOP_FORCE, 0), ForceMode2D.Impulse);
-            }
-            isWallSliding = false;
-        }
+        bool isWallJumping = Time.time < wallJumpEndTime;
 
         // Adding Dash Button
         if (inputDashPressed && Time.time >= dashCoolDownTime)
@@ -256,9 +242,35 @@ public class PlayerController : MonoBehaviour
             // Removing After Image Feature
             // PlayerAfterImagePool.Instance.GetFromPool();
             // lastImageXpos = transform.position.x;
-            
         }
         inputDashPressed = false;
+
+        bool isDashing = Time.time < dashEndTime;
+
+        // Update ledge position
+        if (isTouchingWall && !isTouchingLedge && !ledgeDetected)
+        {
+            ledgeDetected = true;
+            ledgePosBot = WALL_CHECK.position;
+        }
+        else
+        {
+            ledgeDetected = false;
+        }
+
+        if (isWallSliding && horizontalDirection.Neg() == facingDirection)
+        {
+            // detatch from the wall and go the other direction
+            rigbod.AddForce(
+                new Vector2(
+                    facingDirection == HorizontalDirection.Left ? -WALL_HOP_FORCE : WALL_HOP_FORCE,
+                    0
+                ),
+                ForceMode2D.Impulse
+            );
+
+            isWallSliding = false;
+        }
 
         // Check Movement Direction -----
         if (horizontalDirection.Neg() == facingDirection)
@@ -294,20 +306,24 @@ public class PlayerController : MonoBehaviour
             transform.position = ledgePos1;
         }
 
-        // Check Dash Function
-        if (isDashing)
+        // Updating Animations -----
+        anim.SetBool("isRunning", isRunning);
+        anim.SetBool("isGrounded", isGrounded);
+        anim.SetFloat("yVelocity", rigbod.velocity.y);
+        anim.SetBool("isWallSliding", isWallSliding);
+        anim.SetBool("canClimbLedge", isLedgeClimbing);
+        anim.SetBool("isDashing", isDashing);
+
+        #region ApplyMovement
+        if (isWallJumping || isLedgeClimbing)
         {
-
+            // do nothing
+        }
+        else if (isDashing)
+        {
             // Setting Y to 0 so they do not rise or fall (It's a Velocity Not Transform)
+            rigbod.velocity = new Vector2(facingDirection == HorizontalDirection.Left ? -DASH_SPEED : DASH_SPEED, 0);
 
-            if (facingDirection == HorizontalDirection.Left)
-            {
-                rigbod.velocity = new Vector2(-DASH_SPEED, 0);
-            }
-            else if (facingDirection == HorizontalDirection.Right)
-            {
-                rigbod.velocity = new Vector2(DASH_SPEED, 0);
-            }
             // Manually set the Player's 'y' position to DashStartY on each frame during the dash
             transform.position = new Vector2(transform.position.x, dashStartY);
 
@@ -320,50 +336,22 @@ public class PlayerController : MonoBehaviour
             }
             */
         }
-
-        // Updating Animations -----
-        anim.SetBool("isRunning", isRunning);
-        anim.SetBool("isGrounded", isGrounded);
-        anim.SetFloat("yVelocity", rigbod.velocity.y);
-        anim.SetBool("isWallSliding", isWallSliding);
-        anim.SetBool("canClimbLedge", isLedgeClimbing);
-        anim.SetBool("isDashing", isDashing);
-        // CheckSurroundings -----
-
-        if (isTouchingWall && !isTouchingLedge && !ledgeDetected)
+        else if (isWallSliding)
         {
-            ledgeDetected = true;
-            ledgePosBot = WALL_CHECK.position;
+            // sliding down wall
+            rigbod.velocity = new Vector2(rigbod.velocity.x, Mathf.Max(rigbod.velocity.y, -WALL_SLIDE_SPEED));
+        }
+        else if (!isGrounded && inputHorizontal == 0)
+        {
+            // not touching anything and falling through the air
+            rigbod.velocity = new Vector2(rigbod.velocity.x * AIR_DRAG_MULTIPLIER, rigbod.velocity.y);
         }
         else
         {
-            ledgeDetected = false;
+            // normal movement
+            rigbod.velocity = new Vector2(MOVEMENT_SPEED * inputHorizontal, rigbod.velocity.y);
         }
-
-
-        // Apply Movement -----
-
-        if (!justWallJumped)
-        {
-            if (!isGrounded && !isWallSliding && inputHorizontal == 0)
-            {
-                // not touching anything and falling through the air
-                rigbod.velocity = new Vector2(rigbod.velocity.x * AIR_DRAG_MULTIPLIER, rigbod.velocity.y);
-            }
-            else if (!isLedgeClimbing && !isDashing)
-            {
-                rigbod.velocity = new Vector2(MOVEMENT_SPEED * inputHorizontal, rigbod.velocity.y);
-            }
-
-        }
-
-        if (isWallSliding)
-        {
-            if (rigbod.velocity.y < -WALL_SLIDE_SPEED)
-            {
-                rigbod.velocity = new Vector2(rigbod.velocity.x, -WALL_SLIDE_SPEED);
-            }
-        }
+        #endregion
     }
 
     public void FinishLedgeClimb()
@@ -371,12 +359,6 @@ public class PlayerController : MonoBehaviour
         isLedgeClimbing = false;
         transform.position = ledgePos2;
         ledgeDetected = false;
-    }
-
-    IEnumerator ResetJustWallJumpedFlag()
-    {
-        yield return new WaitForSeconds(0.2f);
-        justWallJumped = false;
     }
 
     // On Draw Gizmos
