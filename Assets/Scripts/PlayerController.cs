@@ -192,7 +192,6 @@ public class PlayerController : MonoBehaviour
             numJumpsLeft = MAX_JUMPS_FROM_WALL;
         }
 
-        // Adding Xbox and PS Controller Inputs
         if (inputJumpPressed && numJumpsLeft > 0)
         {
             if (!isTouchingWall || isGrounded)
