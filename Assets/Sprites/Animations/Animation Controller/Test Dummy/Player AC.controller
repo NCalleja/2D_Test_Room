@@ -147,22 +147,22 @@ AnimatorStateMachine:
     m_Position: {x: 370, y: -110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5660809466219547478}
-    m_Position: {x: 370, y: 150, z: 0}
+    m_Position: {x: 370, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7536605631720814944}
-    m_Position: {x: -80, y: -260, z: 0}
+    m_Position: {x: -90, y: -250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1567694861200014790}
-    m_Position: {x: 140, y: -260, z: 0}
+    m_Position: {x: 130, y: -250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5520078366701664127}
-    m_Position: {x: 370, y: -260, z: 0}
+    m_Position: {x: 340, y: -250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8181593622032571963}
-    m_Position: {x: 580, y: -260, z: 0}
+    m_Position: {x: 550, y: -250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8453973133757991590}
-    m_Position: {x: 615, y: -195, z: 0}
+    m_Position: {x: 760, y: -250, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 8247537143533541401}
@@ -173,8 +173,8 @@ AnimatorStateMachine:
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 390, y: -380, z: 0}
-  m_EntryPosition: {x: 50, y: -110, z: 0}
-  m_ExitPosition: {x: 50, y: -70, z: 0}
+  m_EntryPosition: {x: -90, y: -110, z: 0}
+  m_ExitPosition: {x: -90, y: -70, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 1131958012606042015}
 --- !u!1101 &-3249538156578288434
@@ -294,37 +294,43 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: isGrounded
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: yVelocity
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: isWallSliding
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: canClimbLedge
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: isDashing
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
+  - m_Name: isAttacking
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
