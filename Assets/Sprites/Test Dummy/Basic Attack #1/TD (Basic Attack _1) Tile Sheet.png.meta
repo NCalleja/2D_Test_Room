@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e3d3079f46b95474b9ce49d9f10a7672
+guid: a09ade79fffa4fb41b99de54995c67a4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,127 +136,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TD (Attack _1) Tile Sheet_0
+      name: TD (Basic Attack _1) Tile Sheet_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 0
-        width: 16
+        x: 2
+        y: 6
+        width: 29
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ef8f0d9e1d2fef4081c232441f42392
-      internalID: -1913169927
+      spriteID: 3fb9aaaf530263b44b39dbd16330b96e
+      internalID: -81006016
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TD (Attack _1) Tile Sheet_1
+      name: TD (Basic Attack _1) Tile Sheet_1
       rect:
         serializedVersion: 2
-        x: 20
-        y: 0
-        width: 18
+        x: 36
+        y: 6
+        width: 22
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfc641ffb25051d4caa69652062745c7
-      internalID: 423160651
+      spriteID: b243e78bd4824b746b3e2354a1f44ec1
+      internalID: -1904555962
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TD (Attack _1) Tile Sheet_2
+      name: TD (Basic Attack _1) Tile Sheet_2
       rect:
         serializedVersion: 2
-        x: 40
-        y: 0
-        width: 21
+        x: 66
+        y: 5
+        width: 27
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1aa3ff869c49a64baa8e5e87816d95a
-      internalID: 382816111
+      spriteID: 0bda861d023674741933a897f288a9aa
+      internalID: -2137566046
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TD (Attack _1) Tile Sheet_3
+      name: TD (Basic Attack _1) Tile Sheet_3
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 21
+        x: 98
+        y: 5
+        width: 24
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.37072882, y: 0.50639784}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c61142acb829544b9b706545a0e6e62
-      internalID: 1505156786
+      spriteID: fc833fd65b64f9d47b011cdce5c916b5
+      internalID: -1415433941
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TD (Attack _1) Tile Sheet_4
+      name: TD (Basic Attack _1) Tile Sheet_4
       rect:
         serializedVersion: 2
-        x: 89
-        y: 0
-        width: 23
+        x: 127
+        y: 5
+        width: 28
         height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.34644917, y: 0.50330216}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87876f119465c5f4986e3922e1d98021
-      internalID: 1495209754
+      spriteID: b10e2d49b6f54e44193aff9a7fa96c7b
+      internalID: -1403851706
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TD (Attack _1) Tile Sheet_5
+      name: TD (Basic Attack _1) Tile Sheet_5
       rect:
         serializedVersion: 2
-        x: 116
-        y: 0
-        width: 16
+        x: 162
+        y: 5
+        width: 28
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76c99c2643d69d648ab6544af1d00f91
-      internalID: 1617037552
+      spriteID: 5498d199997604b4792d3223eec1cc78
+      internalID: -728641523
       vertices: []
       indices: 
       edges: []
@@ -272,12 +272,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      TD (Attack _1) Tile Sheet_0: -1913169927
-      TD (Attack _1) Tile Sheet_1: 423160651
-      TD (Attack _1) Tile Sheet_2: 382816111
-      TD (Attack _1) Tile Sheet_3: 1505156786
-      TD (Attack _1) Tile Sheet_4: 1495209754
-      TD (Attack _1) Tile Sheet_5: 1617037552
+      TD (Basic Attack _1) Tile Sheet_0: -81006016
+      TD (Basic Attack _1) Tile Sheet_1: -1904555962
+      TD (Basic Attack _1) Tile Sheet_2: -2137566046
+      TD (Basic Attack _1) Tile Sheet_3: -1415433941
+      TD (Basic Attack _1) Tile Sheet_4: -1403851706
+      TD (Basic Attack _1) Tile Sheet_5: -728641523
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

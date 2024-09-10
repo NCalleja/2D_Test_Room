@@ -139,19 +139,19 @@ TextureImporter:
       name: TD (Basic Attack _2) Tile Sheet_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 0
+        x: 9
+        y: 5
         width: 16
         height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5639796, y: 0.5330217}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7412b20aac2a9894b81c11b576f65a4d
-      internalID: -1811783687
+      spriteID: a71979270ffc89346bd9e67dd692910b
+      internalID: -2049266159
       vertices: []
       indices: 
       edges: []
@@ -160,19 +160,19 @@ TextureImporter:
       name: TD (Basic Attack _2) Tile Sheet_1
       rect:
         serializedVersion: 2
-        x: 20
-        y: 0
+        x: 35
+        y: 5
         width: 14
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.6535514, y: 0.5159948}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d51c9b2dd69a424408ad6dbf4f73f9c3
-      internalID: 365267968
+      spriteID: edfd7bc5da57eb34890a2b027d2d35fe
+      internalID: 375077852
       vertices: []
       indices: 
       edges: []
@@ -181,19 +181,19 @@ TextureImporter:
       name: TD (Basic Attack _2) Tile Sheet_2
       rect:
         serializedVersion: 2
-        x: 37
-        y: 0
+        x: 60
+        y: 5
         width: 22
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.6861229, y: 0.5095968}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ee4ccbd8aa6e904e9510abdfc0d0037
-      internalID: 1405294106
+      spriteID: 886ef3eb00499a14697b8916099a3193
+      internalID: -1861938090
       vertices: []
       indices: 
       edges: []
@@ -202,19 +202,19 @@ TextureImporter:
       name: TD (Basic Attack _2) Tile Sheet_3
       rect:
         serializedVersion: 2
-        x: 61
-        y: 0
+        x: 96
+        y: 5
         width: 22
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.40693942, y: 0.50639784}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5eb953c8db49cc446b49e1c0afd72805
-      internalID: 1449940840
+      spriteID: 99ff184187b9f144aa7dde5ba28ee5cf
+      internalID: 38271293
       vertices: []
       indices: 
       edges: []
@@ -223,19 +223,19 @@ TextureImporter:
       name: TD (Basic Attack _2) Tile Sheet_4
       rect:
         serializedVersion: 2
-        x: 86
-        y: 0
+        x: 130
+        y: 5
         width: 26
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.3385755, y: 0.50639784}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d4e4d993435cc943b62cddbb813101d
-      internalID: -83153774
+      spriteID: 0dcecce63fe41e44cb3890553f6f05df
+      internalID: 1273916300
       vertices: []
       indices: 
       edges: []
@@ -244,19 +244,19 @@ TextureImporter:
       name: TD (Basic Attack _2) Tile Sheet_5
       rect:
         serializedVersion: 2
-        x: 116
-        y: 0
+        x: 167
+        y: 5
         width: 16
         height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5191946, y: 0.52311516}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8867c21e858903448a4faabfa3b97c52
-      internalID: -209125566
+      spriteID: 6bf6aee9b97d3734490047db405b69ac
+      internalID: 114431861
       vertices: []
       indices: 
       edges: []
@@ -272,12 +272,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      TD (Basic Attack _2) Tile Sheet_0: -1811783687
-      TD (Basic Attack _2) Tile Sheet_1: 365267968
-      TD (Basic Attack _2) Tile Sheet_2: 1405294106
-      TD (Basic Attack _2) Tile Sheet_3: 1449940840
-      TD (Basic Attack _2) Tile Sheet_4: -83153774
-      TD (Basic Attack _2) Tile Sheet_5: -209125566
+      TD (Basic Attack _2) Tile Sheet_0: -2049266159
+      TD (Basic Attack _2) Tile Sheet_1: 375077852
+      TD (Basic Attack _2) Tile Sheet_2: -1861938090
+      TD (Basic Attack _2) Tile Sheet_3: 38271293
+      TD (Basic Attack _2) Tile Sheet_4: 1273916300
+      TD (Basic Attack _2) Tile Sheet_5: 114431861
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
