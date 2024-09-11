@@ -10,11 +10,17 @@ public class PlayerCombatController : MonoBehaviour
     [SerializeField]
     private float inputTimer;
 
-    private bool gotInput;
+    private bool gotInput, isAttacking, isFirstAttack;
 
     private float lastInputTime;
 
     private Animator anim;
+
+    private void Start()
+    {
+       anim = GetComponent<Animator>();
+       anim.SetBool("canAttack", combatEnabled);
+    }
 
     private void Update()
     {
@@ -42,11 +48,21 @@ public class PlayerCombatController : MonoBehaviour
         if (gotInput)
         {
             // Perform Basic Attack 1
+            if (!isAttacking) 
+            { 
+                gotInput = false;
+                isAttacking = true;
+                isFirstAttack = !isFirstAttack;
+                anim.SetBool("attack1", true);
+                anim.SetBool("firstAttack", isFirstAttack);
+                anim.SetBool("isAttacking", isAttacking);
+            }
         }
 
         if(Time.time >= lastInputTime + inputTimer)
         {
             // Wait for a New Input
+            gotInput = false;
         }
 
     }
