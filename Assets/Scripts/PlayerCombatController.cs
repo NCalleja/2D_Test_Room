@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class PlayerCombatController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField]
+    private bool combatEnabled;
+    private bool gotInput;
+
+    private float lastInputTime;
+
+    private void Update()
     {
-        
+        CheckCombatInput();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void CheckCombatInput()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (combatEnabled)
+            {
+
+                // Attempt Combat
+                gotInput = true;
+                lastInputTime = Time.time;
+            }
+        }
     }
+
 }
