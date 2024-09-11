@@ -90,6 +90,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isLedgeClimbing = false;
     private bool ledgeDetected;
+    private bool canFlip = true;
 
     // Ledge Position Bottom
     private Vector2 ledgePosBot;
@@ -275,11 +276,12 @@ public class PlayerController : MonoBehaviour
         }
 
         // Check Movement Direction -----
-        if (horizontalDirection.Neg() == facingDirection)
+        if (horizontalDirection.Neg() == facingDirection && canFlip)
         {
             // Flipping Sprite
             if (!isWallSliding && !isLedgeClimbing && !isDashing)
             {
+              
                 facingDirection = facingDirection.Neg();
                 transform.Rotate(0.0f, 180.0f, 0.0f);
             }
@@ -361,6 +363,17 @@ public class PlayerController : MonoBehaviour
         isLedgeClimbing = false;
         transform.position = ledgePos2;
         ledgeDetected = false;
+    }
+
+    // ADDITIONAL METHODS (NOT REFACTORED)
+    public void DisableFlip()
+    {
+        canFlip = false;
+    }
+
+    public void EnableFlip()
+    {
+        canFlip = true;
     }
 
     // On Draw Gizmos

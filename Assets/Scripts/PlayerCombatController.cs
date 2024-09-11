@@ -82,4 +82,16 @@ public class PlayerCombatController : MonoBehaviour
         }
     }
 
+    private void FinishAttack1()
+    {
+        isAttacking = false;
+        anim.SetBool("isAttacking", isAttacking);
+        anim.SetBool("attack1", false);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(attack1HitBoxPos.position, attack1Radius);
+    }
+
 }
