@@ -8,11 +8,15 @@ public class PlayerCombatController : MonoBehaviour
     [SerializeField]
     private bool combatEnabled;
     [SerializeField]
-    private float inputTimer;
+    private float inputTimer, attack1Radius, attack1Damage;
+    [SerializeField]
+    private Transform attack1HitBoxPos;
+    [SerializeField]
+    private LayerMask whatIsDamageable;
 
     private bool gotInput, isAttacking, isFirstAttack;
 
-    private float lastInputTime;
+    private float lastInputTime = Mathf.NegativeInfinity;
 
     private Animator anim;
 
@@ -65,6 +69,17 @@ public class PlayerCombatController : MonoBehaviour
             gotInput = false;
         }
 
+    }
+
+    private void CheckAttackHitBox()
+    {
+        Collider2D[] detectObjects = Physics2D.OverlapCircleAll(attack1HitBoxPos.position, attack1Radius, whatIsDamageable);
+
+        foreach (Collider2D collider in detectObjects) 
+        {
+            collider.transform.parent.SendMessage("Damage", attack1Damage);
+            // Instantiate Hit Particle (We're going to do this in the enemy script to have different particles per enemy)
+        }
     }
 
 }
