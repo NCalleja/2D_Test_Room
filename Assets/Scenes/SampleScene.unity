@@ -265,7 +265,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 181970957}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: LedgeCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,7 +296,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 367578764}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -478,9 +478,9 @@ GameObject:
   - component: {fileID: 712211812}
   - component: {fileID: 712211813}
   - component: {fileID: 712211814}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Broken Left Leg
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1909,7 +1909,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1064855110}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Attack1Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1943,9 +1943,9 @@ GameObject:
   - component: {fileID: 1145587023}
   - component: {fileID: 1145587024}
   - component: {fileID: 1145587025}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Broken Torso
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2121,7 +2121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1180461520}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2193,9 +2193,9 @@ GameObject:
   - component: {fileID: 1383689103}
   - component: {fileID: 1383689104}
   - component: {fileID: 1383689105}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Alive
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2351,9 +2351,9 @@ GameObject:
   - component: {fileID: 1416479717}
   - component: {fileID: 1416479718}
   - component: {fileID: 1416479719}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Broken Right Leg
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2509,9 +2509,9 @@ GameObject:
   - component: {fileID: 1467519576}
   - component: {fileID: 1467519577}
   - component: {fileID: 1467519578}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Broken Left Arm
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21740,9 +21740,9 @@ GameObject:
   - component: {fileID: 1969340144}
   - component: {fileID: 1969340145}
   - component: {fileID: 1969340146}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Broken Right Arm
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124080,9 +124080,9 @@ GameObject:
   - component: {fileID: 2122380542}
   - component: {fileID: 2122380543}
   - component: {fileID: 2122380544}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Broken Head
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
