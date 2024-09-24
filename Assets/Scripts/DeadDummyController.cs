@@ -87,12 +87,14 @@ public class DeadDummyController : MonoBehaviour
 
         if(applyKnockback && currentHealth > 0.0f)
         {
+            // Calling Knockback
             Knockback();
         }
 
         if(currentHealth < 0.0f)
         {
-            //Die Function
+            // Calling Death Function
+            Die();
         }
     }
 
@@ -144,6 +146,9 @@ public class DeadDummyController : MonoBehaviour
         rbBrokenTorso.velocity = new Vector2(knockbackDeathSpeedX * playerFacingDirection, knockbackDeathSpeedY);
         rbBrokenRightArm.velocity = new Vector2(knockbackDeathSpeedX * playerFacingDirection, knockbackDeathSpeedY);
         rbBrokenLeftArm.velocity = new Vector2(knockbackDeathSpeedX * playerFacingDirection, knockbackDeathSpeedY);
+
+        // Rotate on Body Torque
+        rbBrokenHead.AddTorque(deathTorque * -playerFacingDirection, ForceMode2D.Impulse);
     }
 
 }
