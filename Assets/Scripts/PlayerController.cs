@@ -365,17 +365,6 @@ public class PlayerController : MonoBehaviour
         ledgeDetected = false;
     }
 
-    // ADDITIONAL METHODS (NOT REFACTORED)
-    public void DisableFlip()
-    {
-        canFlip = false;
-    }
-
-    public void EnableFlip()
-    {
-        canFlip = true;
-    }
-
     // On Draw Gizmos
     private void OnDrawGizmos()
     {
@@ -387,6 +376,28 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawLine(WALL_CHECK.position, new Vector3(WALL_CHECK.position.x + WALL_CHECK_DISTANCE, WALL_CHECK.position.y, WALL_CHECK.position.z));
 
         Gizmos.DrawLine(ledgePos1, ledgePos2);
+    }
+
+    // ADDITIONAL METHODS (NOT REFACTORED)
+    public void DisableFlip()
+    {
+        canFlip = false;
+    }
+
+    public void EnableFlip()
+    {
+        canFlip = true;
+    }
+
+    public int GetFacingDirection()
+    {
+        return facingDirection switch
+        {
+            HorizontalDirection.Left => -1,
+            HorizontalDirection.Right => 1,
+            _ => 0,
+        };
+
     }
 
 }
