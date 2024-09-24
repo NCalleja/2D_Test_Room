@@ -9,6 +9,10 @@ public class DeadDummyController : MonoBehaviour
 
     private float currentHealth;
 
+    private int playerFacingDirection;
+
+    private bool playerOnLeft;
+
     private PlayerController pc;
     private GameObject aliveDD, brokenHeadDD, brokenTorsoDD, brokenRightArmDD, brokenLeftArmDD, brokenRightLegDD, brokenLeftLegDD;
     private Rigidbody2D rbAlive, rbBrokenHead, rbBrokenTorso, rbBrokenRightArm, rbBrokenLeftArm, rbBrokenRightLeg, rbBrokenLeftLeg;
@@ -57,6 +61,7 @@ public class DeadDummyController : MonoBehaviour
     private void Damage(float amount)
     {
         currentHealth -= amount;
+        playerFacingDirection = pc.GetFacingDirection();
     }
 
 }
