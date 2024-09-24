@@ -134,6 +134,16 @@ public class DeadDummyController : MonoBehaviour
         brokenLeftArmDD.transform.position = aliveDD.transform.position;
         brokenRightLegDD.transform.position = aliveDD.transform.position;
         brokenLeftLegDD.transform.position = aliveDD.transform.position;
+
+        // Velocity for Knockback on the Legs
+        rbBrokenRightLeg.velocity = new Vector2(knockbackSpeedX * playerFacingDirection, knockbackSpeedY);
+        rbBrokenLeftLeg.velocity = new Vector2(knockbackSpeedX * playerFacingDirection, knockbackSpeedY);
+
+        // Velocity for Knockback on the Upper Body, more knockback
+        rbBrokenHead.velocity = new Vector2(knockbackDeathSpeedX * playerFacingDirection, knockbackDeathSpeedY);
+        rbBrokenTorso.velocity = new Vector2(knockbackDeathSpeedX * playerFacingDirection, knockbackDeathSpeedY);
+        rbBrokenRightArm.velocity = new Vector2(knockbackDeathSpeedX * playerFacingDirection, knockbackDeathSpeedY);
+        rbBrokenLeftArm.velocity = new Vector2(knockbackDeathSpeedX * playerFacingDirection, knockbackDeathSpeedY);
     }
 
 }
