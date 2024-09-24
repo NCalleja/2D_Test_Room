@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class DeadDummyController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private float maxHealth;
+
+    private float currentHealth;
+
+    private PlayerController pc;
+    private GameObject aliveDD, brokenHeadDD, BrokenTorsoDD, BrokenRightArmDD, BrokenLeftArmDD, BrokenRightLegDD, BrokenLeftLegDD;
+    private Rigidbody rbAlive, rbBrokenHead, rbBrokenTorso, rbBrokenRightArm, rbBrokenLeftArm, rbBrokenRightLeg, rbBrokenLeftLeg;
+    private Animator aliveAnim;
+
+    private void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
