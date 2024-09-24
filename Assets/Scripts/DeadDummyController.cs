@@ -44,7 +44,14 @@ public class DeadDummyController : MonoBehaviour
         rbBrokenRightLeg = brokenRightLegDD.GetComponent<Rigidbody2D>();
         rbBrokenLeftLeg = brokenLeftLegDD.GetComponent<Rigidbody2D>();
 
-
+        // Turn ON and OFF the GameObjects
+        aliveDD.SetActive(true);
+        brokenHeadDD.SetActive(false);
+        brokenTorsoDD.SetActive(false);
+        brokenRightArmDD.SetActive(false);
+        brokenLeftArmDD.SetActive(false);
+        brokenRightLegDD.SetActive(false);
+        brokenLeftLegDD.SetActive(false);
     }
 
 }
