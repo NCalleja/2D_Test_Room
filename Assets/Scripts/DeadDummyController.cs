@@ -6,6 +6,8 @@ public class DeadDummyController : MonoBehaviour
 {
     [SerializeField]
     private float maxHealth;
+    [SerializeField]
+    private bool applyKnockback;
 
     private float currentHealth;
 
@@ -58,10 +60,35 @@ public class DeadDummyController : MonoBehaviour
         brokenLeftLegDD.SetActive(false);
     }
 
+    // Damage Function
     private void Damage(float amount)
     {
+        // Taking Damage to Health
         currentHealth -= amount;
         playerFacingDirection = pc.GetFacingDirection();
+
+        // Setting the Facing Direction
+        if (playerFacingDirection == 1)
+        {
+            playerOnLeft = true;
+        }
+        else
+        {
+            playerOnLeft = false;
+        }
+
+        aliveAnim.SetBool("playerOnLeft", playerOnLeft);
+        aliveAnim.SetTrigger("damage");
+
+        if(applyKnockback && currentHealth > 0.0f)
+        {
+            //Knockback Function
+        }
+
+        if(currentHealth < 0.0f)
+        {
+            //Die Function
+        }
     }
 
 }
