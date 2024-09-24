@@ -5,15 +5,15 @@ using UnityEngine;
 public class DeadDummyController : MonoBehaviour
 {
     [SerializeField]
-    private float maxHealth;
+    private float maxHealth, knockbackSpeedX, knockbackSpeedY, knockbackDuration, knockbackDeathSpeedX, knockbackDeathSpeedY, deathTorque;
     [SerializeField]
     private bool applyKnockback;
 
-    private float currentHealth;
+    private float currentHealth, knockbackStart;
 
     private int playerFacingDirection;
 
-    private bool playerOnLeft;
+    private bool playerOnLeft, knockback;
 
     private PlayerController pc;
     private GameObject aliveDD, brokenHeadDD, brokenTorsoDD, brokenRightArmDD, brokenLeftArmDD, brokenRightLegDD, brokenLeftLegDD;
@@ -60,6 +60,11 @@ public class DeadDummyController : MonoBehaviour
         brokenLeftLegDD.SetActive(false);
     }
 
+    private void Update()
+    {
+        CheckKnockBack();
+    }
+
     // Damage Function
     private void Damage(float amount)
     {
@@ -82,13 +87,53 @@ public class DeadDummyController : MonoBehaviour
 
         if(applyKnockback && currentHealth > 0.0f)
         {
-            //Knockback Function
+            Knockback();
         }
 
         if(currentHealth < 0.0f)
         {
             //Die Function
         }
+    }
+
+    // Knockback Funtion
+    private void Knockback()
+    {   
+
+        knockback = true;
+        knockbackStart = Time.time;
+        rbAlive.velocity = new Vector2(knockbackSpeedX * playerFacingDirection, knockbackSpeedY);
+    }
+
+    // Checking Knockback
+    private void CheckKnockBack()
+    {
+        // Making Sure Knockbackd doens't last forever
+        if(Time.time >= knockbackStart + knockbackDuration && knockback)
+        {
+            knockback = false;
+            rbAlive.velocity = new Vector2(0.0f, rbAlive.velocity.y);
+        }
+    }
+
+    private void Die()
+    {
+        // Set the GameObjects to Active
+        aliveDD.SetActive(false);
+        brokenHeadDD.SetActive(true);
+        brokenTorsoDD.SetActive(true);
+        brokenRightArmDD.SetActive(true);
+        brokenLeftArmDD.SetActive(true);
+        brokenRightLegDD.SetActive(true);
+        brokenLeftLegDD.SetActive(true);
+
+        // Set Positions of Objects (IF THIS DOESN'T WORK RECUT YOUR SPRITES)
+        brokenHeadDD.transform.position = aliveDD.transform.position;
+        brokenTorsoDD.transform.position = aliveDD.transform.position;
+        brokenRightArmDD.transform.position = aliveDD.transform.position;
+        brokenLeftArmDD.transform.position = aliveDD.transform.position;
+        brokenRightLegDD.transform.position = aliveDD.transform.position;
+        brokenLeftLegDD.transform.position = aliveDD.transform.position;
     }
 
 }
