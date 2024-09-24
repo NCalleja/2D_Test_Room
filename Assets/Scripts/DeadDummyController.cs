@@ -54,4 +54,9 @@ public class DeadDummyController : MonoBehaviour
         brokenLeftLegDD.SetActive(false);
     }
 
+    private void Damage(float amount)
+    {
+        currentHealth -= amount;
+    }
+
 }
