@@ -8,6 +8,8 @@ public class DeadDummyController : MonoBehaviour
     private float maxHealth, knockbackSpeedX, knockbackSpeedY, knockbackDuration, knockbackDeathSpeedX, knockbackDeathSpeedY, deathTorque;
     [SerializeField]
     private bool applyKnockback;
+    [SerializeField]
+    private GameObject hitParticle;
 
     private float currentHealth, knockbackStart;
 
@@ -71,6 +73,9 @@ public class DeadDummyController : MonoBehaviour
         // Taking Damage to Health
         currentHealth -= amount;
         playerFacingDirection = pc.GetFacingDirection();
+
+        // Creating Hit Particle, Using a Random Rotation
+        Instantiate(hitParticle, aliveAnim.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
 
         // Setting the Facing Direction
         if (playerFacingDirection == 1)
