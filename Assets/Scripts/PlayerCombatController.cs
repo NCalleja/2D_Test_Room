@@ -20,10 +20,16 @@ public class PlayerCombatController : MonoBehaviour
 
     private Animator anim;
 
+    // Refernce to Player Controller
+    private PlayerController playerController;
+
     private void Start()
     {
        anim = GetComponent<Animator>();
        anim.SetBool("canAttack", combatEnabled);
+       
+       // Get the PlayerController Component on the same GameObject 
+       playerController = GetComponent<PlayerController>();
     }
 
     private void Update()
@@ -36,7 +42,7 @@ public class PlayerCombatController : MonoBehaviour
     {
         if (Input.GetButtonDown("AttackButton"))
         {
-            if (combatEnabled)
+            if (combatEnabled && !playerController.IsWallSliding())
             {
 
                 // Attempt Combat

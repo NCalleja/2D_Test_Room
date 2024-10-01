@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour
     private bool isLedgeClimbing = false;
     private bool ledgeDetected;
     private bool canFlip = true;
+    private bool isWallSliding;
 
     // Ledge Position Bottom
     private Vector2 ledgePosBot;
@@ -179,7 +180,7 @@ public class PlayerController : MonoBehaviour
 
         bool isRunning = Mathf.Abs(rigbod.velocity.x) > 0.00001f && isGrounded;
 
-        bool isWallSliding = isTouchingWall && !isGrounded && !isLedgeClimbing;
+        isWallSliding = isTouchingWall && !isGrounded && !isLedgeClimbing;
 
         if (isGrounded && rigbod.velocity.y <= 0.1f)
         {
@@ -387,6 +388,11 @@ public class PlayerController : MonoBehaviour
     public void EnableFlip()
     {
         canFlip = true;
+    }
+
+    public bool IsWallSliding()
+    {
+        return isWallSliding;
     }
 
     public int GetFacingDirection()
