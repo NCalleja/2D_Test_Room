@@ -18,12 +18,15 @@ public class TripodEnemyController : MonoBehaviour
         Dead
     }
 
+    private State currentState;
+
     [SerializeField]
     private float 
         groundCheckDistance, 
         wallCheckDistance, 
         movmentSpeed,
-        maxHealth;
+        maxHealth,
+        knockbackDuration;
 
     [SerializeField]
     private Transform 
@@ -33,19 +36,23 @@ public class TripodEnemyController : MonoBehaviour
     [SerializeField]
     private LayerMask 
         whatIsGround;
-    
-    private State currentState;
+
+    [SerializeField]
+    private Vector2 knockbackSpeed;
 
     // Game Object
     private GameObject alive;
     private Rigidbody2D aliveRb;
 
-    // Wall & Ground Check Variables
     private bool groundDetected, wallDetected;
 
     private int facingDirection;
 
     private Vector2 movement;
+
+    private float 
+        currentHealth,
+        knockbackStartTime;
 
     // Start Function
     private void Start()
@@ -136,6 +143,14 @@ public class TripodEnemyController : MonoBehaviour
     }
 
     // ----- OTHER FUNCTIONS -----
+
+    // Damage Function
+    private void Damage(float[] attackDetails)
+    {
+        currentHealth -= attackDetails[0];
+    }
+
+    // Switch States
     private void SwitchState(State state)
     {
         switch(currentState)
