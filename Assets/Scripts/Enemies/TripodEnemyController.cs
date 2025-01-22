@@ -84,7 +84,35 @@ public class TripodEnemyController : MonoBehaviour
     }
 
     // -- OTHER FUNCTIONS --
+    private void SwitchState(State state)
+    {
+        switch(currentState)
+        {
+            case State.Walking:
+                ExitWalkingState();
+                break;
+            case State.Knockback:
+                ExitKnockbackState();
+                break;
+            case State.Dead:
+                ExitDeadState();
+                break;
+        }
 
+        switch (state)
+        {
+            case State.Walking:
+                EnterWalkingState();
+                break;
+            case State.Knockback:
+                EnterKnockbackState();
+                break;
+            case State.Dead:
+                EnterDeadState();
+                break;
+        }
 
+        currentState = state;
+    }
 
 }
