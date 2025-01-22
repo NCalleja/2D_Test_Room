@@ -31,4 +31,38 @@ public class TripodEnemyController : MonoBehaviour
         
     }
 
+    // -- KNOCKBACK STATE --
+
+    private void EnterKnockbackState()
+    {
+
+    }
+
+    private void UpdateKnockbackState()
+    {
+
+    }
+
+    private void ExitKnockbackState()
+    {
+
+    }
+
+    // -- DEAD STATE --
+
+    private void EnterDeadState()
+    {
+
+    }
+
+    private void UpdateDeadState()
+    {
+
+    }
+
+    private void ExitDeadState()
+    {
+
+    }
+
 }
