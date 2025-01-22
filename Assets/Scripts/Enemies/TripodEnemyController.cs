@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ *  Possible Issues:
+ *  - UpdateWalkingState() - wallDetected Vector2 could be wrong direction
+ */
+
 public class TripodEnemyController : MonoBehaviour
 {
 
@@ -15,6 +20,9 @@ public class TripodEnemyController : MonoBehaviour
 
     private State currentState;
 
+    // Game Object
+    private GameObject alive;
+
     // Wall & Ground Check Variables
     private bool groundDetected, wallDetected;
 
@@ -26,6 +34,15 @@ public class TripodEnemyController : MonoBehaviour
 
     [SerializeField]
     private LayerMask whatIsGround;
+
+    // Walking Variables
+    private int facingDirection;
+
+    // Start Function
+    private void Start()
+    {
+        
+    }
 
     // Update Function
     private void Update()
@@ -44,7 +61,6 @@ public class TripodEnemyController : MonoBehaviour
         }
     }
 
-
     // -- WALKING STATE --
 
     private void EnterWalkingState()
@@ -54,7 +70,17 @@ public class TripodEnemyController : MonoBehaviour
 
     private void UpdateWalkingState()
     {
+        groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
+        wallDetected = Physics2D.Raycast(wallCheck.position, Vector2.left, wallCheckDistance, whatIsGround);
 
+        if (!groundDetected || wallDetected)
+        {
+            // Flip
+        }
+        else
+        {
+            // Move
+        }
     }
 
     private void ExitWalkingState()
@@ -126,6 +152,11 @@ public class TripodEnemyController : MonoBehaviour
         }
 
         currentState = state;
+    }
+
+    private void Flip()
+    {
+        facingDirection *= -1;
     }
 
 }
