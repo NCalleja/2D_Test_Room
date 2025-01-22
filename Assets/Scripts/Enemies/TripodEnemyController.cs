@@ -18,30 +18,42 @@ public class TripodEnemyController : MonoBehaviour
         Dead
     }
 
+    [SerializeField]
+    private float 
+        groundCheckDistance, 
+        wallCheckDistance, 
+        movmentSpeed,
+        maxHealth;
+
+    [SerializeField]
+    private Transform 
+        groundCheck, 
+        wallCheck;
+
+    [SerializeField]
+    private LayerMask 
+        whatIsGround;
+    
     private State currentState;
 
     // Game Object
     private GameObject alive;
+    private Rigidbody2D aliveRb;
 
     // Wall & Ground Check Variables
     private bool groundDetected, wallDetected;
 
-    [SerializeField]
-    private float groundCheckDistance, wallCheckDistance;
-
-    [SerializeField]
-    private Transform groundCheck, wallCheck;
-
-    [SerializeField]
-    private LayerMask whatIsGround;
-
-    // Walking Variables
     private int facingDirection;
+
+    private Vector2 movement;
 
     // Start Function
     private void Start()
     {
-        
+        alive = transform.Find("Alive").gameObject;
+        aliveRb = alive.GetComponent<Rigidbody2D>();
+
+        facingDirection = 1;
     }
 
     // Update Function
@@ -61,7 +73,7 @@ public class TripodEnemyController : MonoBehaviour
         }
     }
 
-    // -- WALKING STATE --
+    // ----- WALKING STATE -----
 
     private void EnterWalkingState()
     {
@@ -75,11 +87,12 @@ public class TripodEnemyController : MonoBehaviour
 
         if (!groundDetected || wallDetected)
         {
-            // Flip
+            Flip();
         }
         else
         {
-            // Move
+            movement.Set(movmentSpeed * facingDirection, aliveRb.velocity.y);
+            aliveRb.velocity = movement;
         }
     }
 
@@ -88,7 +101,7 @@ public class TripodEnemyController : MonoBehaviour
         
     }
 
-    // -- KNOCKBACK STATE --
+    // ----- KNOCKBACK STATE -----
 
     private void EnterKnockbackState()
     {
@@ -105,7 +118,7 @@ public class TripodEnemyController : MonoBehaviour
 
     }
 
-    // -- DEAD STATE --
+    // ----- DEAD STATE -----
 
     private void EnterDeadState()
     {
@@ -122,7 +135,7 @@ public class TripodEnemyController : MonoBehaviour
 
     }
 
-    // -- OTHER FUNCTIONS --
+    // ----- OTHER FUNCTIONS -----
     private void SwitchState(State state)
     {
         switch(currentState)
@@ -154,9 +167,11 @@ public class TripodEnemyController : MonoBehaviour
         currentState = state;
     }
 
+    // Flip Function
     private void Flip()
     {
         facingDirection *= -1;
+        alive.transform.Rotate(0.0f, 180.0f, 0.0f);
     }
 
 }
