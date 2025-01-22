@@ -5,6 +5,7 @@ using UnityEngine;
 public class TripodEnemyController : MonoBehaviour
 {
 
+    // Defining State
     private enum State
     {
         Walking,
@@ -14,6 +15,19 @@ public class TripodEnemyController : MonoBehaviour
 
     private State currentState;
 
+    // Wall & Ground Check Variables
+    private bool groundDetected, wallDetected;
+
+    [SerializeField]
+    private float groundCheckDistance, wallCheckDistance;
+
+    [SerializeField]
+    private Transform groundCheck, wallCheck;
+
+    [SerializeField]
+    private LayerMask whatIsGround;
+
+    // Update Function
     private void Update()
     {
         switch (currentState) 
@@ -29,7 +43,6 @@ public class TripodEnemyController : MonoBehaviour
                 break;
         }
     }
-
 
 
     // -- WALKING STATE --
