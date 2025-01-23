@@ -140,7 +140,8 @@ public class TripodEnemyController : MonoBehaviour
 
     private void EnterDeadState()
     {
-
+        // Spawn Chunks and Blood
+        Destroy(gameObject);
     }
 
     private void UpdateDeadState()
@@ -218,6 +219,13 @@ public class TripodEnemyController : MonoBehaviour
     {
         facingDirection *= -1;
         alive.transform.Rotate(0.0f, 180.0f, 0.0f);
+    }
+
+    // Gizmos Ray Cast Functions
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
+        Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
     }
 
 }
