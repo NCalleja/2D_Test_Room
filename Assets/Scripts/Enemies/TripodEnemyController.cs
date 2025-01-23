@@ -13,7 +13,7 @@ public class TripodEnemyController : MonoBehaviour
     // Defining State
     private enum State
     {
-        Walking,
+        Moving,
         Knockback,
         Dead
     }
@@ -62,6 +62,7 @@ public class TripodEnemyController : MonoBehaviour
     {
         alive = transform.Find("Alive").gameObject;
         aliveRb = alive.GetComponent<Rigidbody2D>();
+        aliveAnim = alive.GetComponent<Animator>();
 
         facingDirection = 1;
     }
@@ -71,8 +72,8 @@ public class TripodEnemyController : MonoBehaviour
     {
         switch (currentState) 
         {
-            case State.Walking:
-                UpdateWalkingState(); 
+            case State.Moving:
+                UpdateMovingState(); 
                 break;
             case State.Knockback:
                 UpdateKnockbackState();
@@ -85,12 +86,12 @@ public class TripodEnemyController : MonoBehaviour
 
     // ----- WALKING STATE -----
 
-    private void EnterWalkingState()
+    private void EnterMovingState()
     {
 
     }
 
-    private void UpdateWalkingState()
+    private void UpdateMovingState()
     {
         groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
         wallDetected = Physics2D.Raycast(wallCheck.position, Vector2.left, wallCheckDistance, whatIsGround);
@@ -106,7 +107,7 @@ public class TripodEnemyController : MonoBehaviour
         }
     }
 
-    private void ExitWalkingState()
+    private void ExitMovingState()
     {
         
     }
@@ -118,16 +119,21 @@ public class TripodEnemyController : MonoBehaviour
         knockbackStartTime = Time.time;
         movement.Set(knockbackSpeed.x * damageDirection, knockbackSpeed.y);
         aliveRb.velocity = movement;
+
+        aliveAnim.SetBool("Knockback", true);
     }
 
     private void UpdateKnockbackState()
     {
-
+        if(Time.time >= knockbackStartTime + knockbackDuration)
+        {
+            SwitchState(State.Moving);
+        }
     }
 
     private void ExitKnockbackState()
     {
-
+        aliveAnim.SetBool("Knockback", false);
     }
 
     // ----- DEAD STATE -----
@@ -180,8 +186,8 @@ public class TripodEnemyController : MonoBehaviour
     {
         switch(currentState)
         {
-            case State.Walking:
-                ExitWalkingState();
+            case State.Moving:
+                ExitMovingState();
                 break;
             case State.Knockback:
                 ExitKnockbackState();
@@ -193,8 +199,8 @@ public class TripodEnemyController : MonoBehaviour
 
         switch (state)
         {
-            case State.Walking:
-                EnterWalkingState();
+            case State.Moving:
+                EnterMovingState();
                 break;
             case State.Knockback:
                 EnterKnockbackState();
