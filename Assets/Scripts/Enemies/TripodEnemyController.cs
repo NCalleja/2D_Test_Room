@@ -43,10 +43,13 @@ public class TripodEnemyController : MonoBehaviour
     // Game Object
     private GameObject alive;
     private Rigidbody2D aliveRb;
+    private Animator aliveAnim;
 
     private bool groundDetected, wallDetected;
 
-    private int facingDirection;
+    private int 
+        facingDirection,
+        damageDirection;
 
     private Vector2 movement;
 
@@ -112,7 +115,9 @@ public class TripodEnemyController : MonoBehaviour
 
     private void EnterKnockbackState()
     {
-
+        knockbackStartTime = Time.time;
+        movement.Set(knockbackSpeed.x * damageDirection, knockbackSpeed.y);
+        aliveRb.velocity = movement;
     }
 
     private void UpdateKnockbackState()
@@ -148,6 +153,26 @@ public class TripodEnemyController : MonoBehaviour
     private void Damage(float[] attackDetails)
     {
         currentHealth -= attackDetails[0];
+
+        if (attackDetails[1] > alive.transform.position.x)
+        {
+            damageDirection = -1;
+        }
+        else
+        {
+            damageDirection = 1;
+        }
+
+        // HIT PARTICLE
+
+        if(currentHealth > 0.0f)
+        {
+            SwitchState(State.Knockback);
+        }
+        else if (currentHealth <= 0.0f)
+        {
+            SwitchState(State.Dead);
+        }
     }
 
     // Switch States
