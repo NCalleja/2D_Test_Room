@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 92f457c1873d0cf469a9666e80bef241
+guid: 2a233e48ecf4a05498e2922b8f0e439e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_0
+      name: Tri-pod Enemy Sprite Sheet v2 1_0
       rect:
         serializedVersion: 2
         x: 270
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9de2201873737c448a1d3b428e1d274
-      internalID: 1440499949
+      spriteID: ec08e81c3d6ef5a4facd791e21f7cb8c
+      internalID: -809168924
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_1
+      name: Tri-pod Enemy Sprite Sheet v2 1_1
       rect:
         serializedVersion: 2
         x: 170
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c43e1ee688837c45bd79e04ddd2e702
-      internalID: 521979928
+      spriteID: a47a5dc664af4c94a8beb07e58a997e5
+      internalID: 1464948387
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_2
+      name: Tri-pod Enemy Sprite Sheet v2 1_2
       rect:
         serializedVersion: 2
         x: 200
@@ -192,17 +192,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c314a1a622fb1f498c1e3a44ce19d91
-      internalID: 2091885730
+      spriteID: be336910997d4ce42835176d24b84dd3
+      internalID: 1517517710
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_3
+      name: Tri-pod Enemy Sprite Sheet v2 1_3
       rect:
         serializedVersion: 2
-        x: 229
+        x: 230
         y: 141
         width: 28
         height: 29
@@ -213,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6191feb1c18d24b4cb2d761663600539
-      internalID: 26678104
+      spriteID: 1de156a5301ebce4db349ca2033b9aba
+      internalID: -1558916529
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_4
+      name: Tri-pod Enemy Sprite Sheet v2 1_4
       rect:
         serializedVersion: 2
         x: 247
@@ -234,14 +234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd6cb2116ae6eb945954f86ab1a2ba66
-      internalID: 612864043
+      spriteID: 82d46c335df237142876d04fae6dfc03
+      internalID: 135444117
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_5
+      name: Tri-pod Enemy Sprite Sheet v2 1_5
       rect:
         serializedVersion: 2
         x: 270
@@ -255,14 +255,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3724581e3bb69b4da5100c49a70dfe1
-      internalID: 207281655
+      spriteID: 2a43c900e3a54b24db0a9c30b268412d
+      internalID: 1752484190
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_6
+      name: Tri-pod Enemy Sprite Sheet v2 1_6
       rect:
         serializedVersion: 2
         x: 104
@@ -276,14 +276,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e89023a7ff1afd40846bcc3f8b91fa9
-      internalID: 1893657417
+      spriteID: 8096ea233bbd645469b35b32893ea899
+      internalID: -621965203
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_7
+      name: Tri-pod Enemy Sprite Sheet v2 1_7
       rect:
         serializedVersion: 2
         x: 147
@@ -297,14 +297,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85bca7be41e8f6d47b82ebe2513b8f34
-      internalID: -811541030
+      spriteID: 287d407a388c61242b7d02b62d0e6b46
+      internalID: 2045442393
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_8
+      name: Tri-pod Enemy Sprite Sheet v2 1_8
       rect:
         serializedVersion: 2
         x: 190
@@ -318,14 +318,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6018b65b90b61c84ca3811e08f29b667
-      internalID: 1327865139
+      spriteID: 24f87b9d85f26784d920bf5ac152fe24
+      internalID: 152284487
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_9
+      name: Tri-pod Enemy Sprite Sheet v2 1_9
       rect:
         serializedVersion: 2
         x: 268
@@ -339,14 +339,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f83f1fe08fdf5a43bba46c6cf639d37
-      internalID: -1434219830
+      spriteID: 7fa5fecfdbd47514982275af91800199
+      internalID: 1665902546
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_10
+      name: Tri-pod Enemy Sprite Sheet v2 1_10
       rect:
         serializedVersion: 2
         x: 61
@@ -360,14 +360,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14ab3106cc0a7e04ea86e101d2fa6d4c
-      internalID: -338375062
+      spriteID: 1c7eaa41f673e0146912b01d8e22e79b
+      internalID: -111847724
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_11
+      name: Tri-pod Enemy Sprite Sheet v2 1_11
       rect:
         serializedVersion: 2
         x: 104
@@ -381,14 +381,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e4cb25bfade69d49b9efd92d16d6b35
-      internalID: -154649131
+      spriteID: ef6a8c19cd4b5e64fb6d91186072a2ad
+      internalID: 1234776687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_12
+      name: Tri-pod Enemy Sprite Sheet v2 1_12
       rect:
         serializedVersion: 2
         x: 147
@@ -402,14 +402,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd9decc12ab954347b9476b9111d9abc
-      internalID: 833458265
+      spriteID: 7c128b5a842913a42adfdd2d61e6341f
+      internalID: -1022001145
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_13
+      name: Tri-pod Enemy Sprite Sheet v2 1_13
       rect:
         serializedVersion: 2
         x: 190
@@ -423,17 +423,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2401384c853d4b44f8c1dca1d56d0116
-      internalID: 1321822540
+      spriteID: 7c31f7f5938e9c146b03eaee337a72b8
+      internalID: 966468655
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_14
+      name: Tri-pod Enemy Sprite Sheet v2 1_14
       rect:
         serializedVersion: 2
-        x: 229
+        x: 230
         y: 100
         width: 28
         height: 29
@@ -444,14 +444,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfcf008f5c067164aaacc1473b940522
-      internalID: -2106675573
+      spriteID: e567c7511b874524c93b95a764f8800c
+      internalID: -909353747
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_15
+      name: Tri-pod Enemy Sprite Sheet v2 1_15
       rect:
         serializedVersion: 2
         x: 268
@@ -465,14 +465,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f1f45b3a4acb5744b09ad91d92e973f
-      internalID: 817297337
+      spriteID: cecdd2fe2a707e64c9561a72bd85dad4
+      internalID: -635531959
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_16
+      name: Tri-pod Enemy Sprite Sheet v2 1_16
       rect:
         serializedVersion: 2
         x: 10
@@ -486,14 +486,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b48eec24281a084f81b48c53f9fdd6f
-      internalID: -1929651308
+      spriteID: 59f174064ea190342a8bb1e8abcaa410
+      internalID: -1817597171
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_17
+      name: Tri-pod Enemy Sprite Sheet v2 1_17
       rect:
         serializedVersion: 2
         x: 78
@@ -507,14 +507,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c0aa63ec6f97f94baba5fbc122f9046
-      internalID: 1078299119
+      spriteID: 0f40bb33f9ae3a345a135eded047dc22
+      internalID: -48242941
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_18
+      name: Tri-pod Enemy Sprite Sheet v2 1_18
       rect:
         serializedVersion: 2
         x: 142
@@ -528,14 +528,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a167c357890ee347a4f09a9b9d97910
-      internalID: 985778493
+      spriteID: 8c350bdf98f1c2a4dae8b4c88aa43270
+      internalID: -1697864792
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_19
+      name: Tri-pod Enemy Sprite Sheet v2 1_19
       rect:
         serializedVersion: 2
         x: 198
@@ -549,14 +549,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c99bf696863bc74196c0737fe3c2a86
-      internalID: 2034891041
+      spriteID: 709e1c0784d5e0647accb710c0501950
+      internalID: 1115520028
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_20
+      name: Tri-pod Enemy Sprite Sheet v2 1_20
       rect:
         serializedVersion: 2
         x: 248
@@ -570,35 +570,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea38f759574709c4882ab460947a2b4e
-      internalID: -400349238
+      spriteID: 4fe077a4259bc134f967447580a19c67
+      internalID: 1988477733
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_21
-      rect:
-        serializedVersion: 2
-        x: 53
-        y: 20
-        width: 45
-        height: 30
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 49326f9f5237a9147b000e543fa5a3ef
-      internalID: -2053415263
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_22
+      name: Tri-pod Enemy Sprite Sheet v2 1_21
       rect:
         serializedVersion: 2
         x: 2
@@ -612,14 +591,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 882a692a273e4e14db0a2d8ae5261617
-      internalID: 1580911485
+      spriteID: eaac55c58f5a68241affe64a922bd31b
+      internalID: 1480781602
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_23
+      name: Tri-pod Enemy Sprite Sheet v2 1_22
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 20
+        width: 45
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cd45bb668b75b444accf7db72f5cc21
+      internalID: 74114797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tri-pod Enemy Sprite Sheet v2 1_23
       rect:
         serializedVersion: 2
         x: 124
@@ -633,14 +633,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 773227b02c55fb54ea4bc61414b5f79f
-      internalID: -812535778
+      spriteID: b437a27b5e6c94c4e89ac39528c4141b
+      internalID: -944323138
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_24
+      name: Tri-pod Enemy Sprite Sheet v2 1_24
       rect:
         serializedVersion: 2
         x: 187
@@ -654,14 +654,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fd3c246c8ebcc84ba11810dc7166435
-      internalID: -2099198430
+      spriteID: d9044d88f90d18e48b6989459eb1bd01
+      internalID: 1480941815
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_26
+      name: Tri-pod Enemy Sprite Sheet v2 1_26
       rect:
         serializedVersion: 2
         x: 248
@@ -675,14 +675,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d7f048ff7596b442a4d74ee3fe4c034
-      internalID: -798490729
+      spriteID: a82736c0461bb5442aa8420a0f5a4a78
+      internalID: -1303006228
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tri-pod Enemy Sprite Sheet v2_30
+      name: Tri-pod Enemy Sprite Sheet v2 1_25
       rect:
         serializedVersion: 2
         x: 226
@@ -696,8 +696,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f43808db5c90ef458d5f7a73f242314
-      internalID: -1569528217
+      spriteID: 2b7b1061d3a01744096324769138f3bb
+      internalID: 484384902
       vertices: []
       indices: 
       edges: []
@@ -713,37 +713,36 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tri-pod Enemy Sprite Sheet v2_0: 1440499949
-      Tri-pod Enemy Sprite Sheet v2_1: 521979928
-      Tri-pod Enemy Sprite Sheet v2_10: -338375062
-      Tri-pod Enemy Sprite Sheet v2_11: -154649131
-      Tri-pod Enemy Sprite Sheet v2_12: 833458265
-      Tri-pod Enemy Sprite Sheet v2_13: 1321822540
-      Tri-pod Enemy Sprite Sheet v2_14: -2106675573
-      Tri-pod Enemy Sprite Sheet v2_15: 817297337
-      Tri-pod Enemy Sprite Sheet v2_16: -1929651308
-      Tri-pod Enemy Sprite Sheet v2_17: 1078299119
-      Tri-pod Enemy Sprite Sheet v2_18: 985778493
-      Tri-pod Enemy Sprite Sheet v2_19: 2034891041
-      Tri-pod Enemy Sprite Sheet v2_2: 2091885730
-      Tri-pod Enemy Sprite Sheet v2_20: -400349238
-      Tri-pod Enemy Sprite Sheet v2_21: -2053415263
-      Tri-pod Enemy Sprite Sheet v2_22: 1580911485
-      Tri-pod Enemy Sprite Sheet v2_23: -812535778
-      Tri-pod Enemy Sprite Sheet v2_24: -2099198430
-      Tri-pod Enemy Sprite Sheet v2_25: 109532658
-      Tri-pod Enemy Sprite Sheet v2_26: -798490729
-      Tri-pod Enemy Sprite Sheet v2_27: -1132237633
-      Tri-pod Enemy Sprite Sheet v2_28: -1293309023
-      Tri-pod Enemy Sprite Sheet v2_29: 1293585984
-      Tri-pod Enemy Sprite Sheet v2_3: 26678104
-      Tri-pod Enemy Sprite Sheet v2_30: -1569528217
-      Tri-pod Enemy Sprite Sheet v2_4: 612864043
-      Tri-pod Enemy Sprite Sheet v2_5: 207281655
-      Tri-pod Enemy Sprite Sheet v2_6: 1893657417
-      Tri-pod Enemy Sprite Sheet v2_7: -811541030
-      Tri-pod Enemy Sprite Sheet v2_8: 1327865139
-      Tri-pod Enemy Sprite Sheet v2_9: -1434219830
+      Tri-pod Enemy Sprite Sheet v2 1_0: -809168924
+      Tri-pod Enemy Sprite Sheet v2 1_1: 1464948387
+      Tri-pod Enemy Sprite Sheet v2 1_10: -111847724
+      Tri-pod Enemy Sprite Sheet v2 1_11: 1234776687
+      Tri-pod Enemy Sprite Sheet v2 1_12: -1022001145
+      Tri-pod Enemy Sprite Sheet v2 1_13: 966468655
+      Tri-pod Enemy Sprite Sheet v2 1_14: -909353747
+      Tri-pod Enemy Sprite Sheet v2 1_15: -635531959
+      Tri-pod Enemy Sprite Sheet v2 1_16: -1817597171
+      Tri-pod Enemy Sprite Sheet v2 1_17: -48242941
+      Tri-pod Enemy Sprite Sheet v2 1_18: -1697864792
+      Tri-pod Enemy Sprite Sheet v2 1_19: 1115520028
+      Tri-pod Enemy Sprite Sheet v2 1_2: 1517517710
+      Tri-pod Enemy Sprite Sheet v2 1_20: 1988477733
+      Tri-pod Enemy Sprite Sheet v2 1_21: 1480781602
+      Tri-pod Enemy Sprite Sheet v2 1_22: 74114797
+      Tri-pod Enemy Sprite Sheet v2 1_23: -944323138
+      Tri-pod Enemy Sprite Sheet v2 1_24: 1480941815
+      Tri-pod Enemy Sprite Sheet v2 1_25: 484384902
+      Tri-pod Enemy Sprite Sheet v2 1_26: -1303006228
+      Tri-pod Enemy Sprite Sheet v2 1_27: -627199775
+      Tri-pod Enemy Sprite Sheet v2 1_28: 405143664
+      Tri-pod Enemy Sprite Sheet v2 1_29: -689241442
+      Tri-pod Enemy Sprite Sheet v2 1_3: -1558916529
+      Tri-pod Enemy Sprite Sheet v2 1_4: 135444117
+      Tri-pod Enemy Sprite Sheet v2 1_5: 1752484190
+      Tri-pod Enemy Sprite Sheet v2 1_6: -621965203
+      Tri-pod Enemy Sprite Sheet v2 1_7: 2045442393
+      Tri-pod Enemy Sprite Sheet v2 1_8: 152284487
+      Tri-pod Enemy Sprite Sheet v2 1_9: 1665902546
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

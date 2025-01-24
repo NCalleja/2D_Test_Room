@@ -491,7 +491,7 @@ Transform:
   m_GameObject: {fileID: 616263700}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.421, y: -0.058, z: 0}
+  m_LocalPosition: {x: 0.438, y: 0.011, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -522,7 +522,7 @@ Transform:
   m_GameObject: {fileID: 880503797}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.382, y: -0.047, z: 0}
+  m_LocalPosition: {x: 0.434, y: -0.157, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2135,7 +2135,7 @@ Transform:
   m_GameObject: {fileID: 1703368692}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.32, y: -3.44, z: 0}
+  m_LocalPosition: {x: 10.79, y: -2.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2156,15 +2156,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundCheckDistance: 0.5
   wallCheckDistance: 0.1
-  movmentSpeed: 0
-  maxHealth: 0
-  knockbackDuration: 0
+  movmentSpeed: 3
+  maxHealth: 30
+  knockbackDuration: 0.1
   groundCheck: {fileID: 880503798}
   wallCheck: {fileID: 616263701}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
-  knockbackSpeed: {x: 0, y: 0}
+    m_Bits: 256
+  knockbackSpeed: {x: 10, y: 5}
 --- !u!1 &1716339599
 GameObject:
   m_ObjectHideFlags: 0
