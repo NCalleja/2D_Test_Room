@@ -2,11 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- *  Possible Issues:
- *  - UpdateWalkingState() - wallDetected Vector2 could be wrong direction
- */
-
 public class TripodEnemyController : MonoBehaviour
 {
 
@@ -39,6 +34,12 @@ public class TripodEnemyController : MonoBehaviour
 
     [SerializeField]
     private Vector2 knockbackSpeed;
+
+    [SerializeField]
+    private GameObject
+        hitParticle,
+        deathChunkParticle,
+        deathBloodParticle;
 
     // Game Object
     private GameObject alive;
@@ -161,6 +162,9 @@ public class TripodEnemyController : MonoBehaviour
     private void Damage(float[] attackDetails)
     {
         currentHealth -= attackDetails[0];
+
+        // Instantiating the Hit Partlice at a Random Rotation on the Enemy's Position
+        Instantiate(hitParticle, alive.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
 
         if (attackDetails[1] > alive.transform.position.x)
         {
