@@ -64,6 +64,7 @@ public class TripodEnemyController : MonoBehaviour
         aliveRb = alive.GetComponent<Rigidbody2D>();
         aliveAnim = alive.GetComponent<Animator>();
 
+        currentHealth = maxHealth;
         facingDirection = 1;
     }
 
