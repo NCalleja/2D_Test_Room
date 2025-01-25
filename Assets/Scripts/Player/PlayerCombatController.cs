@@ -18,6 +18,9 @@ public class PlayerCombatController : MonoBehaviour
 
     private float lastInputTime = Mathf.NegativeInfinity;
 
+    // Adding for Tripod Enemy Attack
+    private float[] attackDetails = new float[2];
+
     private Animator anim;
 
     // Refernce to Player Controller
@@ -81,9 +84,14 @@ public class PlayerCombatController : MonoBehaviour
     {
         Collider2D[] detectObjects = Physics2D.OverlapCircleAll(attack1HitBoxPos.position, attack1Radius, whatIsDamageable);
 
+        // Adding for Tripod Enemy
+        attackDetails[0] = attack1Damage;
+        attackDetails[1] = transform.position.x;
+
         foreach (Collider2D collider in detectObjects) 
         {
-            collider.transform.parent.SendMessage("Damage", attack1Damage);
+            // Updated to use "attackDetials" instead of "attak1Damage" for Tripod Enemy
+            collider.transform.parent.SendMessage("Damage", attackDetails);
             // Instantiate Hit Particle (We're going to do this in the enemy script to have different particles per enemy)
         }
     }
