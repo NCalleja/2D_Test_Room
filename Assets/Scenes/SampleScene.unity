@@ -2157,7 +2157,7 @@ MonoBehaviour:
   groundCheckDistance: 0.5
   wallCheckDistance: 0.1
   movmentSpeed: 3
-  maxHealth: 30
+  maxHealth: 60
   knockbackDuration: 0.1
   groundCheck: {fileID: 880503798}
   wallCheck: {fileID: 616263701}
@@ -2165,6 +2165,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   knockbackSpeed: {x: 10, y: 5}
+  hitParticle: {fileID: 7741699214021019326, guid: ed9b162120ee51147ba7841b1f0ae6e0, type: 3}
+  deathChunkParticle: {fileID: 0}
+  deathBloodParticle: {fileID: 0}
 --- !u!1 &1716339599
 GameObject:
   m_ObjectHideFlags: 0

@@ -68,10 +68,10 @@ public class DeadDummyController : MonoBehaviour
     }
 
     // Damage Function
-    private void Damage(float amount)
+    private void Damage(float[] attackDetails)
     {
         // Taking Damage to Health
-        currentHealth -= amount;
+        currentHealth -= attackDetails[0];
         playerFacingDirection = pc.GetFacingDirection();
 
         // Creating Hit Particle, Using a Random Rotation
