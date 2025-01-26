@@ -58,12 +58,40 @@ public class TripodEnemyController : MonoBehaviour
         currentHealth,
         knockbackStartTime;
 
+    // Adding BROKEN GameObjects & Rigidobody's
+    private GameObject
+        brokenHead1,
+        brokenHead2,
+        brokenMiddle,
+        brokenLeftLeg,
+        brokenMiddleLeg,
+        brokenRightLeg;
+
+    private Rigidbody2D
+        rbBrokenHead1,
+        rbBrokenHead2,
+        rbBrokenMiddle,
+        rbBrokenLeftLeg,
+        rbBrokenMiddleLeg,
+        rbBrokenRightLeg;
+
     // Start Function
     private void Start()
     {
         alive = transform.Find("Alive").gameObject;
         aliveRb = alive.GetComponent<Rigidbody2D>();
         aliveAnim = alive.GetComponent<Animator>();
+
+        // Find Broken Pieces
+        brokenHead1 = transform.Find("Broken Head 1").gameObject;
+        brokenHead2 = transform.Find("Broken Head 2").gameObject;
+        brokenMiddle = transform.Find("Broken Middle").gameObject;
+        brokenLeftLeg = transform.Find("Broken Left Leg").gameObject;
+        brokenMiddleLeg = transform.Find("Broken Middle Leg").gameObject;
+        brokenRightLeg = transform.Find("Broken Right Leg").gameObject;
+
+        // Get Rigibody Components
+        rbBrokenHead1 = brokenHead1.GetComponent<Rigidbody2D>();
 
         currentHealth = maxHealth;
         facingDirection = 1;
