@@ -92,6 +92,19 @@ public class TripodEnemyController : MonoBehaviour
 
         // Get Rigibody Components
         rbBrokenHead1 = brokenHead1.GetComponent<Rigidbody2D>();
+        rbBrokenHead2 = brokenHead2.GetComponent<Rigidbody2D>();
+        rbBrokenMiddle = brokenMiddle.GetComponent<Rigidbody2D>();
+        rbBrokenLeftLeg = brokenLeftLeg.GetComponent<Rigidbody2D>();
+        rbBrokenMiddleLeg = brokenMiddleLeg.GetComponent<Rigidbody2D>();
+        rbBrokenRightLeg = brokenRightLeg.GetComponent<Rigidbody2D>();
+
+        // Set Broken Parts Inactive
+        brokenHead1.SetActive(false);
+        brokenHead2.SetActive(false);
+        brokenMiddle.SetActive(false);
+        brokenLeftLeg.SetActive(false);
+        brokenMiddleLeg.SetActive(false);
+        brokenRightLeg.SetActive(false);
 
         currentHealth = maxHealth;
         facingDirection = 1;
@@ -171,7 +184,43 @@ public class TripodEnemyController : MonoBehaviour
     private void EnterDeadState()
     {
         // Spawn Chunks and Blood
-        Destroy(gameObject);
+        // Destroy(gameObject);
+
+        // CREATING BROKEN PIECES
+        alive.SetActive(false);
+
+        // Activate Broken Pieces
+        brokenHead1.SetActive(true);
+        brokenHead2.SetActive(true);
+        brokenMiddle.SetActive(true);
+        brokenLeftLeg.SetActive(true);
+        brokenRightLeg.SetActive(true);
+        brokenMiddleLeg.SetActive(true);
+
+        // Set Positions for Broken Pieces
+        brokenHead1.transform.position = alive.transform.position;
+        brokenHead2.transform.position = alive.transform.position;
+        brokenMiddle.transform.position = alive.transform.position;
+        brokenLeftLeg.transform.position = alive.transform.position;
+        brokenMiddleLeg.transform.position = alive.transform.position;
+        brokenRightLeg.transform.position = alive.transform.position;
+
+        // Apply Knockback Physics for a Falling Apart Effect
+        rbBrokenHead1.velocity = new Vector2(knockbackSpeed.x * damageDirection, knockbackSpeed.y);
+        rbBrokenHead2.velocity = new Vector2(-knockbackSpeed.x * damageDirection, knockbackSpeed.y);
+        rbBrokenMiddle.velocity = new Vector2(knockbackSpeed.x * damageDirection * 0.5f, knockbackSpeed.y * 0.5f);
+        rbBrokenLeftLeg.velocity = new Vector2(knockbackSpeed.x * damageDirection * 0.3f, knockbackSpeed.y * 0.7f);
+        rbBrokenMiddleLeg.velocity = new Vector2(knockbackSpeed.x * damageDirection * -0.2f, knockbackSpeed.y * 0.6f);
+        rbBrokenRightLeg.velocity = new Vector2(knockbackSpeed.x * damageDirection * 0.4f, knockbackSpeed.y * 0.8f);
+
+        // Add Torque to Simulate Rotational Breaking
+        rbBrokenHead1.AddTorque(10f * -damageDirection, ForceMode2D.Impulse);
+        rbBrokenHead2.AddTorque(-10f * damageDirection, ForceMode2D.Impulse);
+        rbBrokenMiddle.AddTorque(5f * damageDirection, ForceMode2D.Impulse);
+        rbBrokenLeftLeg.AddTorque(8f * damageDirection, ForceMode2D.Impulse);
+        rbBrokenMiddleLeg.AddTorque(-7f * damageDirection, ForceMode2D.Impulse);
+        rbBrokenRightLeg.AddTorque(9f * -damageDirection, ForceMode2D.Impulse);
+
     }
 
     private void UpdateDeadState()
