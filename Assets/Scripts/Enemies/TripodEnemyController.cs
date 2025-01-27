@@ -40,7 +40,7 @@ public class TripodEnemyController : MonoBehaviour
     private GameObject
         hitParticle,
         deathChunkParticle,
-        deathBloodParticle;
+        deathOilParticle;
 
     // Game Object
     private GameObject alive;
@@ -186,6 +186,9 @@ public class TripodEnemyController : MonoBehaviour
     {
         // Spawn Chunks and Blood
         // Destroy(gameObject);
+
+        Instantiate(deathChunkParticle, alive.transform.position, deathChunkParticle.transform.rotation);
+        Instantiate(deathOilParticle, alive.transform.position, deathOilParticle.transform.rotation);
 
         // CREATING BROKEN PIECES
         alive.SetActive(false);

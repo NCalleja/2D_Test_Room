@@ -2686,7 +2686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundCheckDistance: 0.5
   wallCheckDistance: 0.1
-  movmentSpeed: 3
+  movmentSpeed: 2.3
   maxHealth: 50
   knockbackDuration: 0.1
   torqueMultiplier: 0.5
@@ -2697,8 +2697,8 @@ MonoBehaviour:
     m_Bits: 256
   knockbackSpeed: {x: 10, y: 5}
   hitParticle: {fileID: 7741699214021019326, guid: ed9b162120ee51147ba7841b1f0ae6e0, type: 3}
-  deathChunkParticle: {fileID: 0}
-  deathBloodParticle: {fileID: 0}
+  deathChunkParticle: {fileID: 8153411892982130155, guid: 27c550a7bb67fbf40a02f1ddaafbb483, type: 3}
+  deathOilParticle: {fileID: 6098259341623204259, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
 --- !u!1 &1716339599
 GameObject:
   m_ObjectHideFlags: 0
@@ -124497,115 +124497,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1535416783}
   m_SourcePrefab: {fileID: 100100000, guid: 362f1a391a438144faf533dc8c0dcbe7, type: 3}
---- !u!1001 &7873063266798824815
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: InitialModule.maxNumParticles
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: InitialModule.startSize.minScalar
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.0063634748
-      objectReference: {fileID: 0}
-    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.0063634748
-      objectReference: {fileID: 0}
-    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.122641504
-      objectReference: {fileID: 0}
-    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: InitialModule.startColor.minColor.b
-      value: 0.103773594
-      objectReference: {fileID: 0}
-    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: InitialModule.startColor.minColor.g
-      value: 0.103773594
-      objectReference: {fileID: 0}
-    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: InitialModule.startColor.minColor.r
-      value: 0.103773594
-      objectReference: {fileID: 0}
-    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: InitialModule.startColor.minMaxState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: UVModule.sprites.Array.data[0].sprite
-      value: 
-      objectReference: {fileID: -1432043602, guid: 86d1a1d15f8821c48bb3dfc486c21e82, type: 3}
-    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
-      value: 250
-      objectReference: {fileID: 0}
-    - target: {fileID: 6098259341623204259, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: m_Name
-      value: DeathOilParticle
-      objectReference: {fileID: 0}
-    - target: {fileID: 6194702801307159973, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.69
-      objectReference: {fileID: 0}
-    - target: {fileID: 6194702801307159973, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.42
-      objectReference: {fileID: 0}
-    - target: {fileID: 6194702801307159973, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6194702801307159973, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6194702801307159973, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6194702801307159973, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6194702801307159973, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6194702801307159973, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6194702801307159973, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6194702801307159973, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -124615,4 +124506,3 @@ SceneRoots:
   - {fileID: 171315088}
   - {fileID: 7046877212522066391}
   - {fileID: 1703368693}
-  - {fileID: 7873063266798824815}
