@@ -124506,9 +124506,57 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.0063634748
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.0063634748
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.122641504
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0.103773594
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0.103773594
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 0.103773594
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
+      propertyPath: InitialModule.startColor.minMaxState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
       propertyPath: UVModule.sprites.Array.data[0].sprite
       value: 
-      objectReference: {fileID: 746542968, guid: 86d1a1d15f8821c48bb3dfc486c21e82, type: 3}
+      objectReference: {fileID: -1432043602, guid: 86d1a1d15f8821c48bb3dfc486c21e82, type: 3}
+    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 2849847468063998463, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 6098259341623204259, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
       propertyPath: m_Name
       value: DeathOilParticle
