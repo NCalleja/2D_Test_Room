@@ -21,7 +21,8 @@ public class TripodEnemyController : MonoBehaviour
         wallCheckDistance, 
         movmentSpeed,
         maxHealth,
-        knockbackDuration;
+        knockbackDuration,
+        torqueMultiplier;
 
     [SerializeField]
     private Transform 
@@ -214,12 +215,12 @@ public class TripodEnemyController : MonoBehaviour
         rbBrokenRightLeg.velocity = new Vector2(knockbackSpeed.x * damageDirection * 0.4f, knockbackSpeed.y * 0.8f);
 
         // Add Torque to Simulate Rotational Breaking
-        rbBrokenHead1.AddTorque(10f * -damageDirection, ForceMode2D.Impulse);
-        rbBrokenHead2.AddTorque(-10f * damageDirection, ForceMode2D.Impulse);
-        rbBrokenMiddle.AddTorque(5f * damageDirection, ForceMode2D.Impulse);
-        rbBrokenLeftLeg.AddTorque(8f * damageDirection, ForceMode2D.Impulse);
-        rbBrokenMiddleLeg.AddTorque(-7f * damageDirection, ForceMode2D.Impulse);
-        rbBrokenRightLeg.AddTorque(9f * -damageDirection, ForceMode2D.Impulse);
+        rbBrokenHead1.AddTorque(10f * -damageDirection * torqueMultiplier, ForceMode2D.Impulse);
+        rbBrokenHead2.AddTorque(-10f * damageDirection * torqueMultiplier, ForceMode2D.Impulse);
+        rbBrokenMiddle.AddTorque(5f * damageDirection * torqueMultiplier, ForceMode2D.Impulse);
+        rbBrokenLeftLeg.AddTorque(8f * damageDirection * torqueMultiplier, ForceMode2D.Impulse);
+        rbBrokenMiddleLeg.AddTorque(-7f * damageDirection * torqueMultiplier, ForceMode2D.Impulse);
+        rbBrokenRightLeg.AddTorque(9f * -damageDirection * torqueMultiplier, ForceMode2D.Impulse);
 
     }
 

@@ -2607,8 +2607,9 @@ MonoBehaviour:
   groundCheckDistance: 0.5
   wallCheckDistance: 0.1
   movmentSpeed: 3
-  maxHealth: 60
+  maxHealth: 20
   knockbackDuration: 0.1
+  torqueMultiplier: 0.5
   groundCheck: {fileID: 880503798}
   wallCheck: {fileID: 616263701}
   whatIsGround:
