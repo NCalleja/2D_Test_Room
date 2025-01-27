@@ -92,6 +92,7 @@ public class PlayerController : MonoBehaviour
     private bool ledgeDetected;
     private bool canFlip = true;
     private bool isWallSliding;
+    private bool hasDashedInAir = false;
 
     // Ledge Position Bottom
     private Vector2 ledgePosBot;
@@ -186,6 +187,8 @@ public class PlayerController : MonoBehaviour
         {
             // Reset jump counter since we are on the ground
             numJumpsLeft = MAX_JUMPS_FROM_GROUND;
+
+            hasDashedInAir = false;
         }
 
         if (isWallSliding)
@@ -236,7 +239,7 @@ public class PlayerController : MonoBehaviour
         bool isWallJumping = Time.time < wallJumpEndTime;
 
         // Adding Dash Button
-        if (inputDashPressed && Time.time >= dashCoolDownTime)
+        if (inputDashPressed && Time.time >= dashCoolDownTime && (!hasDashedInAir || isGrounded))
         {
             // Attempting to Dash Function
             dashEndTime = Time.time + DASH_TIME;
@@ -246,6 +249,12 @@ public class PlayerController : MonoBehaviour
             // Removing After Image Feature
             // PlayerAfterImagePool.Instance.GetFromPool();
             // lastImageXpos = transform.position.x;
+
+            if (!isGrounded)
+            {
+                hasDashedInAir = true;
+            }
+
         }
         inputDashPressed = false;
 
