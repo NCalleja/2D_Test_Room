@@ -96,7 +96,7 @@ public class DeadDummyController : MonoBehaviour
             Knockback();
         }
 
-        if(currentHealth < 0.0f)
+        if(currentHealth <= 0.0f)
         {
             // Calling Death Function
             Die();

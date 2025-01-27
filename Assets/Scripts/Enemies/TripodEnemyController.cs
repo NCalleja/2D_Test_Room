@@ -207,7 +207,7 @@ public class TripodEnemyController : MonoBehaviour
         brokenRightLeg.transform.position = alive.transform.position;
 
         // Apply Knockback Physics for a Falling Apart Effect
-        rbBrokenHead1.velocity = new Vector2(knockbackSpeed.x * damageDirection, knockbackSpeed.y);
+        rbBrokenHead1.velocity = new Vector2(knockbackSpeed.x * damageDirection * 0.6f, knockbackSpeed.y * 0.6f);
         rbBrokenHead2.velocity = new Vector2(-knockbackSpeed.x * damageDirection, knockbackSpeed.y);
         rbBrokenMiddle.velocity = new Vector2(knockbackSpeed.x * damageDirection * 0.5f, knockbackSpeed.y * 0.5f);
         rbBrokenLeftLeg.velocity = new Vector2(knockbackSpeed.x * damageDirection * 0.3f, knockbackSpeed.y * 0.7f);
