@@ -150,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 21452634}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.9098773, y: -1.6986718, z: -10.109942}
+  m_LocalPosition: {x: -0.7098775, y: -1.6986718, z: -10.109942}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1003,7 +1003,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.9098773, y: -1.6986718, z: -10.109942}
+  m_LocalPosition: {x: -0.7098775, y: -1.6986718, z: -10.109942}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2119,7 +2119,7 @@ Transform:
   m_GameObject: {fileID: 1034694832}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.06, y: -3.43, z: 0}
+  m_LocalPosition: {x: -6.86, y: -3.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2229,7 +2229,7 @@ MonoBehaviour:
   LEDGE_CLIMB_X_OFFSET_2: 0.3
   LEDGE_CLIB_Y_OFFSET_2: 0.9789
   DASH_TIME: 0.2
-  DASH_SPEED: 17.5
+  DASH_SPEED: 20
   DASH_COOL_DOWN: 0.75
   WALL_HOP_DIRECTION: {x: 1, y: 1}
   WALL_JUMP_DIRECTION: {x: 3, y: 5}
@@ -2253,7 +2253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatEnabled: 1
   inputTimer: 0.2
-  attack1Radius: 0.29
+  attack1Radius: 0.4
   attack1Damage: 10
   attack1HitBoxPos: {fileID: 1064855110}
   whatIsDamageable:
@@ -2772,8 +2772,8 @@ Transform:
   m_GameObject: {fileID: 1064855109}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.378, y: 0.168, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.54, y: 0.168, z: 0}
+  m_LocalScale: {x: 3.125, y: 1.7625, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1034694835}
