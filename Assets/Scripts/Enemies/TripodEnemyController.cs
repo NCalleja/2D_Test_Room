@@ -22,7 +22,8 @@ public class TripodEnemyController : MonoBehaviour
         movmentSpeed,
         maxHealth,
         knockbackDuration,
-        torqueMultiplier;
+        torqueMultiplier,
+        lastTouchDamageTime;
 
     [SerializeField]
     private Transform 
