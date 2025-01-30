@@ -382,6 +382,20 @@ public class PlayerController : MonoBehaviour
         ledgeDetected = false;
     }
 
+    // Knockback on Player Function
+    private void Knockback(int direction)
+    {
+        knockback = true;
+
+        knockbackStartTime = Time.time;
+
+        rigbod.velocity = new Vector2(knockbackSpeed.x * direction, knockbackSpeed.y);
+
+    }
+
+    // Check Knockback Function
+
+
     // On Draw Gizmos
     private void OnDrawGizmos()
     {
