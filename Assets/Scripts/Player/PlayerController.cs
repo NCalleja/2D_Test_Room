@@ -94,6 +94,13 @@ public class PlayerController : MonoBehaviour
     private bool isWallSliding;
     private bool hasDashedInAir = false;
 
+    // Knockback Variables
+    private bool knockback;
+    private float knockbackStartTime;
+    [SerializeField]
+    private float knockbackDuration;
+    private Vector2 knockbackSpeed;
+
     // Ledge Position Bottom
     private Vector2 ledgePosBot;
     private Vector2 ledgePos1;
