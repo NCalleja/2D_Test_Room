@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TripodEnemyController : MonoBehaviour
@@ -32,7 +33,8 @@ public class TripodEnemyController : MonoBehaviour
     [SerializeField]
     private Transform 
         groundCheck, 
-        wallCheck;
+        wallCheck,
+        touchDamageCheck;
 
     [SerializeField]
     private LayerMask 
@@ -61,7 +63,7 @@ public class TripodEnemyController : MonoBehaviour
 
     private Vector2 
         movement,
-        touchDamageTopLeft,
+        touchDamageBotLeft,
         touchDamageTopRight;
 
     private float 
@@ -279,6 +281,27 @@ public class TripodEnemyController : MonoBehaviour
         }
     }
 
+    // Touch Damage Function
+    private void CheckTouchDamage()
+    {
+        if(Time.time >= lastTouchDamageTime + touchDamageCooldown)
+        {
+
+            touchDamageBotLeft.Set(touchDamageCheck.position.x - (touchDamageWidth / 2), touchDamageCheck.position.y - (touchDamageHeight / 2));
+            touchDamageTopRight.Set(touchDamageCheck.position.x + (touchDamageWidth / 2), touchDamageCheck.position.y + (touchDamageHeight / 2));
+
+            Collider2D hit = Physics2D.OverlapArea(touchDamageBotLeft, touchDamageTopRight, whatIsPlayer);
+
+            if(hit != null)
+            {
+                lastTouchDamageTime = Time.time;
+                attackDetails[0] = touchDamage;
+                attackDetails[1] = alive.transform.position.x;
+                hit.SendMessage("Damage", attackDetails);
+            }
+        }
+    }
+    
     // Switch States
     private void SwitchState(State state)
     {
