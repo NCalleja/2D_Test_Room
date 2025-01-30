@@ -394,7 +394,10 @@ public class PlayerController : MonoBehaviour
     }
 
     // Check Knockback Function
+    private void checkKnockback()
+    {
 
+    }
 
     // On Draw Gizmos
     private void OnDrawGizmos()
