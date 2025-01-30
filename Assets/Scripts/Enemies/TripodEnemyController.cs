@@ -23,7 +23,11 @@ public class TripodEnemyController : MonoBehaviour
         maxHealth,
         knockbackDuration,
         torqueMultiplier,
-        lastTouchDamageTime;
+        lastTouchDamageTime,
+        touchDamageCooldown,
+        touchDamage,
+        touchDamageWidth,
+        touchDamageHeight;
 
     [SerializeField]
     private Transform 
@@ -32,7 +36,8 @@ public class TripodEnemyController : MonoBehaviour
 
     [SerializeField]
     private LayerMask 
-        whatIsGround;
+        whatIsGround,
+        whatIsPlayer;
 
     [SerializeField]
     private Vector2 knockbackSpeed;
@@ -54,11 +59,16 @@ public class TripodEnemyController : MonoBehaviour
         facingDirection,
         damageDirection;
 
-    private Vector2 movement;
+    private Vector2 
+        movement,
+        touchDamageTopLeft,
+        touchDamageTopRight;
 
     private float 
         currentHealth,
         knockbackStartTime;
+
+    private float[] attackDetails = new float[2];
 
     // Adding BROKEN GameObjects & Rigidobody's
     private GameObject
