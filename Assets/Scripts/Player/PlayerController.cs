@@ -296,7 +296,7 @@ public class PlayerController : MonoBehaviour
         if (horizontalDirection.Neg() == facingDirection && canFlip)
         {
             // Flipping Sprite
-            if (!isWallSliding && !isLedgeClimbing && !isDashing)
+            if (!isWallSliding && !isLedgeClimbing && !isDashing && !knockback)
             {
               
                 facingDirection = facingDirection.Neg();
