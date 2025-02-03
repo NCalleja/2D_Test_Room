@@ -336,11 +336,11 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isDashing", isDashing);
 
         #region ApplyMovement
-        if (isWallJumping || isLedgeClimbing)
+        if (isWallJumping || isLedgeClimbing && !knockback)
         {
             // do nothing
         }
-        else if (isDashing)
+        else if (isDashing && !knockback)
         {
             // Setting Y to 0 so they do not rise or fall (It's a Velocity Not Transform)
             rigbod.velocity = new Vector2(facingDirection == HorizontalDirection.Left ? -DASH_SPEED : DASH_SPEED, 0);
@@ -357,17 +357,17 @@ public class PlayerController : MonoBehaviour
             }
             */
         }
-        else if (isWallSliding)
+        else if (isWallSliding && !knockback)
         {
             // sliding down wall
             rigbod.velocity = new Vector2(rigbod.velocity.x, Mathf.Max(rigbod.velocity.y, -WALL_SLIDE_SPEED));
         }
-        else if (!isGrounded && inputHorizontal == 0)
+        else if (!isGrounded && inputHorizontal == 0 && !knockback)
         {
             // not touching anything and falling through the air
             rigbod.velocity = new Vector2(rigbod.velocity.x * AIR_DRAG_MULTIPLIER, rigbod.velocity.y);
         }
-        else
+        else if (!knockback)
         {
             // normal movement
             rigbod.velocity = new Vector2(MOVEMENT_SPEED * inputHorizontal, rigbod.velocity.y);
