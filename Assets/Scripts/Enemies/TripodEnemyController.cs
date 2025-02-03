@@ -24,7 +24,6 @@ public class TripodEnemyController : MonoBehaviour
         maxHealth,
         knockbackDuration,
         torqueMultiplier,
-        lastTouchDamageTime,
         touchDamageCooldown,
         touchDamage,
         touchDamageWidth,
@@ -68,7 +67,8 @@ public class TripodEnemyController : MonoBehaviour
 
     private float 
         currentHealth,
-        knockbackStartTime;
+        knockbackStartTime,
+        lastTouchDamageTime;
 
     private float[] attackDetails = new float[2];
 
