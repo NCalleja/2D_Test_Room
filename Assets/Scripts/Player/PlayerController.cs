@@ -383,7 +383,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Knockback on Player Function
-    private void Knockback(int direction)
+    public void Knockback(int direction)
     {
         knockback = true;
 
