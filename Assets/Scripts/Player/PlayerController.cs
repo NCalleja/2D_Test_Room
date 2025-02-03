@@ -93,6 +93,7 @@ public class PlayerController : MonoBehaviour
     private bool canFlip = true;
     private bool isWallSliding;
     private bool hasDashedInAir = false;
+    private bool isDashing = false;
 
     // Knockback Variables
     private bool knockback;
@@ -265,7 +266,7 @@ public class PlayerController : MonoBehaviour
         }
         inputDashPressed = false;
 
-        bool isDashing = Time.time < dashEndTime;
+        isDashing = Time.time < dashEndTime;
 
         // Update ledge position
         if (isTouchingWall && !isTouchingLedge && !ledgeDetected)
@@ -380,6 +381,11 @@ public class PlayerController : MonoBehaviour
         isLedgeClimbing = false;
         transform.position = ledgePos2;
         ledgeDetected = false;
+    }
+
+    public bool GetDashStatus()
+    {
+        return isDashing;
     }
 
     // Knockback on Player Function

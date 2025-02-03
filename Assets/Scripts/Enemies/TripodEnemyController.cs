@@ -153,7 +153,7 @@ public class TripodEnemyController : MonoBehaviour
         groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
         wallDetected = Physics2D.Raycast(wallCheck.position, Vector2.left, wallCheckDistance, whatIsGround);
 
-        CheckTouchDamage();
+        //CheckTouchDamage();
 
         if (!groundDetected || wallDetected)
         {

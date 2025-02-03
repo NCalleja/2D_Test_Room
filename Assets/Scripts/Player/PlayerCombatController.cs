@@ -103,22 +103,28 @@ public class PlayerCombatController : MonoBehaviour
         anim.SetBool("attack1", false);
     }
 
+    // Damage Player Unless if they're Dashing
     private void Damage(float[] attackDetails)
     {
-        int direction;
-
-        // Damage Player Here Using attackDetails[0]
-        
-        if (attackDetails[1] < transform.position.x)
+        if (!playerController.GetDashStatus())
         {
-            direction = 1;
-        }
-        else
-        {
-            direction = -1;
-        }
 
-        playerController.Knockback(direction);
+            int direction;
+
+            // Damage Player Here Using attackDetails[0]
+
+            if (attackDetails[1] < transform.position.x)
+            {
+                direction = 1;
+            }
+            else
+            {
+                direction = -1;
+            }
+
+            playerController.Knockback(direction);
+
+        }
     }
 
     private void OnDrawGizmos()
