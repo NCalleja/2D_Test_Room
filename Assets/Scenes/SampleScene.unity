@@ -2244,7 +2244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72e552edf40fd54ab799feaa8bdfaab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackDuration: 0
+  knockbackDuration: 0.1
+  knockbackSpeed: {x: 10, y: 5}
   MAX_JUMPS_FROM_GROUND: 2
   MAX_JUMPS_FROM_WALL: 2
   MOVEMENT_SPEED: 6.5
@@ -3805,7 +3806,7 @@ MonoBehaviour:
     m_Bits: 256
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   knockbackSpeed: {x: 10, y: 5}
   hitParticle: {fileID: 7741699214021019326, guid: ed9b162120ee51147ba7841b1f0ae6e0, type: 3}
   deathChunkParticle: {fileID: 8153411892982130155, guid: 27c550a7bb67fbf40a02f1ddaafbb483, type: 3}

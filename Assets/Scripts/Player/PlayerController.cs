@@ -100,6 +100,8 @@ public class PlayerController : MonoBehaviour
     private float knockbackStartTime;
     [SerializeField]
     private float knockbackDuration;
+
+    [SerializeField]
     private Vector2 knockbackSpeed;
 
     // Ledge Position Bottom
@@ -190,6 +192,8 @@ public class PlayerController : MonoBehaviour
         bool isRunning = Mathf.Abs(rigbod.velocity.x) > 0.00001f && isGrounded;
 
         isWallSliding = isTouchingWall && !isGrounded && !isLedgeClimbing;
+
+        checkKnockback();
 
         if (isGrounded && rigbod.velocity.y <= 0.1f)
         {
