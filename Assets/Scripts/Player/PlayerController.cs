@@ -396,7 +396,11 @@ public class PlayerController : MonoBehaviour
     // Check Knockback Function
     private void checkKnockback()
     {
-
+        if(Time.time >= knockbackStartTime + knockbackDuration && knockback)
+        {
+            knockback = false;
+            rigbod.velocity = new Vector2(0.0f, rigbod.velocity.y);
+        }
     }
 
     // On Draw Gizmos
