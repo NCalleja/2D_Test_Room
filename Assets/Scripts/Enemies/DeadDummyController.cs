@@ -72,7 +72,17 @@ public class DeadDummyController : MonoBehaviour
     {
         // Taking Damage to Health
         currentHealth -= attackDetails[0];
-        playerFacingDirection = pc.GetFacingDirection();
+
+        // Getting Facing Direction
+        if (attackDetails[1] < aliveDD.transform.position.x)
+        {
+            playerFacingDirection = 1;
+
+        }
+        else
+        {
+            playerFacingDirection = -1;
+        }
 
         // Creating Hit Particle, Using a Random Rotation
         Instantiate(hitParticle, aliveAnim.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));

@@ -2245,7 +2245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockbackDuration: 0.1
-  knockbackSpeed: {x: 10, y: 5}
+  knockbackSpeed: {x: 15, y: 7}
   MAX_JUMPS_FROM_GROUND: 2
   MAX_JUMPS_FROM_WALL: 2
   MOVEMENT_SPEED: 6.5
