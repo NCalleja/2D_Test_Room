@@ -26,13 +26,17 @@ public class PlayerCombatController : MonoBehaviour
     // Refernce to Player Controller
     private PlayerController playerController;
 
+    // Refernce to Player Stats
+    private PlayerStats playerStats;
+
     private void Start()
     {
        anim = GetComponent<Animator>();
        anim.SetBool("canAttack", combatEnabled);
        
-       // Get the PlayerController Component on the same GameObject 
+       // Get the PlayerController & PlayerStats Components on the same GameObject 
        playerController = GetComponent<PlayerController>();
+       playerStats = GetComponent<PlayerStats>(); 
     }
 
     private void Update()
