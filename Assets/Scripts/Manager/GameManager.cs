@@ -4,15 +4,38 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField]
+    private Transform respawnPoint;
+
+    [SerializeField]
+    private GameObject player;
+
+    [SerializeField]
+    private float respawnTime;
+
+    private float respawnTimeStart;
+
+    private bool respawn;
+
+    private void Update()
     {
-        
+        CheckRespawn();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Respawn()
     {
-        
+        respawnTimeStart = Time.time;
+
+        respawn = true;
     }
+
+    private void CheckRespawn()
+    {
+        if(Time.time >= respawnTimeStart + respawnTime)
+        {
+            Instantiate(player, respawnPoint);
+        }
+    }
+
 }
