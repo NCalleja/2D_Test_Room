@@ -25,5 +25,16 @@ public class PlayerStats : MonoBehaviour
     public void DecreaseHealth(float amount)
     {
         currentHealth -= amount;
+
+        if(currentHealth <= 0.0f)
+        {
+            Die();
+        }
+
+    }
+
+    private void Die()
+    {
+
     }
 }

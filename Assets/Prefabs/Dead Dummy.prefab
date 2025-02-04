@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c48aae09dfd6ac2438f638777413f35a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 20
   knockbackSpeedX: 10
   knockbackSpeedY: 5
   knockbackDuration: 0.1
@@ -547,7 +547,8 @@ GameObject:
   - component: {fileID: 7434835275473874959}
   - component: {fileID: 5553125909244433336}
   - component: {fileID: 3753280541816153025}
-  - component: {fileID: 1574640213424122494}
+  - component: {fileID: 257817988534166556}
+  - component: {fileID: 7369960343577112292}
   m_Layer: 10
   m_Name: Broken Left Leg
   m_TagString: Enemy
@@ -649,8 +650,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &1574640213424122494
-BoxCollider2D:
+--- !u!70 &257817988534166556
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -681,19 +682,44 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.012442827, y: -0.010740995}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.15625, y: 0.34375}
-    newSize: {x: 0.15625, y: 0.34375}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.057576656, y: 0.20092916}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.017648935, y: -0.0025213957}
+  m_Size: {x: 0.07556915, y: 0.29836679}
+  m_Direction: 0
+--- !u!70 &7369960343577112292
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5725364585929125909}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.017648935, y: -0.0025213957}
+  m_Size: {x: 0.07556915, y: 0.29836679}
+  m_Direction: 0
 --- !u!1 &6173236967712880784
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,7 +1027,8 @@ GameObject:
   - component: {fileID: 2918296179893244897}
   - component: {fileID: 3632674267856739627}
   - component: {fileID: 3356198070925486069}
-  - component: {fileID: 7568266740303896142}
+  - component: {fileID: 1386897877499809431}
+  - component: {fileID: 177366395367348531}
   m_Layer: 10
   m_Name: Broken Right Leg
   m_TagString: Enemy
@@ -1103,8 +1130,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &7568266740303896142
-BoxCollider2D:
+--- !u!70 &1386897877499809431
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1135,16 +1162,41 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0175215, y: -0.0060191154}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.15625, y: 0.34375}
-    newSize: {x: 0.15625, y: 0.34375}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.05780673, y: 0.24712992}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.011345744, y: -0.0063033104}
+  m_Size: {x: 0.08313298, y: 0.2857604}
+  m_Direction: 0
+--- !u!70 &177366395367348531
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8292773338477696165}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.011345744, y: -0.0063033104}
+  m_Size: {x: 0.08313298, y: 0.2857604}
+  m_Direction: 0
