@@ -2244,8 +2244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72e552edf40fd54ab799feaa8bdfaab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackDuration: 0.1
-  knockbackSpeed: {x: 15, y: 7}
+  knockbackDuration: 0.2
+  knockbackSpeed: {x: 10, y: 10}
   MAX_JUMPS_FROM_GROUND: 2
   MAX_JUMPS_FROM_WALL: 2
   MOVEMENT_SPEED: 6.5
