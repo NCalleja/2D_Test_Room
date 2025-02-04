@@ -116,6 +116,7 @@ public class PlayerCombatController : MonoBehaviour
             int direction;
 
             // Damage Player Here Using attackDetails[0]
+            playerStats.DecreaseHealth(attackDetails[0]);
 
             if (attackDetails[1] < transform.position.x)
             {

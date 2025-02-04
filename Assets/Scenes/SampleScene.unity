@@ -1742,6 +1742,7 @@ GameObject:
   - component: {fileID: 1034694834}
   - component: {fileID: 1034694838}
   - component: {fileID: 1034694839}
+  - component: {fileID: 1034694840}
   - component: {fileID: 1034694833}
   - component: {fileID: 1034694836}
   - component: {fileID: 1034694837}
@@ -1976,6 +1977,21 @@ MonoBehaviour:
   whatIsDamageable:
     serializedVersion: 2
     m_Bits: 512
+--- !u!114 &1034694840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034694832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12b847e65f58ccc4faca128ceed19fcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 50
+  deathChunkParticle: {fileID: 8153411892982130155, guid: 27c550a7bb67fbf40a02f1ddaafbb483, type: 3}
+  deathBloodParticle: {fileID: 6098259341623204259, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
 --- !u!1 &1059880902
 GameObject:
   m_ObjectHideFlags: 0
