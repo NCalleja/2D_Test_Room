@@ -50,7 +50,28 @@ public class PlayerStats : MonoBehaviour
     {
         Instantiate(deathChunkParticleTD, transform.position, deathChunkParticleTD.transform.rotation);
         Instantiate(deathBloodParticleTD, transform.position, deathBloodParticleTD.transform.rotation);
+
+        // Activating Broken Parts
+        // activateBrokenParts();
+
         GM.Respawn();
         Destroy(gameObject);
     }
+
+
+    // Method to Activate Broken Parts
+    private void activateBrokenParts()
+    {
+
+        // Setting GameObjects to Active
+        broken_Head.SetActive(true);
+        broken_Torso.SetActive(true);
+        broken_LeftArm.SetActive(true); 
+        broken_RightArm.SetActive(true);
+        broken_LeftLeg.SetActive(true);
+        broken_RightLeg.SetActive(true);
+
+
+    }
+
 }
