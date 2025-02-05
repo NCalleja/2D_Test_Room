@@ -44,6 +44,11 @@ public class PlayerStats : MonoBehaviour
 
         // GameObjects
         broken_Head = transform.Find("Broken_Head").gameObject;
+        broken_Torso = transform.Find("Broken_Torso").gameObject;
+        broken_LeftArm = transform.Find("Broken_LeftArm").gameObject;
+        broken_RightArm = transform.Find("Broken_RightArm").gameObject;
+        broken_LeftLeg = transform.Find("Broken_LeftLeg").gameObject;
+        broken_RightLeg = transform.Find("Broken_RightLeg").gameObject;
 
         // Rigibody Ref
         rbBrokenHead = broken_Head.GetComponent<Rigidbody2D>();
@@ -93,10 +98,10 @@ public class PlayerStats : MonoBehaviour
         broken_Head.transform.position = transform.position;
 
         // Apply Knockback
-        //rbBrokenHead.velocity = new Vector2(UnityEngine.Random.Range(-2f, 2f), UnityEngine.Random.Range(2f, 5f));
+        rbBrokenHead.velocity = new Vector2(UnityEngine.Random.Range(-2f, 2f), UnityEngine.Random.Range(2f, 5f));
 
         // Apply Torque
-        //rbBrokenHead.AddTorque(UnityEngine.Random.Range(-10, 10f), ForceMode2D.Impulse);
+        rbBrokenHead.AddTorque(UnityEngine.Random.Range(-10, 10f), ForceMode2D.Impulse);
 
     }
 
