@@ -16,10 +16,10 @@ public class PlayerStats : MonoBehaviour
 
     private float currentHealth;
 
+    // Game Manager
     private GameManager GM;
 
     // Broken Pieces
-    [SerializeField]
     private GameObject
         broken_Head,
         broken_Torso,
@@ -28,10 +28,26 @@ public class PlayerStats : MonoBehaviour
         broken_LeftLeg,
         broken_RightLeg;
 
+    // Broken Rigibody Pieces
+    private Rigidbody2D
+        rbBrokenHead,
+        rbBrokenTorso,
+        rbBrokenLeftArm,
+        rbBrokenRightArm,
+        rbBrokenLeftLeg,
+        rbBrokenRightLeg;
+
     private void Start()
     {
         currentHealth = maxHealth;
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        // GameObjects
+        broken_Head = transform.Find("Broken_Head").gameObject;
+
+        // Rigibody Ref
+        rbBrokenHead = broken_Head.GetComponent<Rigidbody2D>();
+
 
     }
 
@@ -52,7 +68,7 @@ public class PlayerStats : MonoBehaviour
         Instantiate(deathBloodParticleTD, transform.position, deathBloodParticleTD.transform.rotation);
 
         // Activating Broken Parts
-        // activateBrokenParts();
+        activateBrokenParts();
 
         GM.Respawn();
         Destroy(gameObject);
@@ -62,25 +78,25 @@ public class PlayerStats : MonoBehaviour
     // Method to Activate Broken Parts
     private void activateBrokenParts()
     {
+        // Must Turn Off Parent
+        broken_Head.transform.SetParent(null);
 
         // Setting GameObjects to Active
         broken_Head.SetActive(true);
-        broken_Torso.SetActive(true);
-        broken_LeftArm.SetActive(true); 
-        broken_RightArm.SetActive(true);
-        broken_LeftLeg.SetActive(true);
-        broken_RightLeg.SetActive(true);
+        //broken_Torso.SetActive(true);
+        //broken_LeftArm.SetActive(true); 
+        //broken_RightArm.SetActive(true);
+        //broken_LeftLeg.SetActive(true);
+        //broken_RightLeg.SetActive(true);
 
-        // Get Rigidbodies
-        Rigidbody2D rbHead = broken_Head.GetComponent<Rigidbody2D>();
-        Rigidbody2D rbTorso = broken_Torso.GetComponent<Rigidbody2D>();
-        Rigidbody2D rbLeftArm = broken_LeftArm.GetComponent<Rigidbody2D>();
-        Rigidbody2D rbRightArm = broken_RightArm.GetComponent<Rigidbody2D>();
-        Rigidbody2D rbLeftLeg = broken_LeftLeg.GetComponent<Rigidbody2D>();
-        Rigidbody2D rbRightLeg = broken_RightLeg.GetComponent<Rigidbody2D>();
+        // Setting Position to Parent GameObject
+        broken_Head.transform.position = transform.position;
 
+        // Apply Knockback
+        //rbBrokenHead.velocity = new Vector2(UnityEngine.Random.Range(-2f, 2f), UnityEngine.Random.Range(2f, 5f));
 
-
+        // Apply Torque
+        //rbBrokenHead.AddTorque(UnityEngine.Random.Range(-10, 10f), ForceMode2D.Impulse);
 
     }
 
