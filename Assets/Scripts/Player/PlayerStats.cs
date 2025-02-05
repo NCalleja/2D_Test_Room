@@ -11,8 +11,8 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField]
     private GameObject
-        deathChunkParticle,
-        deathBloodParticle;
+        deathChunkParticleTD,
+        deathBloodParticleTD;
 
     private float currentHealth;
 
@@ -38,8 +38,8 @@ public class PlayerStats : MonoBehaviour
 
     private void Die()
     {
-        Instantiate(deathChunkParticle, transform.position, deathChunkParticle.transform.rotation);
-        Instantiate(deathBloodParticle, transform.position, deathBloodParticle.transform.rotation);
+        Instantiate(deathChunkParticleTD, transform.position, deathChunkParticle.transform.rotation);
+        Instantiate(deathBloodParticleTD, transform.position, deathBloodParticle.transform.rotation);
         GM.Respawn();
         Destroy(gameObject);
     }
