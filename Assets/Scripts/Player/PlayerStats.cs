@@ -18,6 +18,16 @@ public class PlayerStats : MonoBehaviour
 
     private GameManager GM;
 
+    // Broken Pieces
+    [SerializeField]
+    private GameObject
+        broken_Head,
+        broken_Torso,
+        broken_LeftArm,
+        broken_RightArm,
+        broken_LeftLeg,
+        broken_RightLeg;
+
     private void Start()
     {
         currentHealth = maxHealth;
