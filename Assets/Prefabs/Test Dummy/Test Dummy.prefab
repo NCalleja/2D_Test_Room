@@ -198,8 +198,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
-  deathChunkParticle: {fileID: 8153411892982130155, guid: 27c550a7bb67fbf40a02f1ddaafbb483, type: 3}
-  deathBloodParticle: {fileID: 6098259341623204259, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
+  deathChunkParticleTD: {fileID: 8153411892982130155, guid: 149be8c026a1a7d45a62da996ff3f77b, type: 3}
+  deathBloodParticleTD: {fileID: 6098259341623204259, guid: eff00d001ad8ee0428f95e6350e305c7, type: 3}
 --- !u!95 &1697100737831024872
 Animator:
   serializedVersion: 5
