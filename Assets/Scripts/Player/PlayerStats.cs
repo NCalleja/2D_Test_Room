@@ -52,6 +52,11 @@ public class PlayerStats : MonoBehaviour
 
         // Rigibody Ref
         rbBrokenHead = broken_Head.GetComponent<Rigidbody2D>();
+        rbBrokenTorso = broken_Torso.GetComponent<Rigidbody2D>();
+        rbBrokenLeftArm = broken_LeftArm.GetComponent<Rigidbody2D>();
+        rbBrokenRightArm = broken_RightArm.GetComponent<Rigidbody2D>();
+        rbBrokenLeftLeg = broken_LeftLeg.GetComponent<Rigidbody2D>();
+        rbBrokenRightLeg = broken_RightLeg.GetComponent<Rigidbody2D>();
 
 
     }
