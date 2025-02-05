@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -45,6 +46,8 @@ public class GameManager : MonoBehaviour
             var playerTemp = Instantiate(player, respawnPoint);
 
             CVC.m_Follow = playerTemp.transform;
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
             respawn = false;
         }
