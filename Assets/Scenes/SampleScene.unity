@@ -2359,7 +2359,7 @@ Transform:
   m_GameObject: {fileID: 1293067640}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.769, y: -0.019, z: 0}
+  m_LocalPosition: {x: 0.338, y: 0.047, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2772,9 +2772,9 @@ MonoBehaviour:
   hitParticle: {fileID: 7741699214021019326, guid: ed9b162120ee51147ba7841b1f0ae6e0, type: 3}
   deathChunkParticle: {fileID: 8153411892982130155, guid: 27c550a7bb67fbf40a02f1ddaafbb483, type: 3}
   deathOilParticle: {fileID: 6098259341623204259, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
-  attackRange: 1.5
+  attackRange: 0.48
   attackDamage: 10
-  attackPoint: {fileID: 0}
+  attackPoint: {fileID: 1293067641}
 --- !u!1001 &1707352720
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22157,8 +22157,8 @@ BoxCollider2D:
   m_Offset: {x: 0.00659436, y: 0.020400673}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.875, y: 0.90625}
+    pivot: {x: 0.48258817, y: 0.4999996}
+    oldSize: {x: 1.53125, y: 0.9375}
     newSize: {x: 0.875, y: 0.90625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

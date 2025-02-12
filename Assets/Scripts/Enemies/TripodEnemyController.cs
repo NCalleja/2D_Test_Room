@@ -314,6 +314,22 @@ public class TripodEnemyController : MonoBehaviour
         }
     }
     
+    private void TriggerShockAttack()
+    {
+
+        Collider2D shockHit = Physics2D.OverlapCircle(attackPoint.position, attackRange, whatIsPlayer);
+
+        if (shockHit != null)
+        {
+            float[] attackDetails = new float[2];
+            attackDetails[0] = attackDamage;
+            attackDetails[1] = alive.transform.position.x;
+
+            shockHit.SendMessage("Damage ", attackDetails);
+        }
+
+    }
+
     // Switch States
     private void SwitchState(State state)
     {
@@ -358,6 +374,15 @@ public class TripodEnemyController : MonoBehaviour
     {
         Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
         Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
+
+        // Drawing Damage Circle
+        if (attackPoint != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+
+        }
+
 
         // Four Corner Box for Touch Damage
         Vector2 botLeft = new Vector2(touchDamageCheck.position.x - (touchDamageWidth / 2), touchDamageCheck.position.y - (touchDamageHeight / 2));
