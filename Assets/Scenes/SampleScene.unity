@@ -2772,6 +2772,9 @@ MonoBehaviour:
   hitParticle: {fileID: 7741699214021019326, guid: ed9b162120ee51147ba7841b1f0ae6e0, type: 3}
   deathChunkParticle: {fileID: 8153411892982130155, guid: 27c550a7bb67fbf40a02f1ddaafbb483, type: 3}
   deathOilParticle: {fileID: 6098259341623204259, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
+  attackRange: 1.5
+  attackDamage: 10
+  attackPoint: {fileID: 0}
 --- !u!1001 &1707352720
 PrefabInstance:
   m_ObjectHideFlags: 0

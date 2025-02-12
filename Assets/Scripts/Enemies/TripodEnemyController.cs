@@ -49,6 +49,16 @@ public class TripodEnemyController : MonoBehaviour
         deathChunkParticle,
         deathOilParticle;
 
+    // Combat for Attack
+    [SerializeField]
+    private float
+        attackRange,
+        attackDamage;
+
+    [SerializeField]
+    private Transform
+        attackPoint;
+
     // Game Object
     private GameObject alive;
     private Rigidbody2D aliveRb;
