@@ -55,6 +55,15 @@ public class TripodEnemyController : MonoBehaviour
         attackRange,
         attackDamage;
 
+    // Attack Variables
+    [SerializeField]
+    private float
+        attackCooldown,
+        detectionRagne;
+
+    private float lastAttackTime;
+    private bool isAttacking;
+
     [SerializeField]
     private Transform
         attackPoint;
