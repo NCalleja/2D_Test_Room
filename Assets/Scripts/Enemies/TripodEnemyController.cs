@@ -59,7 +59,7 @@ public class TripodEnemyController : MonoBehaviour
     [SerializeField]
     private float
         attackCooldown,
-        detectionRagne;
+        detectionRange;
 
     private float lastAttackTime;
     private bool isAttacking;
@@ -336,6 +336,15 @@ public class TripodEnemyController : MonoBehaviour
 
             shockHit.SendMessage("Damage ", attackDetails);
         }
+
+    }
+
+    private bool CanAttackPlayer()
+    {
+        
+        Collider2D player = Physics2D.OverlapCircle(transform.position, detectionRange, whatIsPlayer);
+
+        return player != null && Time.time >= lastAttackTime + attackCooldown && !isAttacking;
 
     }
 
