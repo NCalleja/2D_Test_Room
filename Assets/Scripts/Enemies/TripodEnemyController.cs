@@ -149,7 +149,8 @@ public class TripodEnemyController : MonoBehaviour
         switch (currentState) 
         {
             case State.Moving:
-                UpdateMovingState(); 
+                UpdateMovingState();
+                if (CanAttackPlayer()) StartAttack();
                 break;
             case State.Knockback:
                 UpdateKnockbackState();
@@ -339,12 +340,32 @@ public class TripodEnemyController : MonoBehaviour
 
     }
 
+    // Detecting Player and Allow Cooldown for Attack
     private bool CanAttackPlayer()
     {
         
         Collider2D player = Physics2D.OverlapCircle(transform.position, detectionRange, whatIsPlayer);
 
         return player != null && Time.time >= lastAttackTime + attackCooldown && !isAttacking;
+
+    }
+
+    // Handles Attack and Animation
+    private void StartAttack()
+    {
+        isAttacking = true;
+
+        lastAttackTime = Time.time;
+
+        aliveAnim.SetBool("isAttacking", true); 
+    }
+
+    // Finish Attack
+    private void FinishAttack()
+    {
+
+        isAttacking = false;
+        aliveAnim.SetBool("isAttacking", false);
 
     }
 
