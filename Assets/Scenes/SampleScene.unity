@@ -2774,6 +2774,8 @@ MonoBehaviour:
   deathOilParticle: {fileID: 6098259341623204259, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
   attackRange: 0.48
   attackDamage: 10
+  attackCooldown: 0
+  detectionRange: 0
   attackPoint: {fileID: 1293067641}
 --- !u!1001 &1707352720
 PrefabInstance:
@@ -22016,8 +22018,8 @@ GameObject:
   - component: {fileID: 1904891529}
   - component: {fileID: 1904891531}
   - component: {fileID: 1904891530}
-  - component: {fileID: 1904891533}
   - component: {fileID: 1904891532}
+  - component: {fileID: 1904891533}
   m_Layer: 9
   m_Name: Alive
   m_TagString: Enemy
@@ -22157,8 +22159,8 @@ BoxCollider2D:
   m_Offset: {x: 0.00659436, y: 0.020400673}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.48258817, y: 0.4999996}
-    oldSize: {x: 1.53125, y: 0.9375}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.875, y: 0.90625}
     newSize: {x: 0.875, y: 0.90625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
