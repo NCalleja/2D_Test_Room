@@ -324,7 +324,7 @@ public class TripodEnemyController : MonoBehaviour
         }
     }
     
-    private void TriggerShockAttack()
+    public void TriggerShockAttack()
     {
 
         Collider2D shockHit = Physics2D.OverlapCircle(attackPoint.position, attackRange, whatIsPlayer);
@@ -361,7 +361,7 @@ public class TripodEnemyController : MonoBehaviour
     }
 
     // Finish Attack
-    private void FinishAttack()
+    public void FinishAttack()
     {
 
         isAttacking = false;

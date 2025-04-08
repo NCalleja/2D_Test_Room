@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class AnimationEventForwarder : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    private TripodEnemyController parentController;
+
+    private void Start()
     {
-        
+        parentController = GetComponentInParent<TripodEnemyController>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TriggerShockAttack()
     {
-        
+
+        if (parentController != null)
+        {
+            parentController.TriggerShockAttack();
+        }
+
+    }
+
+    public void FinishAttack()
+    {
+        if (parentController != null)
+        {
+            parentController.FinishAttack();
+        }
     }
 }
