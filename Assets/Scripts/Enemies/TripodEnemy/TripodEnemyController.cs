@@ -335,7 +335,7 @@ public class TripodEnemyController : MonoBehaviour
             attackDetails[0] = attackDamage;
             attackDetails[1] = alive.transform.position.x;
 
-            shockHit.SendMessage("Damage ", attackDetails);
+            shockHit.SendMessage("Damage", attackDetails);
         }
 
     }
