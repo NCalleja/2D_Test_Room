@@ -2773,8 +2773,8 @@ MonoBehaviour:
   deathOilParticle: {fileID: 6098259341623204259, guid: 457b0e4c357c09b4c83f580967867245, type: 3}
   attackRange: 0.48
   attackDamage: 10
-  attackCooldown: 0
-  detectionRange: 0
+  attackCooldown: 1
+  detectionRange: 1.25
   attackPoint: {fileID: 1293067641}
 --- !u!1001 &1707352720
 PrefabInstance:

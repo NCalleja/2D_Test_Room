@@ -344,9 +344,20 @@ public class TripodEnemyController : MonoBehaviour
     private bool CanAttackPlayer()
     {
         
-        Collider2D player = Physics2D.OverlapCircle(transform.position, detectionRange, whatIsPlayer);
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        return player != null && Time.time >= lastAttackTime + attackCooldown && !isAttacking;
+        if (player == null || isAttacking || Time.time < lastAttackTime + attackCooldown)
+        {
+            return false;
+        }
+
+        float distance = Vector2.Distance(alive.transform.position, player.transform.position);
+        return distance <= detectionRange;
+        
+
+        //Collider2D player = Physics2D.OverlapCircle(transform.position, detectionRange, whatIsPlayer);
+
+        //return player != null && Time.time >= lastAttackTime + attackCooldown && !isAttacking;
 
     }
 
@@ -354,6 +365,8 @@ public class TripodEnemyController : MonoBehaviour
     private void StartAttack()
     {
         isAttacking = true;
+
+        Debug.Log("Tripod Started Attacking!");
 
         lastAttackTime = Time.time;
 
