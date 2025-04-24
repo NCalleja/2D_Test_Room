@@ -358,9 +358,8 @@ public class TripodEnemyController : MonoBehaviour
         }
 
         float directionToPlayer = player.transform.position.x - alive.transform.position.x;
-        float facingDirection = alive.transform.localScale.x;
 
-        bool playerIsInFront = (facingDirection > 0 && directionToPlayer > 0) || (facingDirection < 0 && directionToPlayer < 0);
+        bool playerIsInFront = (facingDirection == 1 && directionToPlayer > 0) || (facingDirection == -1 && directionToPlayer < 0);
 
         return playerIsInFront;
 
