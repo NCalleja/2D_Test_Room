@@ -352,12 +352,17 @@ public class TripodEnemyController : MonoBehaviour
         }
 
         float distance = Vector2.Distance(alive.transform.position, player.transform.position);
-        return distance <= detectionRange;
-        
+        if (distance > detectionRange)
+        {
+            return distance <= detectionRange;
+        }
 
-        //Collider2D player = Physics2D.OverlapCircle(transform.position, detectionRange, whatIsPlayer);
+        float directionToPlayer = player.transform.position.x - alive.transform.position.x;
+        float facingDirection = alive.transform.localScale.x;
 
-        //return player != null && Time.time >= lastAttackTime + attackCooldown && !isAttacking;
+        bool playerIsInFront = (facingDirection > 0 && directionToPlayer > 0) || (facingDirection < 0 && directionToPlayer < 0);
+
+        return playerIsInFront;
 
     }
 
