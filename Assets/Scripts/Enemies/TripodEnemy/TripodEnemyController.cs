@@ -27,7 +27,10 @@ public class TripodEnemyController : MonoBehaviour
         touchDamageCooldown,
         touchDamage,
         touchDamageWidth,
-        touchDamageHeight;
+        touchDamageHeight,
+        chaseSpeedMultiplier,
+        playerChaseRange,
+        loseSightTime;
 
     [SerializeField]
     private Transform 
@@ -61,9 +64,6 @@ public class TripodEnemyController : MonoBehaviour
         attackCooldown,
         detectionRange;
 
-    private float lastAttackTime;
-    private bool isAttacking;
-
     [SerializeField]
     private Transform
         attackPoint;
@@ -73,7 +73,12 @@ public class TripodEnemyController : MonoBehaviour
     private Rigidbody2D aliveRb;
     private Animator aliveAnim;
 
-    private bool groundDetected, wallDetected;
+    // Private Bool
+    private bool 
+        isAttacking,
+        groundDetected, 
+        wallDetected,
+        chasingPlayer = false;
 
     private int 
         facingDirection,
@@ -87,7 +92,8 @@ public class TripodEnemyController : MonoBehaviour
     private float 
         currentHealth,
         knockbackStartTime,
-        lastTouchDamageTime;
+        lastTouchDamageTime,
+        lastAttackTime;
 
     private float[] attackDetails = new float[2];
 
