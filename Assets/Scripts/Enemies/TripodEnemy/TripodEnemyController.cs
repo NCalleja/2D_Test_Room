@@ -212,6 +212,22 @@ public class TripodEnemyController : MonoBehaviour
             if (chasingPlayer)
             {
                 currentSpeed *= chaseSpeedMultiplier;
+
+                // Find the Player
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+                if (player != null)
+                {
+
+                    // Dectect Direction to Player
+                    float directionToPlayer = player.transform.position.x - alive.transform.position.x;
+
+                    // Flip toward Player
+                    if ((directionToPlayer > 0 && facingDirection == -1) || (directionToPlayer < 0 && facingDirection == 1))
+                    {
+                        Flip();
+                    }
+                }
             }
 
             movement.Set(movementSpeed * facingDirection, aliveRb.velocity.y);
