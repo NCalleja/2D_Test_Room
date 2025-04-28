@@ -230,7 +230,7 @@ public class TripodEnemyController : MonoBehaviour
                 }
             }
 
-            movement.Set(movementSpeed * facingDirection, aliveRb.velocity.y);
+            movement.Set(currentSpeed * facingDirection, aliveRb.velocity.y);
             aliveRb.velocity = movement;
         }
     }
