@@ -20,7 +20,7 @@ public class TripodEnemyController : MonoBehaviour
     private float 
         groundCheckDistance, 
         wallCheckDistance, 
-        movmentSpeed,
+        movementSpeed,
         maxHealth,
         knockbackDuration,
         torqueMultiplier,
@@ -93,7 +93,8 @@ public class TripodEnemyController : MonoBehaviour
         currentHealth,
         knockbackStartTime,
         lastTouchDamageTime,
-        lastAttackTime;
+        lastAttackTime,
+        lastTimePlayerSeen;
 
     private float[] attackDetails = new float[2];
 
@@ -165,6 +166,13 @@ public class TripodEnemyController : MonoBehaviour
                 UpdateDeadState();
                 break;
         }
+
+        // Chase Logic - Give Up After X Seconds Without Detection
+        if (chasingPlayer && Time.time >= lastTimePlayerSeen + loseSightTime)
+        {
+            chasingPlayer = false;
+        }
+
     }
 
     // ----- WALKING STATE -----
@@ -177,15 +185,18 @@ public class TripodEnemyController : MonoBehaviour
     private void UpdateMovingState()
     {
 
+        // Stop Moving While Attacking
         if (isAttacking)
         {
             aliveRb.velocity = Vector2.zero;
             return;
         }
 
+        // Ground and Wall Detection
         groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
         wallDetected = Physics2D.Raycast(wallCheck.position, Vector2.left, wallCheckDistance, whatIsGround);
 
+        // Check Touch Damage
         CheckTouchDamage();
 
         if (!groundDetected || wallDetected)
@@ -194,7 +205,16 @@ public class TripodEnemyController : MonoBehaviour
         }
         else
         {
-            movement.Set(movmentSpeed * facingDirection, aliveRb.velocity.y);
+
+            float currentSpeed = movementSpeed;
+
+            // If Chasing Player, Move Faster
+            if (chasingPlayer)
+            {
+                currentSpeed *= chaseSpeedMultiplier;
+            }
+
+            movement.Set(movementSpeed * facingDirection, aliveRb.velocity.y);
             aliveRb.velocity = movement;
         }
     }
@@ -374,7 +394,19 @@ public class TripodEnemyController : MonoBehaviour
 
         bool playerIsInFront = (facingDirection == 1 && directionToPlayer > 0) || (facingDirection == -1 && directionToPlayer < 0);
 
-        return playerIsInFront;
+        if (playerIsInFront)
+        {
+            // Begin Chasing
+            if(!chasingPlayer)
+            {
+                chasingPlayer = true;
+            }
+
+            lastTimePlayerSeen = Time.time;
+            return distance <= detectionRange;
+        }
+
+        return false;
 
     }
 
