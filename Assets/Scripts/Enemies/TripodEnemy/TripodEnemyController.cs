@@ -170,6 +170,13 @@ public class TripodEnemyController : MonoBehaviour
 
     private void UpdateMovingState()
     {
+
+        if (isAttacking)
+        {
+            aliveRb.velocity = Vector2.zero;
+            return;
+        }
+
         groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
         wallDetected = Physics2D.Raycast(wallCheck.position, Vector2.left, wallCheckDistance, whatIsGround);
 
