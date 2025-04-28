@@ -2761,6 +2761,7 @@ MonoBehaviour:
   chaseSpeedMultiplier: 2
   playerChaseRange: 10
   loseSightTime: 7
+  animationChaseSpeed: 1.5
   groundCheck: {fileID: 880503798}
   wallCheck: {fileID: 616263701}
   touchDamageCheck: {fileID: 104803284}

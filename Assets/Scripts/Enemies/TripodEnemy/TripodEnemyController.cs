@@ -30,7 +30,8 @@ public class TripodEnemyController : MonoBehaviour
         touchDamageHeight,
         chaseSpeedMultiplier,
         playerChaseRange,
-        loseSightTime;
+        loseSightTime,
+        animationChaseSpeed;
 
     [SerializeField]
     private Transform 
@@ -172,6 +173,8 @@ public class TripodEnemyController : MonoBehaviour
         {
             chasingPlayer = false;
         }
+
+        UpdateAnimationSpeed();
 
     }
 
@@ -484,6 +487,21 @@ public class TripodEnemyController : MonoBehaviour
     {
         facingDirection *= -1;
         alive.transform.Rotate(0.0f, 180.0f, 0.0f);
+    }
+
+    // Chase Speed Animation Logic
+    private void UpdateAnimationSpeed()
+    {
+
+        if (chasingPlayer)
+        {
+            aliveAnim.speed = animationChaseSpeed;
+        }
+        else
+        {
+            aliveAnim.speed = 1.0f;
+        }
+
     }
 
     // Gizmos Ray Cast Functions
