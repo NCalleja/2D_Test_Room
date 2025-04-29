@@ -95,7 +95,9 @@ public class TripodEnemyController : MonoBehaviour
         knockbackStartTime,
         lastTouchDamageTime,
         lastAttackTime,
-        lastTimePlayerSeen;
+        lastTimePlayerSeen,
+        wallPauseTime = 0.5f,
+        wallPauseStartTime;
 
     private float[] attackDetails = new float[2];
 
@@ -345,6 +347,11 @@ public class TripodEnemyController : MonoBehaviour
     // Damage Function
     private void Damage(float[] attackDetails)
     {
+
+        // If it takes damage, then chase the player
+        chasingPlayer = true;
+        lastTimePlayerSeen = Time.time;
+
         currentHealth -= attackDetails[0];
 
         // Instantiating the Hit Partlice at a Random Rotation on the Enemy's Position
