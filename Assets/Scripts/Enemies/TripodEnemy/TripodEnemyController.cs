@@ -231,6 +231,18 @@ public class TripodEnemyController : MonoBehaviour
                     if (wallDetected)
                     {
                         aliveRb.velocity = Vector2.zero;
+                        
+                        if(Time.time >= wallPauseStartTime + wallPauseTime)
+                        {
+                            // Flip toward Player
+                            if ((directionToPlayer > 0 && facingDirection == -1) || (directionToPlayer < 0 && facingDirection == 1))
+                            {
+                                Flip();
+                            }
+
+                            wallPauseStartTime = Time.time;
+                        }
+
                         return;
                     }
 
