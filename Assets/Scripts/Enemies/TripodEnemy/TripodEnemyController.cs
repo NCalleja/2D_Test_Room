@@ -202,7 +202,7 @@ public class TripodEnemyController : MonoBehaviour
         // Check Touch Damage
         CheckTouchDamage();
 
-        if (!groundDetected || wallDetected)
+        if (!groundDetected)
         {
             Flip();
         }
@@ -225,6 +225,13 @@ public class TripodEnemyController : MonoBehaviour
                     // Dectect Direction to Player
                     float directionToPlayer = player.transform.position.x - alive.transform.position.x;
 
+                    // If Wall Detected While Chasing, STOP MOVING
+                    if (wallDetected)
+                    {
+                        aliveRb.velocity = Vector2.zero;
+                        return;
+                    }
+
                     // Flip toward Player
                     if ((directionToPlayer > 0 && facingDirection == -1) || (directionToPlayer < 0 && facingDirection == 1))
                     {
@@ -232,7 +239,16 @@ public class TripodEnemyController : MonoBehaviour
                     }
                 }
             }
+            else
+            {
+                // Only Flip at Walls During Patrol, not Chase
+                if (wallDetected)
+                {
+                    Flip();
+                }
+            }
 
+            // Move Based on Current Speed
             movement.Set(currentSpeed * facingDirection, aliveRb.velocity.y);
             aliveRb.velocity = movement;
         }
