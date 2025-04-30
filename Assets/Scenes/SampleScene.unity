@@ -2758,10 +2758,11 @@ MonoBehaviour:
   touchDamage: 10
   touchDamageWidth: 0.8
   touchDamageHeight: 0.8
-  chaseSpeedMultiplier: 2
+  chaseSpeedMultiplier: 1.5
   playerChaseRange: 10
   loseSightTime: 7
   animationChaseSpeed: 1.5
+  chaseDetectionRange: 10
   groundCheck: {fileID: 880503798}
   wallCheck: {fileID: 616263701}
   touchDamageCheck: {fileID: 104803284}
@@ -2778,7 +2779,7 @@ MonoBehaviour:
   attackRange: 0.48
   attackDamage: 10
   attackCooldown: 1
-  detectionRange: 1.25
+  detectionRange: 1.2
   attackPoint: {fileID: 1293067641}
 --- !u!1001 &1707352720
 PrefabInstance:

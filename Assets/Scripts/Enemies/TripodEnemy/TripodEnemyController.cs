@@ -31,7 +31,8 @@ public class TripodEnemyController : MonoBehaviour
         chaseSpeedMultiplier,
         playerChaseRange,
         loseSightTime,
-        animationChaseSpeed;
+        animationChaseSpeed,
+        chaseDetectionRange;
 
     [SerializeField]
     private Transform 
@@ -439,24 +440,23 @@ public class TripodEnemyController : MonoBehaviour
         }
 
         float distance = Vector2.Distance(alive.transform.position, player.transform.position);
-        if (distance > detectionRange)
-        {
-            return distance <= detectionRange;
-        }
 
         float directionToPlayer = player.transform.position.x - alive.transform.position.x;
 
         bool playerIsInFront = (facingDirection == 1 && directionToPlayer > 0) || (facingDirection == -1 && directionToPlayer < 0);
 
-        if (playerIsInFront)
+        if (playerIsInFront && distance <= chaseDetectionRange)
         {
             // Begin Chasing
             if(!chasingPlayer)
             {
                 chasingPlayer = true;
+
+                wallPauseStartTime = Time.time;
             }
 
             lastTimePlayerSeen = Time.time;
+
             return distance <= detectionRange;
         }
 
@@ -552,7 +552,6 @@ public class TripodEnemyController : MonoBehaviour
             Gizmos.DrawWireSphere(attackPoint.position, attackRange);
 
         }
-
 
         // Four Corner Box for Touch Damage
         Vector2 botLeft = new Vector2(touchDamageCheck.position.x - (touchDamageWidth / 2), touchDamageCheck.position.y - (touchDamageHeight / 2));
