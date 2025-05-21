@@ -298,6 +298,9 @@ public class TripodEnemyController : MonoBehaviour
             // Move Based on Current Speed
             movement.Set(currentSpeed * facingDirection, aliveRb.velocity.y);
             aliveRb.velocity = movement;
+
+            // Set isMoving parameter for Idle/Walk Animation Control
+            aliveAnim.SetBool("isMoving", Mathf.Abs(aliveRb.velocity.x) > 0.01f);
         }
     }
 
