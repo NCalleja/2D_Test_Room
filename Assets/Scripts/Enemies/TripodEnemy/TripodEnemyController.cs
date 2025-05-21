@@ -191,6 +191,8 @@ public class TripodEnemyController : MonoBehaviour
     private void UpdateMovingState()
     {
 
+        bool isStopped = false;
+
         // Stop Moving While Attacking
         if (isAttacking)
         {
@@ -212,6 +214,7 @@ public class TripodEnemyController : MonoBehaviour
             {
                 // Stop at ledge while chasing, don't flip or fall
                 aliveRb.velocity = Vector2.zero;
+                isStopped = true;
 
                 if(Time.time >= wallPauseStartTime + wallPauseTime)
                 {
@@ -264,6 +267,7 @@ public class TripodEnemyController : MonoBehaviour
                     if (wallDetected)
                     {
                         aliveRb.velocity = Vector2.zero;
+                        isStopped = true;
 
                         if (Time.time >= wallPauseStartTime + wallPauseTime)
                         {
@@ -294,14 +298,23 @@ public class TripodEnemyController : MonoBehaviour
                     Flip();
                 }
             }
-
-            // Move Based on Current Speed
-            movement.Set(currentSpeed * facingDirection, aliveRb.velocity.y);
-            aliveRb.velocity = movement;
-
-            // Set isMoving parameter for Idle/Walk Animation Control
-            aliveAnim.SetBool("isMoving", Mathf.Abs(aliveRb.velocity.x) > 0.01f);
         }
+
+        /*
+        if (!isStopped)
+        {
+            movement.Set(movementSpeed * facingDirection, aliveRb.velocity.y);
+            aliveRb.velocity = movement;
+            aliveAnim.SetBool("isMoving", true);
+        }
+        else
+        {
+            aliveAnim.SetBool("isMoving", false);
+        }
+
+        Debug.Log("Tripod isMoving: " + !isStopped + " | Velocity: " + aliveRb.velocity.x);
+        */
+
     }
 
     private void ExitMovingState()
