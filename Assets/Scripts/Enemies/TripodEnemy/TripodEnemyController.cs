@@ -207,7 +207,39 @@ public class TripodEnemyController : MonoBehaviour
 
         if (!groundDetected)
         {
-            Flip();
+
+            if (chasingPlayer)
+            {
+                // Stop at ledge while chasing, don't flip or fall
+                aliveRb.velocity = Vector2.zero;
+
+                if(Time.time >= wallPauseStartTime + wallPauseTime)
+                {
+                    GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+                    if (player != null)
+                    {
+                        float directionToPlayer = player.transform.position.x - alive.transform.position.x;
+
+                        if ((directionToPlayer > 0 && facingDirection == -1) || (directionToPlayer < 0 && facingDirection == 1))
+                        {
+                            Flip();
+                        }
+                    }
+
+                    wallPauseStartTime = Time.time;
+
+                }
+
+                return;
+
+            }
+            else
+            {
+
+                // Flip at ledges during patrol only
+                Flip();
+            }
         }
         else
         {
@@ -232,8 +264,8 @@ public class TripodEnemyController : MonoBehaviour
                     if (wallDetected)
                     {
                         aliveRb.velocity = Vector2.zero;
-                        
-                        if(Time.time >= wallPauseStartTime + wallPauseTime)
+
+                        if (Time.time >= wallPauseStartTime + wallPauseTime)
                         {
                             // Flip toward Player
                             if ((directionToPlayer > 0 && facingDirection == -1) || (directionToPlayer < 0 && facingDirection == 1))
