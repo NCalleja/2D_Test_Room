@@ -21,6 +21,7 @@ public class TripodEnemyController : MonoBehaviour
         groundCheckDistance, 
         wallCheckDistance, 
         movementSpeed,
+        chaseSpeed,
         maxHealth,
         knockbackDuration,
         torqueMultiplier,
@@ -177,8 +178,6 @@ public class TripodEnemyController : MonoBehaviour
             chasingPlayer = false;
         }
 
-        UpdateAnimationSpeed();
-
     }
 
     // ----- WALKING STATE -----
@@ -305,14 +304,14 @@ public class TripodEnemyController : MonoBehaviour
         if (!isStopped)
         {
 
-            currentSpeed = chasingPlayer ? movementSpeed * chaseSpeedMultiplier : movementSpeed;
-
+            currentSpeed = chasingPlayer ? chaseSpeed : movementSpeed;
             movement.Set(currentSpeed * facingDirection, aliveRb.velocity.y);
             aliveRb.velocity = movement;
 
         }
             
         aliveAnim.SetBool("isMoving", !isStopped);
+        aliveAnim.SetBool("isChasing", chasingPlayer && !isStopped);
         
 
         Debug.Log("Tripod isMoving: " + !isStopped + " | Velocity: " + aliveRb.velocity.x);
@@ -580,23 +579,6 @@ public class TripodEnemyController : MonoBehaviour
     {
         facingDirection *= -1;
         alive.transform.Rotate(0.0f, 180.0f, 0.0f);
-    }
-
-    // Chase Speed Animation Logic
-    private void UpdateAnimationSpeed()
-    {
-
-        bool isMoving = aliveAnim.GetBool("isMoving");
-
-        if (chasingPlayer && isMoving)
-        {
-            aliveAnim.speed = animationChaseSpeed;
-        }
-        else
-        {
-            aliveAnim.speed = 1.0f;
-        }
-
     }
 
     // Gizmos Ray Cast Functions
