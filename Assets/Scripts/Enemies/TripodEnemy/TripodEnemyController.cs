@@ -192,6 +192,7 @@ public class TripodEnemyController : MonoBehaviour
     {
 
         bool isStopped = false;
+        float currentSpeed = movementSpeed;
 
         // Stop Moving While Attacking
         if (isAttacking)
@@ -247,7 +248,7 @@ public class TripodEnemyController : MonoBehaviour
         else
         {
 
-            float currentSpeed = movementSpeed;
+            currentSpeed = movementSpeed;
 
             // If Chasing Player, Move Faster
             if (chasingPlayer)
@@ -300,20 +301,22 @@ public class TripodEnemyController : MonoBehaviour
             }
         }
 
-        /*
+
         if (!isStopped)
         {
-            movement.Set(movementSpeed * facingDirection, aliveRb.velocity.y);
+
+            currentSpeed = chasingPlayer ? movementSpeed * chaseSpeedMultiplier : movementSpeed;
+
+            movement.Set(currentSpeed * facingDirection, aliveRb.velocity.y);
             aliveRb.velocity = movement;
-            aliveAnim.SetBool("isMoving", true);
+
         }
-        else
-        {
-            aliveAnim.SetBool("isMoving", false);
-        }
+            
+        aliveAnim.SetBool("isMoving", !isStopped);
+        
 
         Debug.Log("Tripod isMoving: " + !isStopped + " | Velocity: " + aliveRb.velocity.x);
-        */
+        
 
     }
 
@@ -583,7 +586,9 @@ public class TripodEnemyController : MonoBehaviour
     private void UpdateAnimationSpeed()
     {
 
-        if (chasingPlayer)
+        bool isMoving = aliveAnim.GetBool("isMoving");
+
+        if (chasingPlayer && isMoving)
         {
             aliveAnim.speed = animationChaseSpeed;
         }
