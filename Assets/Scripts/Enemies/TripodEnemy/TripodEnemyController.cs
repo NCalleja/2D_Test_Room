@@ -217,7 +217,7 @@ public class TripodEnemyController : MonoBehaviour
                 aliveRb.velocity = Vector2.zero;
                 isStopped = true;
 
-                if(Time.time >= wallPauseStartTime + wallPauseTime)
+                if (Time.time >= wallPauseStartTime + wallPauseTime)
                 {
                     GameObject player = GameObject.FindGameObjectWithTag("Player");
 
