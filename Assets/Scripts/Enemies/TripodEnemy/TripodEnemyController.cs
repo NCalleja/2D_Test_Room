@@ -17,9 +17,9 @@ public class TripodEnemyController : MonoBehaviour
     private State currentState;
 
     [SerializeField]
-    private float 
-        groundCheckDistance, 
-        wallCheckDistance, 
+    private float
+        groundCheckDistance,
+        wallCheckDistance,
         movementSpeed,
         chaseSpeed,
         maxHealth,
@@ -36,13 +36,13 @@ public class TripodEnemyController : MonoBehaviour
         chaseDetectionRange;
 
     [SerializeField]
-    private Transform 
-        groundCheck, 
+    private Transform
+        groundCheck,
         wallCheck,
         touchDamageCheck;
 
     [SerializeField]
-    private LayerMask 
+    private LayerMask
         whatIsGround,
         whatIsPlayer;
 
@@ -77,22 +77,22 @@ public class TripodEnemyController : MonoBehaviour
     private Animator aliveAnim;
 
     // Private Bool
-    private bool 
+    private bool
         isAttacking,
-        groundDetected, 
+        groundDetected,
         wallDetected,
         chasingPlayer = false;
 
-    private int 
+    private int
         facingDirection,
         damageDirection;
 
-    private Vector2 
+    private Vector2
         movement,
         touchDamageBotLeft,
         touchDamageTopRight;
 
-    private float 
+    private float
         currentHealth,
         knockbackStartTime,
         lastTouchDamageTime,
@@ -158,7 +158,7 @@ public class TripodEnemyController : MonoBehaviour
     // Update Function
     private void Update()
     {
-        switch (currentState) 
+        switch (currentState)
         {
             case State.Moving:
                 UpdateMovingState();
@@ -234,7 +234,7 @@ public class TripodEnemyController : MonoBehaviour
 
                 }
 
-                return;
+                //return;
 
             }
             else
@@ -280,7 +280,7 @@ public class TripodEnemyController : MonoBehaviour
                             wallPauseStartTime = Time.time;
                         }
 
-                        return;
+                        //return;
                     }
 
                     // Flip toward Player
@@ -309,19 +309,19 @@ public class TripodEnemyController : MonoBehaviour
             aliveRb.velocity = movement;
 
         }
-            
+
         aliveAnim.SetBool("isMoving", !isStopped);
         aliveAnim.SetBool("isChasing", chasingPlayer && !isStopped);
-        
+
 
         Debug.Log("Tripod isMoving: " + !isStopped + " | Velocity: " + aliveRb.velocity.x);
-        
+
 
     }
 
     private void ExitMovingState()
     {
-        
+
     }
 
     // ----- KNOCKBACK STATE -----
@@ -337,7 +337,7 @@ public class TripodEnemyController : MonoBehaviour
 
     private void UpdateKnockbackState()
     {
-        if(Time.time >= knockbackStartTime + knockbackDuration)
+        if (Time.time >= knockbackStartTime + knockbackDuration)
         {
             SwitchState(State.Moving);
         }
@@ -431,7 +431,7 @@ public class TripodEnemyController : MonoBehaviour
 
         // HIT PARTICLE
 
-        if(currentHealth > 0.0f)
+        if (currentHealth > 0.0f)
         {
             SwitchState(State.Knockback);
         }
@@ -444,7 +444,7 @@ public class TripodEnemyController : MonoBehaviour
     // Touch Damage Function
     private void CheckTouchDamage()
     {
-        if(Time.time >= lastTouchDamageTime + touchDamageCooldown)
+        if (Time.time >= lastTouchDamageTime + touchDamageCooldown)
         {
 
             touchDamageBotLeft.Set(touchDamageCheck.position.x - (touchDamageWidth / 2), touchDamageCheck.position.y - (touchDamageHeight / 2));
@@ -452,7 +452,7 @@ public class TripodEnemyController : MonoBehaviour
 
             Collider2D hit = Physics2D.OverlapArea(touchDamageBotLeft, touchDamageTopRight, whatIsPlayer);
 
-            if(hit != null)
+            if (hit != null)
             {
                 lastTouchDamageTime = Time.time;
                 attackDetails[0] = touchDamage;
@@ -461,7 +461,7 @@ public class TripodEnemyController : MonoBehaviour
             }
         }
     }
-    
+
     public void TriggerShockAttack()
     {
 
@@ -481,7 +481,7 @@ public class TripodEnemyController : MonoBehaviour
     // Detecting Player and Allow Cooldown for Attack
     private bool CanAttackPlayer()
     {
-        
+
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
         if (player == null || isAttacking || Time.time < lastAttackTime + attackCooldown)
@@ -505,7 +505,7 @@ public class TripodEnemyController : MonoBehaviour
         if (playerIsInFront && distance <= chaseDetectionRange)
         {
             // Begin Chasing
-            if(!chasingPlayer)
+            if (!chasingPlayer)
             {
                 chasingPlayer = true;
 
@@ -530,7 +530,7 @@ public class TripodEnemyController : MonoBehaviour
 
         lastAttackTime = Time.time;
 
-        aliveAnim.SetBool("isAttacking", true); 
+        aliveAnim.SetBool("isAttacking", true);
     }
 
     // Finish Attack
@@ -545,7 +545,7 @@ public class TripodEnemyController : MonoBehaviour
     // Switch States
     private void SwitchState(State state)
     {
-        switch(currentState)
+        switch (currentState)
         {
             case State.Moving:
                 ExitMovingState();
