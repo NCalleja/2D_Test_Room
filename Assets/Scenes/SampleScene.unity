@@ -150,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 21452634}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.940125, y: 0.2913282, z: -10.109942}
+  m_LocalPosition: {x: -0.5298772, y: -1.5086718, z: -10.109942}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -405,7 +405,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.940125, y: 0.2913282, z: -10.109942}
+  m_LocalPosition: {x: -0.5298772, y: -1.5086718, z: -10.109942}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24843,25 +24843,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basic Tripod Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 4747849585428265417, guid: b13186390dc5b61498ee37b8da038204, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 4747849585428265417, guid: b13186390dc5b61498ee37b8da038204, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.05
-      objectReference: {fileID: 0}
     - target: {fileID: 5760922333569648369, guid: b13186390dc5b61498ee37b8da038204, type: 3}
-      propertyPath: chaseIdleZoneWidth
-      value: 0.25
+      propertyPath: chaseDetectionRange
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7312967252164704291, guid: b13186390dc5b61498ee37b8da038204, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.21
+      value: 15.33
       objectReference: {fileID: 0}
     - target: {fileID: 7312967252164704291, guid: b13186390dc5b61498ee37b8da038204, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.32
+      value: -2.57
       objectReference: {fileID: 0}
     - target: {fileID: 7312967252164704291, guid: b13186390dc5b61498ee37b8da038204, type: 3}
       propertyPath: m_LocalPosition.z
@@ -127289,11 +127281,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5454244062265773999, guid: 0685f37f7b33d43478c7424d9d79c82c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.79
+      value: -6.68
       objectReference: {fileID: 0}
     - target: {fileID: 5454244062265773999, guid: 0685f37f7b33d43478c7424d9d79c82c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.44
+      value: -3.24
       objectReference: {fileID: 0}
     - target: {fileID: 5454244062265773999, guid: 0685f37f7b33d43478c7424d9d79c82c, type: 3}
       propertyPath: m_LocalPosition.z
