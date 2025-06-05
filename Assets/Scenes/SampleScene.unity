@@ -24851,6 +24851,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 5760922333569648369, guid: b13186390dc5b61498ee37b8da038204, type: 3}
+      propertyPath: chaseIdleZoneWidth
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 7312967252164704291, guid: b13186390dc5b61498ee37b8da038204, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21.21

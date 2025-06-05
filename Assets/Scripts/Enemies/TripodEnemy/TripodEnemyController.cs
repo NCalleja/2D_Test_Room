@@ -33,7 +33,8 @@ public class TripodEnemyController : MonoBehaviour
         playerChaseRange,
         loseSightTime,
         animationChaseSpeed,
-        chaseDetectionRange;
+        chaseDetectionRange,
+        chaseIdleZoneWidth;
 
     [SerializeField]
     private Transform
@@ -252,7 +253,7 @@ public class TripodEnemyController : MonoBehaviour
             // If Chasing Player, Move Faster
             if (chasingPlayer)
             {
-                currentSpeed *= chaseSpeedMultiplier;
+                //currentSpeed *= chaseSpeedMultiplier;
 
                 // Find the Player
                 GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -262,6 +263,29 @@ public class TripodEnemyController : MonoBehaviour
 
                     // Dectect Direction to Player
                     float directionToPlayer = player.transform.position.x - alive.transform.position.x;
+
+                    Debug.Log("Distance to Player: " + directionToPlayer + " | IsStopped: " + isStopped);
+
+                    // Grace Zone For Chasing Player
+                    if (Mathf.Abs(directionToPlayer) < chaseIdleZoneWidth)
+                    {
+                        
+                        aliveRb.velocity = Vector2.zero;
+                        isStopped = true;
+
+                    }
+                    else
+                    {
+
+                        currentSpeed *= chaseSpeedMultiplier;
+
+                        // Flip to Face Player
+                        if((directionToPlayer > 0 && facingDirection == -1) || (directionToPlayer < 0 && facingDirection == 1))
+                        {
+                            Flip();
+                        }
+
+                    }
 
                     // If Wall Detected While Chasing, STOP MOVING
                     if (wallDetected)
