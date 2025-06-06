@@ -24847,13 +24847,17 @@ PrefabInstance:
       propertyPath: chaseDetectionRange
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5760922333569648369, guid: b13186390dc5b61498ee37b8da038204, type: 3}
+      propertyPath: chaseVerticalThreshold
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 7312967252164704291, guid: b13186390dc5b61498ee37b8da038204, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.33
+      value: 21.24
       objectReference: {fileID: 0}
     - target: {fileID: 7312967252164704291, guid: b13186390dc5b61498ee37b8da038204, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.57
+      value: 0.47
       objectReference: {fileID: 0}
     - target: {fileID: 7312967252164704291, guid: b13186390dc5b61498ee37b8da038204, type: 3}
       propertyPath: m_LocalPosition.z

@@ -424,8 +424,9 @@ MonoBehaviour:
   playerChaseRange: 10
   loseSightTime: 7
   animationChaseSpeed: 1.5
-  chaseDetectionRange: 10
+  chaseDetectionRange: 5
   chaseIdleZoneWidth: 0.25
+  chaseVerticalThreshold: 0.25
   groundCheck: {fileID: 8571380682485841824}
   wallCheck: {fileID: 961689264560078590}
   touchDamageCheck: {fileID: 1203402240067224592}

@@ -34,7 +34,8 @@ public class TripodEnemyController : MonoBehaviour
         loseSightTime,
         animationChaseSpeed,
         chaseDetectionRange,
-        chaseIdleZoneWidth;
+        chaseIdleZoneWidth,
+        chaseVerticalThreshold;
 
     [SerializeField]
     private Transform
@@ -526,7 +527,7 @@ public class TripodEnemyController : MonoBehaviour
 
         bool playerIsInFront = (facingDirection == 1 && directionToPlayer > 0) || (facingDirection == -1 && directionToPlayer < 0);
 
-        if (playerIsInFront && distance <= chaseDetectionRange)
+        if (playerIsInFront && distance <= chaseDetectionRange && verticalDifference <= chaseVerticalThreshold)
         {
             // Begin Chasing
             if (!chasingPlayer)
