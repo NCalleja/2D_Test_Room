@@ -164,6 +164,16 @@ public class DeadDummyController : MonoBehaviour
 
         // Rotate on Body Torque
         rbBrokenHead.AddTorque(deathTorque * -playerFacingDirection, ForceMode2D.Impulse);
+
+        // Heal Player After Destruction
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player != null)
+        {
+            player.GetComponent<PlayerStats>().RestoreFullHealth();
+
+        }
+
     }
 
 }

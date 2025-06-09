@@ -71,6 +71,13 @@ public class PlayerStats : MonoBehaviour
 
     }
 
+    // For Restoring Health
+    public void RestoreFullHealth()
+    {
+        currentHealth = maxHealth;
+        Debug.Log("Player Fully Healed");
+    }
+
     private void Die()
     {
         Instantiate(deathChunkParticleTD, transform.position, deathChunkParticleTD.transform.rotation);
