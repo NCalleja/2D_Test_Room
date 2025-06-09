@@ -155,6 +155,9 @@ public class TripodEnemyController : MonoBehaviour
 
         currentHealth = maxHealth;
         facingDirection = 1;
+
+        // For Test Build
+        GameObject.Find("GameManager").GetComponent<GameManager>().RegisterTripod();
     }
 
     // Update Function
@@ -417,6 +420,9 @@ public class TripodEnemyController : MonoBehaviour
         rbBrokenLeftLeg.AddTorque(8f * damageDirection * torqueMultiplier, ForceMode2D.Impulse);
         rbBrokenMiddleLeg.AddTorque(-7f * damageDirection * torqueMultiplier, ForceMode2D.Impulse);
         rbBrokenRightLeg.AddTorque(9f * -damageDirection * torqueMultiplier, ForceMode2D.Impulse);
+
+        // For Test Build
+        GameObject.Find("GameManager").GetComponent<GameManager>().UnregisteredTripods();
 
     }
 

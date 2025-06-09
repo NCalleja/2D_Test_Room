@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour
 
     private CinemachineVirtualCamera CVC;
 
+    // Tripod Test Build
+    private int activeTripods = 0;
+    private bool isRestarting = false;
+
     private void Start()
     {
         CVC = GameObject.Find("Player Camera").GetComponent<CinemachineVirtualCamera>();
@@ -52,5 +56,36 @@ public class GameManager : MonoBehaviour
             respawn = false;
         }
     }
+
+    // Registering Tripods for the Tripod Test Build
+    public void RegisterTripod()
+    {
+
+        activeTripods++;
+        Debug.Log("Tripod Registered. Total: " + activeTripods);
+
+    }
+
+    // Unregistering Tripods for the Tripod Test Build
+    public void UnregisteredTripods()
+    {
+        activeTripods--;
+        Debug.Log("Tripod Unregistered. Remaining: " + activeTripods);
+
+        if(activeTripods <= 0 && !isRestarting)
+        {
+            isRestarting = true;
+            Debug.Log("All Tripods Defeated! Restarting Level...");
+            Invoke("RestartScene", 2f);
+        }
+    }
+
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
+    }
+
+
 
 }
