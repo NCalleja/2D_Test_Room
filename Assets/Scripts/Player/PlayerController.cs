@@ -110,11 +110,13 @@ public class PlayerController : MonoBehaviour
     private Vector2 ledgePos2;
     #endregion
 
+    // Component References -----
     #region ComponentReferences
     private Rigidbody2D rigbod;
     private Animator anim;
     #endregion
 
+    // Configurable Parameters (Generic Movement) -----
     #region ConfigurableParameters
     public int MAX_JUMPS_FROM_GROUND;
     public int MAX_JUMPS_FROM_WALL;
@@ -435,6 +437,14 @@ public class PlayerController : MonoBehaviour
     {
         isInvincible = true;
         invincibilityStartTime = Time.time;
+
+        if(damageFlashRoutine != null)
+        {
+            StopCoroutine(damageFlashRoutine);
+        }
+
+        damageFlashRoutine = StartCoroutine(DamageFlashRoutine());
+
     }
 
     // Trigger Dash I-Frames
@@ -497,6 +507,30 @@ public class PlayerController : MonoBehaviour
             HorizontalDirection.Right => 1,
             _ => 0,
         };
+
+    }
+
+    // Coroutine For Flashing Player Sprite
+    private Coroutine damageFlashRoutine;
+
+    // IEnumerator for Damage Flash Routine
+    private IEnumerator DamageFlashRoutine()
+    {
+        Color normalColor = spriteRenderer.color;
+        Color flashColor = Color.gray;
+
+        while (isInvincible)
+        {
+            
+            spriteRenderer.color = flashColor;
+            yield return new WaitForSeconds(0.1f);
+
+            spriteRenderer.color = normalColor;
+            yield return new WaitForSeconds(0.1f);
+
+        }
+
+        spriteRenderer.color = normalColor; // Reset color after invincibility ends
 
     }
 

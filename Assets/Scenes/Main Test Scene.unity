@@ -127350,7 +127350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3963659497555329512, guid: 0685f37f7b33d43478c7424d9d79c82c, type: 3}
       propertyPath: postDamageInvincibilityDuration
-      value: 1
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 5454244062265773999, guid: 0685f37f7b33d43478c7424d9d79c82c, type: 3}
       propertyPath: m_LocalPosition.x
