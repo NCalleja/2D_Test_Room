@@ -154,6 +154,10 @@ public class PlayerController : MonoBehaviour
     private bool isInvincible = false; // Are we currently in i-frames?
     private float invincibilityStartTime; // When did i-frames start?
 
+    // Dash I-Frames
+    private bool isDashInvincible = false; // Are we currently in dash i-frames
+    private float dashInvincibilityStartTime; // When did dash i-frames start?
+
     // Start Method -----
     // Start is called before the first frame update
     void Start()
@@ -201,6 +205,8 @@ public class PlayerController : MonoBehaviour
         isWallSliding = isTouchingWall && !isGrounded && !isLedgeClimbing;
 
         checkKnockback();
+
+        UpdateDashIFrames();
 
         // If we are invincible and past the time limit, we are no longer invincible
         if (isInvincible && Time.time >= invincibilityStartTime + postDamageInvincibilityDuration)
@@ -279,6 +285,8 @@ public class PlayerController : MonoBehaviour
             {
                 hasDashedInAir = true;
             }
+
+            TriggerDashIFrames();
 
         }
         inputDashPressed = false;
@@ -425,6 +433,24 @@ public class PlayerController : MonoBehaviour
         invincibilityStartTime = Time.time;
     }
 
+    // Trigger Dash I-Frames
+    public void TriggerDashIFrames()
+    {
+        isDashInvincible = true;
+        dashInvincibilityStartTime = Time.time;
+    }
+
+    // Update Dash I-Frames
+    private void UpdateDashIFrames()
+    {
+         
+        if(isDashInvincible && Time.time >= dashInvincibilityStartTime + DASH_TIME)
+        {
+            isDashInvincible = false;
+        }
+
+    }
+
     // On Draw Gizmos
     private void OnDrawGizmos()
     {
@@ -456,7 +482,7 @@ public class PlayerController : MonoBehaviour
 
     public bool IsInvincible()
     {
-        return isInvincible;
+        return isInvincible || isDashInvincible;
     }
 
     public int GetFacingDirection()

@@ -110,7 +110,7 @@ public class PlayerCombatController : MonoBehaviour
     // Damage Player Unless if they're Dashing
     private void Damage(float[] attackDetails)
     {
-        if (!playerController.GetDashStatus())
+        if (!playerController.IsInvincible())
         {
 
             int direction;
@@ -127,7 +127,7 @@ public class PlayerCombatController : MonoBehaviour
             }
 
             playerController.Knockback(direction);
-
+            playerController.TriggerDamageIFrames();
         }
     }
 
