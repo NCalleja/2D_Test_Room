@@ -418,6 +418,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Trigger Damage I-Frames
+    public void TriggerDamageIFrames()
+    {
+        isInvincible = true;
+        invincibilityStartTime = Time.time;
+    }
+
     // On Draw Gizmos
     private void OnDrawGizmos()
     {
@@ -445,6 +452,11 @@ public class PlayerController : MonoBehaviour
     public bool IsWallSliding()
     {
         return isWallSliding;
+    }
+
+    public bool IsInvincible()
+    {
+        return isInvincible;
     }
 
     public int GetFacingDirection()
