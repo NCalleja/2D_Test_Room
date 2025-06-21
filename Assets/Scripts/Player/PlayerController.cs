@@ -158,12 +158,16 @@ public class PlayerController : MonoBehaviour
     private bool isDashInvincible = false; // Are we currently in dash i-frames
     private float dashInvincibilityStartTime; // When did dash i-frames start?
 
+    // SpriteRenderer Variables
+    private SpriteRenderer spriteRenderer;
+
     // Start Method -----
     // Start is called before the first frame update
     void Start()
     {
         rigbod = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         // Making the Vectors itself equal 1
         WALL_HOP_DIRECTION.Normalize();
