@@ -147,6 +147,13 @@ public class PlayerController : MonoBehaviour
     public LayerMask WHAT_IS_GROUND;
     #endregion
 
+    // I-Frame Conditions
+    [SerializeField]
+    private float postDamageInvincibilityDuration; // How long the player is invincible after taking damage?
+
+    private bool isInvincible = false; // Are we currently in i-frames?
+    private float invincibilityStartTime; // When did i-frames start?
+
     // Start Method -----
     // Start is called before the first frame update
     void Start()
@@ -353,14 +360,6 @@ public class PlayerController : MonoBehaviour
             // Manually set the Player's 'y' position to DashStartY on each frame during the dash
             transform.position = new Vector2(transform.position.x, dashStartY);
 
-            // Removing After Image Features
-            /*
-            if (Mathf.Abs(transform.position.x - lastImageXpos) > distanceBetweenImages)
-            {
-                PlayerAfterImagePool.Instance.GetFromPool();
-                lastImageXpos = transform.position.x;
-            }
-            */
         }
         else if (isWallSliding && !knockback)
         {
