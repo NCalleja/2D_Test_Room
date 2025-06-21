@@ -202,6 +202,12 @@ public class PlayerController : MonoBehaviour
 
         checkKnockback();
 
+        // If we are invincible and past the time limit, we are no longer invincible
+        if (isInvincible && Time.time >= invincibilityStartTime + postDamageInvincibilityDuration)
+        {
+            isInvincible = false;
+        }
+
         if (isGrounded && rigbod.velocity.y <= 0.1f)
         {
             // Reset jump counter since we are on the ground
