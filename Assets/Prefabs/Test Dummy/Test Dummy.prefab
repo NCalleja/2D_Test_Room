@@ -319,6 +319,7 @@ MonoBehaviour:
   WHAT_IS_GROUND:
     serializedVersion: 2
     m_Bits: 256
+  postDamageInvincibilityDuration: 0.75
 --- !u!114 &8059343480802290306
 MonoBehaviour:
   m_ObjectHideFlags: 0

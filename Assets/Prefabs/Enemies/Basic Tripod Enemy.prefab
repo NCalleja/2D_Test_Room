@@ -412,7 +412,7 @@ MonoBehaviour:
   groundCheckDistance: 0.5
   wallCheckDistance: 0.1
   movementSpeed: 3
-  chaseSpeed: 6
+  chaseSpeed: 5
   maxHealth: 30
   knockbackDuration: 0.1
   torqueMultiplier: 0.5
@@ -422,7 +422,7 @@ MonoBehaviour:
   touchDamageHeight: 0.8
   chaseSpeedMultiplier: 1.5
   playerChaseRange: 10
-  loseSightTime: 7
+  loseSightTime: 2.7
   animationChaseSpeed: 1.5
   chaseDetectionRange: 5
   chaseIdleZoneWidth: 0.25
