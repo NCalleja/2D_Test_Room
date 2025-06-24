@@ -83,7 +83,8 @@ public class TripodEnemyController : MonoBehaviour
         isAttacking,
         groundDetected,
         wallDetected,
-        chasingPlayer = false;
+        chasingPlayer = false,
+        isPlatformHopping = false;
 
     private int
         facingDirection,
@@ -177,8 +178,13 @@ public class TripodEnemyController : MonoBehaviour
                 break;
         }
 
+        // End chase if we've lost sight of the player OR we're falling unintentionally
+        if (chasingPlayer && !isPlatformHopping && !groundDetected)
+        {
+            chasingPlayer = false;
+        }
         // Chase Logic - Give Up After X Seconds Without Detection
-        if (chasingPlayer && Time.time >= lastTimePlayerSeen + loseSightTime)
+        else if (chasingPlayer && Time.time >= lastTimePlayerSeen + loseSightTime)
         {
             chasingPlayer = false;
         }
@@ -194,8 +200,18 @@ public class TripodEnemyController : MonoBehaviour
 
     private void UpdateMovingState()
     {
+        // Ground and Wall Detection
+        groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
+        wallDetected = Physics2D.Raycast(wallCheck.position, Vector2.left, wallCheckDistance, whatIsGround);
+
+        if(!groundDetected && isAttacking)
+        {
+            Debug.Log("Tripod canceled attack due to falling!");
+            FinishAttack();
+        }
 
         bool isStopped = false;
+        bool canMove = groundDetected;
         float currentSpeed = movementSpeed;
 
         // Stop Moving While Attacking
@@ -204,10 +220,6 @@ public class TripodEnemyController : MonoBehaviour
             aliveRb.velocity = Vector2.zero;
             return;
         }
-
-        // Ground and Wall Detection
-        groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
-        wallDetected = Physics2D.Raycast(wallCheck.position, Vector2.left, wallCheckDistance, whatIsGround);
 
         // Check Touch Damage
         CheckTouchDamage();
@@ -329,9 +341,17 @@ public class TripodEnemyController : MonoBehaviour
         }
 
 
-        if (!isStopped)
+        if(!canMove)
+        {
+            
+            // Stop all horizontal movement if airborne
+            aliveRb.velocity = new Vector2(0, aliveRb.velocity.y);
+
+        }
+        else if (!isStopped)
         {
 
+            // Apply movement if grounded and able to move
             currentSpeed = chasingPlayer ? chaseSpeed : movementSpeed;
             movement.Set(currentSpeed * facingDirection, aliveRb.velocity.y);
             aliveRb.velocity = movement;
@@ -365,6 +385,10 @@ public class TripodEnemyController : MonoBehaviour
 
     private void UpdateKnockbackState()
     {
+
+        // Let Gravity Take Over During Knockback
+        aliveRb.velocity = new Vector2(aliveRb.velocity.x, aliveRb.velocity.y);
+
         if (Time.time >= knockbackStartTime + knockbackDuration)
         {
             SwitchState(State.Moving);
@@ -515,8 +539,9 @@ public class TripodEnemyController : MonoBehaviour
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        if (player == null || isAttacking || Time.time < lastAttackTime + attackCooldown)
+        if (player == null || isAttacking || Time.time < lastAttackTime + attackCooldown || !groundDetected)
         {
+            Debug.Log("Attack Blocked: Airborne = " + !groundDetected);
             return false;
         }
 

@@ -451,6 +451,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basic Tripod Enemy (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4747849585428265417, guid: b13186390dc5b61498ee37b8da038204, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 4747849585428265417, guid: b13186390dc5b61498ee37b8da038204, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.46
+      objectReference: {fileID: 0}
     - target: {fileID: 5760922333569648369, guid: b13186390dc5b61498ee37b8da038204, type: 3}
       propertyPath: chaseDetectionRange
       value: 5
@@ -461,11 +469,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7312967252164704291, guid: b13186390dc5b61498ee37b8da038204, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.85
+      value: 13.06
       objectReference: {fileID: 0}
     - target: {fileID: 7312967252164704291, guid: b13186390dc5b61498ee37b8da038204, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.69
+      value: -2.6
       objectReference: {fileID: 0}
     - target: {fileID: 7312967252164704291, guid: b13186390dc5b61498ee37b8da038204, type: 3}
       propertyPath: m_LocalPosition.z
@@ -726,20 +734,16 @@ PrefabInstance:
       value: Basic Tripod Enemy (1)
       objectReference: {fileID: 0}
     - target: {fileID: 5760922333569648369, guid: b13186390dc5b61498ee37b8da038204, type: 3}
-      propertyPath: chaseDetectionRange
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5760922333569648369, guid: b13186390dc5b61498ee37b8da038204, type: 3}
-      propertyPath: chaseVerticalThreshold
-      value: 0.25
+      propertyPath: loseSightTime
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 7312967252164704291, guid: b13186390dc5b61498ee37b8da038204, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.1
+      value: -4.07
       objectReference: {fileID: 0}
     - target: {fileID: 7312967252164704291, guid: b13186390dc5b61498ee37b8da038204, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.36
+      value: 5.51
       objectReference: {fileID: 0}
     - target: {fileID: 7312967252164704291, guid: b13186390dc5b61498ee37b8da038204, type: 3}
       propertyPath: m_LocalPosition.z
@@ -24207,11 +24211,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7312967252164704291, guid: b13186390dc5b61498ee37b8da038204, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.34
+      value: 14.87
       objectReference: {fileID: 0}
     - target: {fileID: 7312967252164704291, guid: b13186390dc5b61498ee37b8da038204, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.48
+      value: 2.4
       objectReference: {fileID: 0}
     - target: {fileID: 7312967252164704291, guid: b13186390dc5b61498ee37b8da038204, type: 3}
       propertyPath: m_LocalPosition.z
