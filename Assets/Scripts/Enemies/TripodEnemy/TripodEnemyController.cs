@@ -80,8 +80,7 @@ public class TripodEnemyController : MonoBehaviour
         hopForceY,
         maxHopDistanceX,
         maxHopDistanceY,
-        hopCooldown,
-        lastHopTime;
+        hopCooldown;
 
     // Game Object
     private GameObject alive;
@@ -112,7 +111,8 @@ public class TripodEnemyController : MonoBehaviour
         lastAttackTime,
         lastTimePlayerSeen,
         wallPauseTime = 0.5f,
-        wallPauseStartTime;
+        wallPauseStartTime,
+        lastHopTime = Mathf.NegativeInfinity;
 
     private float[] attackDetails = new float[2];
 
@@ -237,15 +237,55 @@ public class TripodEnemyController : MonoBehaviour
         if (!groundDetected)
         {
 
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+
             if (chasingPlayer)
             {
+
+                /*
+                 *  HOP LOGIC GOES HERE
+                 */
+
+                // Making Sure Player Exists
+                if (player != null)
+                {
+
+                    // How Far Down is the Player?
+                    float verticalDistance = alive.transform.position.y - player.transform.position.y;
+                    // How Far Away is the Player Horizontally?
+                    float horizontalDistance = Mathf.Abs(alive.transform.position.x - player.transform.position.x);
+
+                    // If Player is Below Tripod, Hop Down
+                    if (verticalDistance > 1f && verticalDistance <= maxHopDistanceY && horizontalDistance <= maxHopDistanceX && Time.time >= lastHopTime + hopCooldown)
+                    {
+
+                        Debug.Log("Tripod is hopping DOWN toward Player");
+
+                        // Is the Player to the Right or Left?
+                        float directionToPlayer = player.transform.position.x - alive.transform.position.x;
+                        // Determine Hop Direction
+                        int hopDirection = directionToPlayer > 0 ? 1 : -1;
+
+                        // Set the Velocity for the Hop
+                        aliveRb.velocity = new Vector2(hopForceX * hopDirection, hopForceY);
+                        isPlatformHopping = true;
+                        lastHopTime = Time.time;
+
+                        // OPTIONAL ANIMATION TRIGGER FOR LATER
+                        // alvieAnim.SetTrigger("Hop");
+
+                        return;
+
+                    }
+
+                }
+
                 // Stop at ledge while chasing, don't flip or fall
                 aliveRb.velocity = Vector2.zero;
                 isStopped = true;
 
                 if (Time.time >= wallPauseStartTime + wallPauseTime)
                 {
-                    GameObject player = GameObject.FindGameObjectWithTag("Player");
 
                     if (player != null)
                     {
