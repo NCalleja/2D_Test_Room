@@ -73,6 +73,16 @@ public class TripodEnemyController : MonoBehaviour
     private Transform
         attackPoint;
 
+    // Hop Controls
+    [SerializeField]
+    private float
+        hopForceX,
+        hopForceY,
+        maxHopDistanceX,
+        maxHopDistanceY,
+        hopCooldown,
+        lastHopTime;
+
     // Game Object
     private GameObject alive;
     private Rigidbody2D aliveRb;
