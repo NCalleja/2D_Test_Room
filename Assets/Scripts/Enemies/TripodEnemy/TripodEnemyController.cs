@@ -214,7 +214,15 @@ public class TripodEnemyController : MonoBehaviour
         groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
         wallDetected = Physics2D.Raycast(wallCheck.position, Vector2.left, wallCheckDistance, whatIsGround);
 
-        if(!groundDetected && isAttacking)
+        // Landing Check - End Platform Hopping if Grounded
+        if (isPlatformHopping && groundDetected)
+        {
+            Debug.Log("Tripod Landed After Hop!");
+            isPlatformHopping = false;
+        }
+
+        // If Tripod is Falling and is Attacking, Cancel Attack
+        if (!groundDetected && isAttacking)
         {
             Debug.Log("Tripod canceled attack due to falling!");
             FinishAttack();
