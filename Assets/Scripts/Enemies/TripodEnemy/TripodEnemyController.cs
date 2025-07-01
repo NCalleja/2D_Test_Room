@@ -179,6 +179,18 @@ public class TripodEnemyController : MonoBehaviour
             case State.Moving:
                 UpdateMovingState();
                 if (CanAttackPlayer()) StartAttack();
+
+                // End chase if we've lost sight of the player OR we're falling unintentionally
+                if (chasingPlayer && !isPlatformHopping && !groundDetected)
+                {
+                    chasingPlayer = false;
+                }
+                // Chase Logic - Give Up After X Seconds Without Detection
+                else if (chasingPlayer && Time.time >= lastTimePlayerSeen + loseSightTime)
+                {
+                    chasingPlayer = false;
+                }
+
                 break;
             case State.Knockback:
                 UpdateKnockbackState();
@@ -186,17 +198,6 @@ public class TripodEnemyController : MonoBehaviour
             case State.Dead:
                 UpdateDeadState();
                 break;
-        }
-
-        // End chase if we've lost sight of the player OR we're falling unintentionally
-        if (chasingPlayer && !isPlatformHopping && !groundDetected)
-        {
-            chasingPlayer = false;
-        }
-        // Chase Logic - Give Up After X Seconds Without Detection
-        else if (chasingPlayer && Time.time >= lastTimePlayerSeen + loseSightTime)
-        {
-            chasingPlayer = false;
         }
 
     }
