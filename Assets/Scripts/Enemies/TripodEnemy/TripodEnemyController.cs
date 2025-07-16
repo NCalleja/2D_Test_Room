@@ -39,7 +39,8 @@ public class TripodEnemyController : MonoBehaviour
 
     [SerializeField]
     private Transform
-        groundCheck,
+        frontGroundCheck,
+        backGroundCheck,
         wallCheck,
         touchDamageCheck;
 
@@ -90,7 +91,8 @@ public class TripodEnemyController : MonoBehaviour
     // Private Bool
     private bool
         isAttacking,
-        groundDetected,
+        frontGroundDetected,
+        backGroundDetected,
         wallDetected,
         chasingPlayer = false,
         isPlatformHopping = false,
@@ -182,7 +184,7 @@ public class TripodEnemyController : MonoBehaviour
                 if (CanAttackPlayer()) StartAttack();
 
                 // End chase if we're not hopping AND if we're not planning to hop AND we're falling unintentionally
-                if (chasingPlayer && !isPlatformHopping && !shouldHopThisFrame && !groundDetected)
+                if (chasingPlayer && !isPlatformHopping && !shouldHopThisFrame && !frontGroundDetected)
                 {
                     chasingPlayer = false;
                 }
@@ -212,12 +214,19 @@ public class TripodEnemyController : MonoBehaviour
 
     private void UpdateMovingState()
     {
-        // Ground and Wall Detection
-        groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
+        // FrontGround and BackGround and Wall Detection
+        frontGroundDetected = Physics2D.Raycast(frontGroundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
+        backGroundDetected = Physics2D.Raycast(backGroundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
+
+        // Interpet Grounded States
+        bool fullyGrounded = frontGroundDetected && backGroundDetected;
+        bool atLedge = !frontGroundDetected && backGroundDetected;
+        bool airborne = !frontGroundDetected && !backGroundDetected;
+
         wallDetected = Physics2D.Raycast(wallCheck.position, Vector2.left, wallCheckDistance, whatIsGround);
 
         // Landing Check - End Platform Hopping if Grounded
-        if (isPlatformHopping && groundDetected)
+        if (isPlatformHopping && frontGroundDetected)
         {
             Debug.Log("Tripod Landed After Hop!");
             isPlatformHopping = false;
@@ -225,14 +234,14 @@ public class TripodEnemyController : MonoBehaviour
         }
 
         // If Tripod is Falling and is Attacking, Cancel Attack
-        if (!groundDetected && isAttacking)
+        if (!frontGroundDetected && isAttacking)
         {
             Debug.Log("Tripod canceled attack due to falling!");
             FinishAttack();
         }
 
         bool isStopped = false;
-        bool canMove = groundDetected;
+        bool canMove = frontGroundDetected;
         float currentSpeed = movementSpeed;
 
         // Stop Moving While Attacking
@@ -246,7 +255,7 @@ public class TripodEnemyController : MonoBehaviour
         CheckTouchDamage();
 
         // If were in the air or at a ledge
-        if (!groundDetected)
+        if (!frontGroundDetected)
         {
 
             GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -608,9 +617,9 @@ public class TripodEnemyController : MonoBehaviour
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        if (player == null || isAttacking || Time.time < lastAttackTime + attackCooldown || !groundDetected)
+        if (player == null || isAttacking || Time.time < lastAttackTime + attackCooldown || !frontGroundDetected)
         {
-            Debug.Log("Attack Blocked: Airborne = " + !groundDetected);
+            Debug.Log("Attack Blocked: Airborne = " + !frontGroundDetected);
             return false;
         }
 
@@ -709,7 +718,22 @@ public class TripodEnemyController : MonoBehaviour
     // Gizmos Ray Cast Functions
     private void OnDrawGizmos()
     {
-        Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
+
+        // Front Ground Check
+        if (frontGroundCheck != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(frontGroundCheck.position, new Vector2(frontGroundCheck.position.x, frontGroundCheck.position.y - groundCheckDistance));
+        }
+
+        // Back Ground Check
+        if (backGroundCheck != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(backGroundCheck.position, new Vector2(backGroundCheck.position.x, backGroundCheck.position.y - groundCheckDistance));
+        }
+
+        // Wall Detection
         Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
 
         // Drawing Damage Circle

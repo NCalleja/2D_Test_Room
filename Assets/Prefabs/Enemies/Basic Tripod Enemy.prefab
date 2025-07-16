@@ -337,7 +337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8571380682485841824}
   m_Layer: 9
-  m_Name: GroundCheck
+  m_Name: FrontGroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -427,7 +427,8 @@ MonoBehaviour:
   chaseDetectionRange: 5
   chaseIdleZoneWidth: 0.25
   chaseVerticalThreshold: 0.25
-  groundCheck: {fileID: 8571380682485841824}
+  frontGroundCheck: {fileID: 8571380682485841824}
+  backGroundCheck: {fileID: 5717564343522864189}
   wallCheck: {fileID: 961689264560078590}
   touchDamageCheck: {fileID: 1203402240067224592}
   whatIsGround:
@@ -445,6 +446,11 @@ MonoBehaviour:
   attackCooldown: 1
   detectionRange: 1.2
   attackPoint: {fileID: 328048810913632098}
+  hopForceX: 5
+  hopForceY: 6
+  maxHopDistanceX: 6
+  maxHopDistanceY: 8
+  hopCooldown: 1.5
 --- !u!1 &4371449222505955419
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,6 +1074,37 @@ CapsuleCollider2D:
   m_Offset: {x: 0.004330338, y: 0.0018900109}
   m_Size: {x: 0.3334386, y: 0.12240961}
   m_Direction: 1
+--- !u!1 &7714531426383501567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5717564343522864189}
+  m_Layer: 9
+  m_Name: BackGroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5717564343522864189
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7714531426383501567}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.39, y: -0.157, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4747849585428265417}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8051092544915248472
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,11 +1166,12 @@ Transform:
   m_GameObject: {fileID: 8462760438986910501}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.64, y: 0.16, z: 0}
+  m_LocalPosition: {x: -0.002, y: -0.009, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8571380682485841824}
+  - {fileID: 5717564343522864189}
   - {fileID: 961689264560078590}
   - {fileID: 1203402240067224592}
   - {fileID: 328048810913632098}

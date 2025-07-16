@@ -24209,33 +24209,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basic Tripod Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 5760922333569648369, guid: b13186390dc5b61498ee37b8da038204, type: 3}
-      propertyPath: hopForceX
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5760922333569648369, guid: b13186390dc5b61498ee37b8da038204, type: 3}
-      propertyPath: hopForceY
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5760922333569648369, guid: b13186390dc5b61498ee37b8da038204, type: 3}
-      propertyPath: hopCooldown
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5760922333569648369, guid: b13186390dc5b61498ee37b8da038204, type: 3}
-      propertyPath: maxHopDistanceX
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5760922333569648369, guid: b13186390dc5b61498ee37b8da038204, type: 3}
-      propertyPath: maxHopDistanceY
-      value: 8
+    - target: {fileID: 5717564343522864189, guid: b13186390dc5b61498ee37b8da038204, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.375
       objectReference: {fileID: 0}
     - target: {fileID: 7312967252164704291, guid: b13186390dc5b61498ee37b8da038204, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.87
+      value: 14.992
       objectReference: {fileID: 0}
     - target: {fileID: 7312967252164704291, guid: b13186390dc5b61498ee37b8da038204, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.4
+      value: 2.367
       objectReference: {fileID: 0}
     - target: {fileID: 7312967252164704291, guid: b13186390dc5b61498ee37b8da038204, type: 3}
       propertyPath: m_LocalPosition.z
