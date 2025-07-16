@@ -24209,9 +24209,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basic Tripod Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 5717564343522864189, guid: b13186390dc5b61498ee37b8da038204, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.375
+    - target: {fileID: 5760922333569648369, guid: b13186390dc5b61498ee37b8da038204, type: 3}
+      propertyPath: hopForceX
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5760922333569648369, guid: b13186390dc5b61498ee37b8da038204, type: 3}
+      propertyPath: hopForceY
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5760922333569648369, guid: b13186390dc5b61498ee37b8da038204, type: 3}
+      propertyPath: hopCooldown
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5760922333569648369, guid: b13186390dc5b61498ee37b8da038204, type: 3}
+      propertyPath: maxHopDistanceX
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5760922333569648369, guid: b13186390dc5b61498ee37b8da038204, type: 3}
+      propertyPath: maxHopDistanceY
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7312967252164704291, guid: b13186390dc5b61498ee37b8da038204, type: 3}
       propertyPath: m_LocalPosition.x

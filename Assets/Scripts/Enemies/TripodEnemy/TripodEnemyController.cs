@@ -95,8 +95,7 @@ public class TripodEnemyController : MonoBehaviour
         backGroundDetected,
         wallDetected,
         chasingPlayer = false,
-        isPlatformHopping = false,
-        shouldHopThisFrame = false;
+        isPlatformHopping = false;
 
     private int
         facingDirection,
@@ -183,8 +182,10 @@ public class TripodEnemyController : MonoBehaviour
                 UpdateMovingState();
                 if (CanAttackPlayer()) StartAttack();
 
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+
                 // End chase if we're not hopping AND if we're not planning to hop AND we're falling unintentionally
-                if (chasingPlayer && !isPlatformHopping && !shouldHopThisFrame && !frontGroundDetected)
+                if (chasingPlayer && !isPlatformHopping && !IsTryingToHopToPlayer(player) && (!frontGroundDetected && !backGroundDetected))
                 {
                     chasingPlayer = false;
                 }
@@ -226,22 +227,21 @@ public class TripodEnemyController : MonoBehaviour
         wallDetected = Physics2D.Raycast(wallCheck.position, Vector2.left, wallCheckDistance, whatIsGround);
 
         // Landing Check - End Platform Hopping if Grounded
-        if (isPlatformHopping && frontGroundDetected)
-        {
+        if (isPlatformHopping && fullyGrounded) { 
+
             Debug.Log("Tripod Landed After Hop!");
             isPlatformHopping = false;
-            shouldHopThisFrame = false;
         }
 
         // If Tripod is Falling and is Attacking, Cancel Attack
-        if (!frontGroundDetected && isAttacking)
+        if (airborne && isAttacking)
         {
             Debug.Log("Tripod canceled attack due to falling!");
             FinishAttack();
         }
 
         bool isStopped = false;
-        bool canMove = frontGroundDetected;
+        bool canMove = fullyGrounded;
         float currentSpeed = movementSpeed;
 
         // Stop Moving While Attacking
@@ -276,16 +276,13 @@ public class TripodEnemyController : MonoBehaviour
                     // How Far Away is the Player Horizontally?
                     float horizontalDistance = Mathf.Abs(alive.transform.position.x - player.transform.position.x);
 
-                    shouldHopThisFrame = false; // Reset Every Frame
+                    Debug.Log($"[Tripod Hop Check] PlayerDistY: {alive.transform.position.y - player.transform.position.y}, " +
+                        $"DistX: {Mathf.Abs(alive.transform.position.x - player.transform.position.x)}, " +
+                        $"LastHopTime: {lastHopTime}, TimeNow: {Time.time}");
 
                     // If Player is Below Tripod, Hop Down
-                    if (verticalDistance > 1f &&
-                        verticalDistance <= maxHopDistanceY &&
-                        horizontalDistance <= maxHopDistanceX &&
-                        Time.time >= lastHopTime + hopCooldown)
+                    if (IsTryingToHopToPlayer(player))
                     {
-
-                        shouldHopThisFrame = true;
 
                         Debug.Log("Tripod is hopping DOWN toward Player");
 
@@ -617,9 +614,11 @@ public class TripodEnemyController : MonoBehaviour
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        if (player == null || isAttacking || Time.time < lastAttackTime + attackCooldown || !frontGroundDetected)
+        bool isAirborne = !frontGroundDetected && !backGroundDetected;
+
+        if (player == null || isAttacking || Time.time < lastAttackTime + attackCooldown || isAirborne)
         {
-            Debug.Log("Attack Blocked: Airborne = " + !frontGroundDetected);
+            
             return false;
         }
 
@@ -653,6 +652,19 @@ public class TripodEnemyController : MonoBehaviour
 
         return false;
 
+    }
+
+    // Is Trying to Hop to Player
+    private bool IsTryingToHopToPlayer(GameObject player)
+    {
+
+        if (player == null) return false;
+
+        float verticalDistance = alive.transform.position.y - player.transform.position.y;
+        float horizontalDistance = Mathf.Abs(alive.transform.position.x - player.transform.position.x);
+
+        // Check if the player is below and within hop distance
+        return verticalDistance > 1f && verticalDistance <= maxHopDistanceY && horizontalDistance <= maxHopDistanceX;
     }
 
     // Handles Attack and Animation
