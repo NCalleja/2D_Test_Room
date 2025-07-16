@@ -93,7 +93,8 @@ public class TripodEnemyController : MonoBehaviour
         groundDetected,
         wallDetected,
         chasingPlayer = false,
-        isPlatformHopping = false;
+        isPlatformHopping = false,
+        shouldHopThisFrame = false;
 
     private int
         facingDirection,
@@ -180,8 +181,8 @@ public class TripodEnemyController : MonoBehaviour
                 UpdateMovingState();
                 if (CanAttackPlayer()) StartAttack();
 
-                // End chase if we've lost sight of the player OR we're falling unintentionally
-                if (chasingPlayer && !isPlatformHopping && !groundDetected)
+                // End chase if we're not hopping AND if we're not planning to hop AND we're falling unintentionally
+                if (chasingPlayer && !isPlatformHopping && !shouldHopThisFrame && !groundDetected)
                 {
                     chasingPlayer = false;
                 }
@@ -220,6 +221,7 @@ public class TripodEnemyController : MonoBehaviour
         {
             Debug.Log("Tripod Landed After Hop!");
             isPlatformHopping = false;
+            shouldHopThisFrame = false;
         }
 
         // If Tripod is Falling and is Attacking, Cancel Attack
@@ -243,6 +245,7 @@ public class TripodEnemyController : MonoBehaviour
         // Check Touch Damage
         CheckTouchDamage();
 
+        // If were in the air or at a ledge
         if (!groundDetected)
         {
 
@@ -264,9 +267,16 @@ public class TripodEnemyController : MonoBehaviour
                     // How Far Away is the Player Horizontally?
                     float horizontalDistance = Mathf.Abs(alive.transform.position.x - player.transform.position.x);
 
+                    shouldHopThisFrame = false; // Reset Every Frame
+
                     // If Player is Below Tripod, Hop Down
-                    if (verticalDistance > 1f && verticalDistance <= maxHopDistanceY && horizontalDistance <= maxHopDistanceX && Time.time >= lastHopTime + hopCooldown)
+                    if (verticalDistance > 1f &&
+                        verticalDistance <= maxHopDistanceY &&
+                        horizontalDistance <= maxHopDistanceX &&
+                        Time.time >= lastHopTime + hopCooldown)
                     {
+
+                        shouldHopThisFrame = true;
 
                         Debug.Log("Tripod is hopping DOWN toward Player");
 
